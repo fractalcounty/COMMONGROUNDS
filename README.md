@@ -6,8 +6,8 @@
 4. Install [Visual Studio Code](https://code.visualstudio.com/) (VSC) as well as the [godot-tools](https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools) VSC plugin
 5. Back in Godot, go to 'Editor' > 'Editor Settings...' in the top left toolbar
 	-  **External**: Set 'Use External Editor' to 'On' and 'Exec Path' to your VSC install location: ![[https://github.com/fractalcounty/ChasersWorld/blob/main/docs/external_editor.png]]
-	- **Completion:** Set 'Add Type Hints' to 'On':
-	![[https://github.com/fractalcounty/ChasersWorld/blob/main/docs/type-hints.png]]
+	- **Completion:** Set 'Add Type Hints' to 'On': ![](https://github.com/fractalcounty/ChasersWorld/blob/main/docs/type-hints.png)
+
 6. *Optional*: Install [Obsidian](https://obsidian.md/) and add your cloned repository as a Vault. Obsidian is a **REALLY GOOD** note-taking and documentation app that I already have setup to sync with the repository
 ## Resources and recommendations (also for Jason)
 - **Push every single time you make changes OR ELSE**. Although Godot is pretty reliable, random data loss **WILL** happen a lot, and you **WILL** have to revert to your last Github commit **VERY FREQUENTLY**.... Think of it like saving your progress in a game that has a 1% chance of erasing your progress at any given moment. Think of it like Flowey is in your computer
