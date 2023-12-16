@@ -16,10 +16,13 @@
 - **Don't blindly follow tutorials** without ensuring that they were made for *at least* Godot 4.0 or higher. Godot 3.5+ tutorials *might* be of some use but should generally be avoided.
 	- Most Godot tutorials also suck, so just a fair warning. ChatGPT is unironically better
 	- [GDQuest](https://www.gdquest.com/tutorial/) is the exception but a lot of them are either for 3.x or are [paywalled but very worth it](https://school.gdquest.com/products/godot-4-early-access). They also have a [YouTube channel too](https://www.youtube.com/@Gdquest) you should check out
-- [ChatGPT](https://chat.openai.com/) is good for debugging, problem solving, and 'rubber ducking' with **only if you use GPT-4 via ChatGPT Pro**. However, it's still not amazing at reliably generating GDScript 2.0 syntax since it was trained on Godot 3.x. But use it anyways! Feel free to use my ChatGPT Plus account:
-		**Username:** pondethan@icloud.com
-		**Password:** rU6ANE_bgL8Muwx-dsaW
-		*Note, if you use this: make sure you select 'GPT-4' from the dropdown every time you start a new chat, or else it will use GPT-3.5 which is like GPT-4s retarded useless cousin*
+- [ChatGPT](https://chat.openai.com/) is good for debugging, problem solving, and 'rubber ducking' with **only if you use GPT-4 via ChatGPT Pro**. However, it's still not amazing at reliably generating GDScript 2.0 syntax since it was trained on Godot 3.x. But use it anyways! Feel free to use my ChatGPT Plus account:  
+
+  	**Username:** pondethan@icloud.com   
+	**Password:** rU6ANE_bgL8Muwx-dsaW  
+
+  	*Note, if you use this: make sure you select 'GPT-4' from the dropdown every time you start a new chat, or else it will use GPT-3.5 which is like GPT-4s 		retarded useless cousin*
+  
 - Try to maintain the best practices to reduce bugs and help me understand what you're adding
 	- Familiarize yourself with the [GDScript style guide](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html) to keep your scripts beautiful
 	- Use **static typing** at all times to keep your scripts fast & bug-free. If you aren't sure what static typing is or how to use it in GDScript, see the [static typing doc page here](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/static_typing.html)
