@@ -1,12 +1,16 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1702736273
+::res://::1702737992
 icon.svg::CompressedTexture2D::3941816325538242060::1702735023::1702735173::1::::<><>::
+local_path.png::CompressedTexture2D::2795178841767652999::1702736986::1702737318::1::::<><>::
 README.md::TextFile::-1::1702733229::0::1::::<><>::
 ::res://assets/::1702733381
 ::res://assets/audio/::1702733373
 ::res://assets/sprites/::1702733379
-::res://docs/::1702736279
+::res://docs/::1702740420
 external_editor.png::CompressedTexture2D::7459219137268356670::1702736279::1702736364::1::::<><>::
+Frame 1 (1).png::CompressedTexture2D::1441630347768869774::1702740413::1702740423::1::::<><>::
+local_path.png::CompressedTexture2D::7636356352610203473::1702737010::1702737318::1::::<><>::
+type-hints.png::CompressedTexture2D::1035159557649313749::1702737689::1702737839::1::::<><>::
 ::res://scenes/::1702733410
 ::res://scenes/game/::1702733409
 ::res://scenes/menu/::1702733404
