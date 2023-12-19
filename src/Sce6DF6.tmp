@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://cryoc1mw1tyjj"]
+
+[ext_resource type="Script" path="res://src/SceneManager.gd" id="1_yhewy"]
+[ext_resource type="PackedScene" uid="uid://c1kcypvbaac5g" path="res://scenes/_debug/Scene1.tscn" id="2_17fuw"]
+[ext_resource type="PackedScene" uid="uid://ckmuw1sdthrj0" path="res://scenes/_debug/Scene2.tscn" id="3_1d8i0"]
+[ext_resource type="PackedScene" uid="uid://ck3rmhhxmmt8q" path="res://scenes/menu/Splash.tscn" id="4_5bb2g"]
+[ext_resource type="PackedScene" uid="uid://s3sf4ltqfaxn" path="res://scenes/menu/MainMenu.tscn" id="5_7osc3"]
+[ext_resource type="PackedScene" uid="uid://b7x8j0revg2us" path="res://scenes/menu/LoadingScreen.tscn" id="6_cgjqd"]
+
+[node name="SceneManager" type="Node" node_paths=PackedStringArray("interface")]
+script = ExtResource("1_yhewy")
+debug1_scene = ExtResource("2_17fuw")
+debug2_scene = ExtResource("3_1d8i0")
+splash_scene = ExtResource("4_5bb2g")
+main_menu_scene = ExtResource("5_7osc3")
+loading_screen_scene = ExtResource("6_cgjqd")
+interface = NodePath("Interface")
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

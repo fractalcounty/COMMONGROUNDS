@@ -1,0 +1,31 @@
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://wwq6f40kybqq"]
+
+[ext_resource type="Sky" uid="uid://bq7217qbtqsdc" path="res://addons/GodotSky/WorldEnvironment/default_sky.tres" id="1_3pko0"]
+
+[resource]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = ExtResource("1_3pko0")
+ambient_light_source = 3
+ssil_intensity = 3.0
+sdfgi_use_occlusion = true
+glow_normalized = true
+glow_intensity = 0.71
+glow_strength = 0.9
+fog_enabled = true
+fog_light_color = Color(0.239216, 0.490196, 0.729412, 1)
+fog_light_energy = 8.89
+fog_sun_scatter = 0.14
+fog_density = 0.004
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.004224
+volumetric_fog_albedo = Color(0.0509804, 0.745098, 1, 1)
+volumetric_fog_emission = Color(0.0117647, 0.00784314, 0.00784314, 1)
+volumetric_fog_emission_energy = 284.45
+volumetric_fog_gi_inject = 2.06
+volumetric_fog_anisotropy = -0.14
+volumetric_fog_length = 413.45
+volumetric_fog_detail_spread = 3.4822
+volumetric_fog_ambient_inject = 1.52
+volumetric_fog_temporal_reprojection_amount = 0.829
+adjustment_saturation = 1.98

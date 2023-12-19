@@ -8,7 +8,7 @@ class_name LogStream
 #Settings
 
 ##Controls how the message should be formatted, follows String.format(), valid keys are: "level", "time", "log_name", "message"
-const LOG_MESSAGE_FORMAT = "{log_name}/{level} [lb]{hour}:{minute}:{second}[rb] {message}"
+const LOG_MESSAGE_FORMAT = "[lb]{level}[rb] [lb]{log_name}[rb] {message}"
 
 
 ##Whether to use the UTC time or the user

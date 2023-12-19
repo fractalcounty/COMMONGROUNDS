@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cryoc1mw1tyjj"]
+
+[ext_resource type="Script" path="res://scenes/Game.gd" id="1_7237c"]
+[ext_resource type="Script" path="res://scenes/Interface.gd" id="2_gnbwa"]
+
+[node name="Game" type="Node" node_paths=PackedStringArray("interface")]
+script = ExtResource("1_7237c")
+interface = NodePath("Interface")
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_gnbwa")
