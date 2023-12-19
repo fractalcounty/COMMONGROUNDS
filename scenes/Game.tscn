@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cryoc1mw1tyjj"]
+[gd_scene load_steps=7 format=3 uid="uid://cryoc1mw1tyjj"]
 
 [ext_resource type="Script" path="res://scenes/Game.gd" id="1_7237c"]
 [ext_resource type="Script" path="res://scenes/Interface.gd" id="2_gnbwa"]
+[ext_resource type="AudioStream" uid="uid://jqpxs27jttnf" path="res://resources/audio/interface/click3.wav" id="3_vllaa"]
+[ext_resource type="AudioStream" uid="uid://bs5if743mw0s7" path="res://resources/audio/interface/switch25.wav" id="4_blp6p"]
+[ext_resource type="AudioStream" uid="uid://f1aqf5bmp7d1" path="res://resources/audio/interface/switch27.wav" id="5_butgd"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="5_vt6v2"]
 
-[node name="Game" type="Node" node_paths=PackedStringArray("interface")]
+[node name="Game" type="Node"]
 script = ExtResource("1_7237c")
-interface = NodePath("Interface")
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -15,3 +18,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_gnbwa")
+hover_sound = ExtResource("3_vllaa")
+press_sound = ExtResource("4_blp6p")
+release_sound = ExtResource("5_butgd")
+
+[node name="World" type="Node3D" parent="."]
+script = ExtResource("5_vt6v2")

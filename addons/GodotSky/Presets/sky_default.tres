@@ -15,10 +15,10 @@
 
 [resource]
 script = ExtResource("8_yhbnv")
-sunRadius = 0.00013
-sunEdgeBlur = 3250.0
+sunRadius = 0.0003
+sunEdgeBlur = 3600.0
 sunLightIntensity = ExtResource("12_tsgad")
-sunGlowIntensity = 0.24
+sunGlowIntensity = 0.45
 moonRadius = 0.0003
 moonEdgeBlur = 10000.0
 moonLightIntensity = ExtResource("6_huh2p")

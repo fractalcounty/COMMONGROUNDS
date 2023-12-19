@@ -1000,7 +1000,7 @@ glow_hdr_scale = 1.78
 glow_hdr_luminance_cap = 141.52
 glow_map_strength = 0.84
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_qcvuf"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_bwtt1"]
 
 [node name="Splash" type="Control" node_paths=PackedStringArray("anim")]
 top_level = true
@@ -1011,7 +1011,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_force_pass_scroll_events = false
 script = ExtResource("1_igbxd")
 anim = NodePath("AnimationPlayer")
 
@@ -1064,6 +1064,6 @@ libraries = {
 environment = SubResource("Environment_c7013")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamPolyphonic_qcvuf")
+stream = SubResource("AudioStreamPolyphonic_bwtt1")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_anim_finished"]

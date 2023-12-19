@@ -1,11 +1,8 @@
 extends Node3D
 
+func _ready() -> void:
+	GameManager.map_ready.emit()
+	GameManager.map = self
 
-func _on_previous_scene_pressed() -> void:
-	pass
-	#SceneLoader.load_scene(self, "scene1")
-
-
-func _on_main_menu_pressed() -> void:
-	pass
-	#SceneLoader.load_scene(self, "main_menu")
+func _exit_tree() -> void:
+	GameManager.map_exit.emit()

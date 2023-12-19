@@ -4,13 +4,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SceneManager.world_ready.connect(_on_world_ready)
-	SceneManager.world_exit.connect(_on_world_exit)
+	GameManager.map_ready.connect(_on_map_ready)
+	GameManager.map_exit.connect(_on_map_exit)
 
-func _on_world_ready() -> void:
+func _on_map_ready() -> void:
 	menu_noise.hide()
 
-func _on_world_exit() -> void:
+func _on_map_exit() -> void:
 	menu_noise.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

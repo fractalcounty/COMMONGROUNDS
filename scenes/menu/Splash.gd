@@ -3,12 +3,11 @@ extends Control
 @export var anim : AnimationPlayer
 
 func _ready() -> void:
-	SceneManager.splash_screen_ready.emit()
+	GameManager.splash_screen_ready.emit()
 	anim.play("splash")
 
 func _on_anim_finished(anim_name: StringName) -> void:
-	SceneManager.splash_screen_exit.emit()
-	SceneManager.splash_screen_instance = null
+	GameManager.splash_screen_exit.emit()
 	queue_free()
 	#SceneManager.load_scene(self, "main_menu")
 

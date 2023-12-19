@@ -1,30 +1,26 @@
 extends Node
 
-@export var splash_scene : Control
-@export var interface : Control
+## General launch arguments
+## Todo: allow OS-level launch args
+const SKIP_INTRO : bool = true
 
-var path_to_progress_bar: String = "Container/ProgressBar"
+## SceneManager.gd constants
+## Defines scnees loaded by the SceneManager singleton
+const MAP_PATH : String = "res://scenes/_debug/Scene2.tscn"
+const MAIN_MENU_PATH = preload("res://scenes/menu/MainMenu.tscn")
+const SPLASH_SCREEN_PATH = preload("res://scenes/menu/Splash.tscn")
+const INTERFACE_POST_PROCESSING = preload("res://scenes/menu/PostProcessing.tscn")
 
-signal mainmenu_ready
+## SoundManager.gd constants
+const UI_SOUND_BUS : String = "Interface"
+const WORLD_SOUND_BUS : String = "World"
 
-enum GameState {
-	MENU = 0,
-	WORLD = 1,
-}
-
-# Creating a log stream for SceneManager
-var logging = LogStream.new("Game", LogStream.LogLevel.DEBUG)
-
+## Initialization of game
 func _ready() -> void:
-	logging.info("Ready...")
-	SceneManager.game = self
-	SceneManager.set_configuration({
-		"scenes": {
-			"scene1": "res://scenes/_debug/Scene1.tscn",
-			"scene2": "res://scenes/_debug/Scene2.tscn",
-			"main_menu": "res://scenes/menu/MainMenu.tscn"
-		},
-		"path_to_progress_bar": "Container/ProgressBar",
-		"loading_screen": "res://scenes/menu/LoadingScreen.tscn"
-	})
-	SceneManager.load_game(interface)
+	GameManager.game = self
+	GameManager.game_ready.emit()
+	
+	SoundManager.set_default_sound_bus(WORLD_SOUND_BUS)
+	SoundManager.set_default_ui_sound_bus(UI_SOUND_BUS)
+	
+	SceneManager.load_game(SKIP_INTRO)

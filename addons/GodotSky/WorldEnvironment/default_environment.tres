@@ -4,7 +4,6 @@
 
 [resource]
 background_mode = 2
-background_energy_multiplier = 0.5
 sky = ExtResource("1_3pko0")
 ambient_light_source = 3
 ssil_intensity = 3.0
@@ -12,12 +11,10 @@ sdfgi_use_occlusion = true
 glow_normalized = true
 glow_intensity = 0.71
 glow_strength = 0.9
-fog_enabled = true
 fog_light_color = Color(0.239216, 0.490196, 0.729412, 1)
 fog_light_energy = 8.89
 fog_sun_scatter = 0.14
 fog_density = 0.004
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.004224
 volumetric_fog_albedo = Color(0.0509804, 0.745098, 1, 1)
 volumetric_fog_emission = Color(0.0117647, 0.00784314, 0.00784314, 1)
