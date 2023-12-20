@@ -5,11 +5,14 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "placeholder.tsx": {
-            "dynamicWrapping": false
+            "dynamicWrapping": false,
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
         }
     },
     "last.exportedFilePath": "E:/Projects/Godot Projects/ChasersWorld",
@@ -19,9 +22,11 @@
     "map.tileHeight": 64,
     "map.tileWidth": 64,
     "openFiles": [
+        "placeholder.tsx"
     ],
     "project": "placeholders.tiled-project",
     "recentFiles": [
+        "placeholder.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

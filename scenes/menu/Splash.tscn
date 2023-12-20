@@ -1000,7 +1000,7 @@ glow_hdr_scale = 1.78
 glow_hdr_luminance_cap = 141.52
 glow_map_strength = 0.84
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_bwtt1"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_6qlke"]
 
 [node name="Splash" type="Control" node_paths=PackedStringArray("anim")]
 top_level = true
@@ -1064,6 +1064,6 @@ libraries = {
 environment = SubResource("Environment_c7013")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamPolyphonic_bwtt1")
+stream = SubResource("AudioStreamPolyphonic_6qlke")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_anim_finished"]
