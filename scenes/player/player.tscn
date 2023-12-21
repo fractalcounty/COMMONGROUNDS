@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dauj0oyj1t0b2"]
-
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_yah37"]
-
-[node name="Player" type="Node3D"]
-script = ExtResource("1_yah37")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]

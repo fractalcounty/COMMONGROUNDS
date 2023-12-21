@@ -28,7 +28,7 @@ InputManager="*res://src/InputManager.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 SceneManager="*res://src/SceneManager.gd"
 GameManager="*res://src/GameManager.gd"
-SoundManager="*res://src/SoundManager/sound_manager.gd"
+SoundManager="*res://src/SoundManager.gd"
 
 [debug]
 
@@ -38,12 +38,6 @@ gdscript/warnings/untyped_declaration=1
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/resizable=false
-window/size/window_width_override=2560
-window/size/window_height_override=1440
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
-window/vsync/vsync_mode=0
 
 [editor]
 
@@ -52,7 +46,15 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/copilot/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/input_helper/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/tessarakkt.oceanfft/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/copilot/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/input_helper/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/tessarakkt.oceanfft/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://resources/": "orange",
+"res://scenes/": "teal",
+"res://src/": "blue"
+}
 
 [input]
 
@@ -100,6 +102,16 @@ toggle_ocean_debug={
 "deadzone": 0.5,
 "events": []
 }
+action_scroll_up={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":8,"position":Vector2(169, 24),"global_position":Vector2(173, 65),"factor":1.0,"button_index":4,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+action_scroll_down={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":16,"position":Vector2(109, 10),"global_position":Vector2(113, 51),"factor":1.0,"button_index":5,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [physics]
 
@@ -108,8 +120,17 @@ common/physics_ticks_per_second=120
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=2
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=4
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality.mobile=2
+textures/default_filters/anisotropic_filtering_level=3
+environment/ssao/quality=3
+environment/ssil/quality=3
+environment/screen_space_reflection/roughness_quality=2
+environment/subsurface_scattering/subsurface_scattering_quality=2
+anti_aliasing/quality/msaa_3d=2
 viewport/hdr_2d=true
+anti_aliasing/quality/screen_space_aa=1
 
 [shader_globals]
 
