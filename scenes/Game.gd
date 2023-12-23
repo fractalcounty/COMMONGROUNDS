@@ -8,9 +8,7 @@ extends Node
 ## Interface: Parent of all 2D and UI related nodes, and 
 ## World: Parent of geometry, player, etc.
 ##
-## Note: While 'Interface' is already a child of Game,
-## the 'World' node is not. This is because 'World' is
-## a scene and must be loaded by calling load_world().
+## @tutorial: https://github.com/fractalcounty/ChasersWorld/blob/main/docs/structure.png
 
 # General game properties
 @export var SKIP_INTRO : bool = true ## Runs load_world() instead of load_menu() upon startup
