@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://dauj0oyj1t0b2"]
 
-[ext_resource type="Script" path="res://scenes/world/map/player/player.gd" id="1_bxp6j"]
-[ext_resource type="PackedScene" uid="uid://bsdy5aoth4sgb" path="res://scenes/world/map/player/camera/ortho_camera_3d.tscn" id="2_xv0sh"]
+[ext_resource type="Script" path="res://scenes/world/player/player.gd" id="1_bxp6j"]
+[ext_resource type="PackedScene" uid="uid://bsdy5aoth4sgb" path="res://scenes/world/player/camera/ortho_camera_3d.tscn" id="2_xv0sh"]
 [ext_resource type="Texture2D" uid="uid://xlfh2wh620xl" path="res://resources/sprites/rolus_sprites/rolus_sit_1.png" id="3_ru3af"]
 [ext_resource type="Texture2D" uid="uid://cetl5d4uy2vml" path="res://resources/sprites/rolus_sprites/rolus_sit_2.png" id="4_cxujx"]
 [ext_resource type="Texture2D" uid="uid://dehbf40xwkfot" path="res://resources/sprites/rolus_sprites/rolus_sit_3.png" id="5_f8282"]

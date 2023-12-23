@@ -96,7 +96,6 @@ func _ready() -> void:
 	total_graph.draw.connect(_total_graph_draw)
 	cpu_graph.draw.connect(_cpu_graph_draw)
 	gpu_graph.draw.connect(_gpu_graph_draw)
-	InputHelper.device_changed.connect(_on_device_changed)
 
 	fps_history.resize(HISTORY_NUM_FRAMES)
 	frame_history_total.resize(HISTORY_NUM_FRAMES)
@@ -166,10 +165,6 @@ func update_settings_label() -> void:
 		"gl_compatibility":
 			rendering_method_string = "Compatibility"
 	settings.text += "Rendering Method: %s\n" % rendering_method_string
-
-	var current_device := str(InputHelper.guess_device_name())
-	var current_device_string := current_device
-	settings.text += "Input Device: %s\n" % current_device_string
 
 	var viewport := get_viewport()
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsdy5aoth4sgb"]
 
-[ext_resource type="Script" path="res://scenes/world/map/player/camera/ortho_camera_3d.gd" id="1_fa77c"]
+[ext_resource type="Script" path="res://scenes/world/player/camera/ortho_camera_3d.gd" id="1_fa77c"]
 
 [node name="OrthoCamera3D" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.35114, 12.3624)

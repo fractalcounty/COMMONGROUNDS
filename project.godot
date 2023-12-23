@@ -22,13 +22,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-InputHelper="*res://addons/input_helper/input_helper.gd"
-Log="*res://addons/logger/logger.gd"
-InputManager="*res://src/InputManager.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
-SceneManager="*res://src/SceneManager.gd"
-GameManager="*res://src/GameManager.gd"
-SoundManager="*res://src/SoundManager.gd"
 
 [debug]
 
@@ -46,7 +40,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/copilot/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/input_helper/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/tessarakkt.oceanfft/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/input_helper/plugin.cfg", "res://addons/tessarakkt.oceanfft/plugin.cfg")
 
 [file_customization]
 
