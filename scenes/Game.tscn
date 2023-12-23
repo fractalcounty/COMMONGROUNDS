@@ -7,4 +7,5 @@
 script = ExtResource("1_rasbb")
 SKIP_INTRO = false
 
-[node name="Interface" parent="." instance=ExtResource("2_5v7rn")]
+[node name="Interface" parent="." node_paths=PackedStringArray("game") instance=ExtResource("2_5v7rn")]
+game = NodePath("..")

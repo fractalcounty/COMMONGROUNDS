@@ -4,22 +4,14 @@ extends Node
 ## It handles the loading and unloading of scenes, game
 ## state management, launch parameters, and more.
 ##
-## Once this script runs, Game will have 2 children:
-## Interface: Parent of all 2D and UI related nodes, and 
-## World: Parent of geometry, player, etc.
-##
 ## @tutorial: https://github.com/fractalcounty/ChasersWorld/blob/main/docs/structure.png
 
-# General game properties
-@export var SKIP_INTRO : bool = true ## Runs load_world() instead of load_menu() upon startup
-
-# Scene Filepaths
-@export_subgroup("Scene Properties")
-@export var WORLD_PATH : String = "res://scenes/world/World.tscn"
-
-# Scene instances & signals
-@onready var world : Node3D = null
-@onready var interface : Control = $Interface
+## General launch parameters
+@export var SKIP_INTRO : bool = true ## Skips the splash screen and main menu by just calling load_world()
+@export var WORLD_PATH : String = "res://scenes/world/World.tscn" ## Scene loaded by load_world()
+## References to instanced scenes
+@onready var world : Node3D = null ## Only defined when World.tscn is instantiated in the scene tree
+@onready var interface : CanvasLayer = $Interface ## Already a child of Game before startup
 
 enum ThreadStatus {
 	INVALID_RESOURCE,
@@ -28,9 +20,9 @@ enum ThreadStatus {
 	LOADED
 }
 
-func _ready() -> void: ## Runs on game startup
+func _ready() -> void:
 	print(_startup_logs())
-	interface.load_menu() if not SKIP_INTRO else load_world()
+	interface.load_main_menu() if not SKIP_INTRO else load_world()
 
 func load_world(current_scene : Node = null) -> void:
 	print("[Game.gd] Loading world scene: ", WORLD_PATH)

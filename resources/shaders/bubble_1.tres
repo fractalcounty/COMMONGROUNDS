@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dbe8ro73hpj50"]
+
+[ext_resource type="Shader" uid="uid://wicisvjvj662" path="res://resources/shaders/bubble_2.tres" id="1_vrou7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emk31"]
+transparency = 4
+no_depth_test = true
+disable_ambient_light = true
+albedo_color = Color(0.772549, 0.784314, 1, 0.0352941)
+rim = 0.66
+rim_tint = 0.64
+clearcoat_roughness = 1.0
+ao_light_affect = 1.0
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+subsurf_scatter_transmittance_enabled = true
+subsurf_scatter_transmittance_depth = 5.887
+subsurf_scatter_transmittance_boost = 1.0
+refraction_scale = 1.0
+refraction_texture_channel = 1
+
+[resource]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_emk31")
+shader = ExtResource("1_vrou7")
+shader_parameter/fuwafuwa_speed = 1.5
+shader_parameter/fuwafuwa_size = 0.05
+shader_parameter/outline_color = Color(0.45, 0.7, 1, 1)
+shader_parameter/outline_ratio = 1.0
+shader_parameter/noise_speed = 0.2
+shader_parameter/noise_scale = 0.5

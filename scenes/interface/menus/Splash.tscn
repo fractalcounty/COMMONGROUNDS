@@ -1000,23 +1000,14 @@ glow_hdr_scale = 1.78
 glow_hdr_luminance_cap = 141.52
 glow_map_strength = 0.84
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_82tdp"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_yvd2g"]
 
-[node name="Splash" type="Control" node_paths=PackedStringArray("anim")]
-top_level = true
-z_index = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_force_pass_scroll_events = false
+[node name="Splash" type="CanvasLayer" node_paths=PackedStringArray("anim")]
+layer = 4
 script = ExtResource("1_igbxd")
 anim = NodePath("AnimationPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1026,7 +1017,6 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1042,7 +1032,6 @@ mouse_filter = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Control"]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_a28lo")
 autoplay = "default"
 
@@ -1064,6 +1053,6 @@ libraries = {
 environment = SubResource("Environment_c7013")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamPolyphonic_82tdp")
+stream = SubResource("AudioStreamPolyphonic_yvd2g")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_anim_finished"]

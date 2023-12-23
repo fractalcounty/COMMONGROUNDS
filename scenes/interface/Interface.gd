@@ -1,28 +1,27 @@
-extends Control
+extends CanvasLayer
 
 @export var MAIN_MENU_PATH : PackedScene = preload("res://scenes/interface/menus/MainMenu.tscn")
 @export var SPLASH_SCREEN_PATH : PackedScene = preload("res://scenes/interface/menus/Splash.tscn")
-@export var INTERFACE_FX_PATH : PackedScene = preload("res://scenes/interface/menus/PostProcessing.tscn")
+@export var POST_PROCESSING_PATH : PackedScene = preload("res://scenes/interface/menus/PostProcessing.tscn")
 
-@export var hover_sound : AudioStream
-@export var press_sound : AudioStream
-@export var release_sound : AudioStream
+@export var game : Node
+@onready var main_menu : CanvasLayer = null 
+@onready var splash_screen : CanvasLayer = null
+@onready var post_processing : CanvasLayer = null
 
-func load_menu() -> void:
-	for scene in [INTERFACE_FX_PATH, SPLASH_SCREEN_PATH, MAIN_MENU_PATH]:
-		if not has_node(scene.get_name()):
-			add_child(scene.instantiate())
-			
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+func load_main_menu() -> void:
+	if not has_node(POST_PROCESSING_PATH.get_name()):
+		post_processing = POST_PROCESSING_PATH.instantiate()
+		add_child(post_processing)
+		
+	if not has_node(SPLASH_SCREEN_PATH.get_name()):
+		splash_screen = SPLASH_SCREEN_PATH.instantiate()
+		add_child(splash_screen)
+		
+	if not has_node(MAIN_MENU_PATH.get_name()):
+		main_menu = MAIN_MENU_PATH.instantiate()
+		add_child(main_menu)
 
-func _exit_tree() -> void:
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 func on_button_hover() -> void:
 	pass

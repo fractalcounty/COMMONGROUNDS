@@ -1,18 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://blmc6ru4i5roh"]
+[gd_scene load_steps=2 format=3 uid="uid://blmc6ru4i5roh"]
 
 [ext_resource type="Script" path="res://scenes/interface/Interface.gd" id="1_1c6gy"]
-[ext_resource type="AudioStream" uid="uid://jqpxs27jttnf" path="res://resources/audio/interface/click3.wav" id="2_7d66e"]
-[ext_resource type="AudioStream" uid="uid://bs5if743mw0s7" path="res://resources/audio/interface/switch25.wav" id="3_xsi1b"]
-[ext_resource type="AudioStream" uid="uid://f1aqf5bmp7d1" path="res://resources/audio/interface/switch27.wav" id="4_qc1mt"]
 
-[node name="Interface" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Interface" type="CanvasLayer"]
 script = ExtResource("1_1c6gy")
-hover_sound = ExtResource("2_7d66e")
-press_sound = ExtResource("3_xsi1b")
-release_sound = ExtResource("4_qc1mt")
