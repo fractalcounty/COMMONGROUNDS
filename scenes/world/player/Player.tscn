@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dauj0oyj1t0b2"]
+[gd_scene load_steps=32 format=3 uid="uid://dauj0oyj1t0b2"]
 
 [ext_resource type="Script" path="res://scenes/world/player/player.gd" id="1_bxp6j"]
 [ext_resource type="PackedScene" uid="uid://bsdy5aoth4sgb" path="res://scenes/world/player/camera/ortho_camera_3d.tscn" id="2_xv0sh"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dgo17wnb43p3v" path="res://resources/sprites/rolus_sprites/rolus_walk_up_2.png" id="18_8fql0"]
 [ext_resource type="Texture2D" uid="uid://baca4dhmyusgb" path="res://resources/sprites/rolus_sprites/rolus_walk_up_3.png" id="19_vnqjv"]
 [ext_resource type="Texture2D" uid="uid://d1na64qpvsed7" path="res://resources/sprites/rolus_sprites/rolus_walk_up_4.png" id="20_wjyf6"]
+[ext_resource type="Script" path="res://scenes/world/map/player/States/StateMachine.gd" id="21_5nbe6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ubx6w"]
 animations = [{
@@ -350,5 +351,8 @@ autoplay = "still_down"
 [node name="IdleTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("21_5nbe6")
 
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

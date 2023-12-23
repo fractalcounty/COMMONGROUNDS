@@ -140,17 +140,18 @@
   },
   "active": "9435a3c819dec345",
   "lastOpenFiles": [
+    "scenes/world/map/player/States/StateMachine.gd",
+    "scenes/world/map/player/States/State.gd",
+    "scenes/world/map/player/States/PlayerWalk.gd",
+    "scenes/world/map/player/States",
+    "scenes/world/map/player",
+    "scenes/world/map",
     "docs/structure.png",
     "docs/chrome_PDSKMqvdun.png",
     "docs",
     "New folder",
     "resources/shaders/watE759.tmp",
     "scenes/GamE746.tmp",
-    "scenes/world/WorCB47.tmp",
-    "resources/shaders/watCB17.tmp",
-    "scenes/interface/menus/MaiCB14.tmp",
-    "resources/shaders/watC8F8.tmp",
-    "resources/shaders/watB110.tmp",
-    "scenes/world/WorB0FD.tmp"
+    "scenes/world/WorCB47.tmp"
   ]
 }
