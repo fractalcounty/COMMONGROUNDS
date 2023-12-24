@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var quit_confirm : Control = $QuitConfirm
 @onready var blur_rect : Control = $BlurRect
+@export var camera : Camera3D
 var popup_up : bool = false
 
 func _ready() -> void:
