@@ -1,8 +1,23 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dbe8ro73hpj50"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dbe8ro73hpj50"]
 
+[ext_resource type="Shader" path="res://resources/shaders/3d_pixel_art_editor_fix.gdshader" id="1_pcf7g"]
 [ext_resource type="Shader" uid="uid://wicisvjvj662" path="res://resources/shaders/bubble_2.tres" id="1_vrou7"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nu4xi"]
+render_priority = 0
+shader = ExtResource("1_pcf7g")
+shader_parameter/disable_shader = false
+shader_parameter/MAX_DEPTH = 1000.0
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.76
+shader_parameter/highlight_strength = 0.75
+shader_parameter/highlight_color = Color(0.45, 0.45, 0.45, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/pixelSize = 2
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emk31"]
+next_pass = SubResource("ShaderMaterial_nu4xi")
 transparency = 4
 no_depth_test = true
 disable_ambient_light = true

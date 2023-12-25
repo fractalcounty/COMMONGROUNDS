@@ -7,57 +7,149 @@ extends Node
 ## @tutorial: https://github.com/fractalcounty/ChasersWorld/blob/main/docs/structure.png
 
 ## General launch parameters
-@export var SKIP_INTRO : bool = true ## Skips the splash screen and main menu by just calling load_world()
-@export var WORLD_PATH : String = "res://scenes/world/World.tscn" ## Scene loaded by load_world()
-## References to instanced scenes
-@onready var world : Node3D = null ## Only defined when World.tscn is instantiated in the scene tree
-@onready var interface : CanvasLayer = $Interface ## Already a child of Game before startup
+@export var SKIP_SPLASH : bool = false ## Skips the splash screen
+@export var SKIP_MENU : bool = false ## Skips the menu
 
-enum ThreadStatus {
-	INVALID_RESOURCE,
-	IN_PROGRESS,
-	FAILED,
-	LOADED
+## References to the two children of the main Game node that are already instantiated in the editor
+@onready var interface_container : CanvasLayer = $InterfaceContainer
+@onready var loading_screen : CanvasLayer = $InterfaceContainer/LoadingScreen
+@onready var world_container : Node3D = $WorldContainer
+#@onready var world_subviewport : SubViewport = $WorldContainer/WorldSubviewport
+
+const PATH : Dictionary = {
+	"splash": "res://scenes/interface/splash/Splash.tscn",
+	"post_processing": "res://scenes/interface/post_processing/PostProcessing.tscn",
+	"main_menu": "res://scenes/interface/menus/MainMenu.tscn",
+	"main_menu_bg": "res://scenes/world/MainMenuBackground.tscn",
+	"overworld": "res://scenes/world/Overworld.tscn",
+	"loading_screen": "res://scenes/interface/loading_screen/LoadingScreen.tscn"
 }
+
+## References to instances of the scenes above
+## These are null until they are actually instantiated
+@onready var splash : CanvasLayer = null ## Animation of Godot logo and publisher that first plays when game starts
+@onready var post_processing : CanvasLayer = null ## Child of the InterfaceLayer that contains FX like film grain and color correciton
+@onready var main_menu : CanvasLayer = null  ## 2D Main menu that occurs after the splash sequence. Child of the InterfaceContainer
+@onready var main_menu_bg : Node3D = null ## The 3D background of the previously mentioned main menu scene. Child of the WorldSubviewport.
+@onready var overworld : Node3D = null ## The 3D gameworld that is loaded as a child of the WorldSubviewport when the player presses play in the main menu
+
+var scene_references := {}
+var load_start_time : int
+var next_scene_path : String = ""
+var on_async_scene_loaded : Callable
+var success_flag : bool = false
+
+
+
+## Tracking of node status & loading and whatnot
+signal main_menu_ready
+signal overworld_ready
+signal hide_loading_screen
 
 func _ready() -> void:
 	print(_startup_logs())
-	interface.load_main_menu() if not SKIP_INTRO else load_world()
-
-func load_world(current_scene : Node = null) -> void:
-	print("[Game.gd] Loading world scene: ", WORLD_PATH)
 	
-	if ResourceLoader.load_threaded_request(WORLD_PATH) != OK:
-		push_error("[Game.gd] Error loading world scene at: ", WORLD_PATH)
-		return
+	set_process(false)
+	_load_post_processing()
+	_load_splash()
 
-	if current_scene: ## Nodes passed to this function will be deleted
-		current_scene.queue_free()
+func _load_threaded(scene_path: String, scene_key: String, callback: Callable) -> void:
+	scene_references[scene_key] = null
+	_start_async_load(scene_path, callback)
 
-	var load_status = ThreadStatus.INVALID_RESOURCE
-	while load_status != ThreadStatus.LOADED:
-		var load_progress = []
-		load_status = ResourceLoader.load_threaded_get_status(WORLD_PATH, load_progress)
-		match load_status:
-			ThreadStatus.INVALID_RESOURCE:
-				push_error("[Game.gd] ThreadStatus.INVALID_RESOURCE: Failed to load ", WORLD_PATH)
-				return
-			ThreadStatus.IN_PROGRESS:
-				OS.delay_msec(100)
-			ThreadStatus.FAILED:
-				push_error("[Game.gd] ThreadStatus.FAILED: Failed to load ", WORLD_PATH)
-				return
-			ThreadStatus.LOADED:
-				_on_world_loaded(WORLD_PATH)
+func _load_post_processing() -> void:
+	post_processing = preload(PATH.post_processing).instantiate()
+	interface_container.add_child(post_processing)
 
-func _on_world_loaded(path: String) -> void:
-	world = ResourceLoader.load_threaded_get(path).instantiate()
-	call_deferred("add_child", world)
-	print("[Game.gd] World scene successfully loaded!")
+func _load_splash() -> void:
+	if not SKIP_SPLASH:
+		splash = preload(PATH.splash).instantiate()
+		interface_container.add_child(splash)
+		await splash.finished
+		loading_screen.fade_in()
+		await loading_screen.safe
+		splash.queue_free()
+		_load_main_menu()
+	else:
+		_load_main_menu()
+	
+
+func _load_main_menu() -> void:
+	if not SKIP_MENU:
+		main_menu = preload(PATH.main_menu).instantiate()
+		interface_container.add_child(main_menu)
+		_start_async_load(PATH.main_menu_bg, Callable(self, "_on_main_menu_bg_loaded")) # Ensure this is the correct path
+	else:
+		load_overworld()
+
+func _on_main_menu_bg_loaded(loaded_scene: Node3D) -> void:
+	# Ensure loaded_scene is indeed a Node3D
+	if loaded_scene is Node3D:
+		main_menu_bg = loaded_scene
+		world_container.add_child(main_menu_bg)
+		if splash != null:
+			splash.kill_self()
+			splash = null
+		loading_screen.fade_out()
+		await main_menu.main_menu_enter
+		_on_main_menu_enter()
+	else:
+		push_error("Loaded scene is not a Node3D.")
+
+func _on_main_menu_enter() -> void:
+	loading_screen.fade_in()
+	await loading_screen.safe
+	load_overworld()
+
+func load_overworld() -> void:
+	_start_async_load(PATH.overworld, Callable(self, "_on_overworld_loaded"))
+
+func _on_overworld_loaded(loaded_scene: Node3D) -> void:
+	if splash != null:
+		splash.queue_free()
+	if not SKIP_MENU:
+		main_menu.queue_free()
+		main_menu_bg.queue_free()
+		main_menu.play()
+	post_processing.menu_noise.hide()
+	overworld = loaded_scene
+	world_container.add_child(overworld)
+	loading_screen.fade_out()
+
+func _start_async_load(path: String, callback: Callable) -> void:
+	next_scene_path = path
+	on_async_scene_loaded = callback
+	load_start_time = Time.get_ticks_msec()
+	ResourceLoader.load_threaded_request(next_scene_path)
+	set_process(true)
+
+func _process(delta: float) -> void:
+	var status = ResourceLoader.load_threaded_get_status(next_scene_path)
+	match status:
+		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
+			if not success_flag:
+				print("[Game.gd] Loading scene asynchronously: ", next_scene_path)
+				success_flag = true
+		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
+			var loaded_scene : Node = ResourceLoader.load_threaded_get(next_scene_path).instantiate()
+			if on_async_scene_loaded and on_async_scene_loaded.is_valid():
+				var load_time_in_seconds : float = (Time.get_ticks_msec() - load_start_time) / 1000.0
+				print("[Game.gd] Successfully loaded " + next_scene_path + " asynchronously in " + str(load_time_in_seconds) + " sec.")
+				on_async_scene_loaded.call(loaded_scene)
+			next_scene_path = ""
+			success_flag = false
+			set_process(false)
+		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_FAILED:
+			push_error("Failed to load scene: ", next_scene_path)
+			next_scene_path = ""
+			success_flag = false
+			set_process(false)
 
 func _startup_logs() -> String:
 	var arguments_used := []
-	if SKIP_INTRO:
+	if SKIP_MENU:
 		arguments_used.append("SKIP_INTRO")
+	if SKIP_SPLASH:
+		arguments_used.append("SKIP_SPLASH")
 
 	return "[Game.gd] Starting game with arguments: " + ", ".join(arguments_used) if arguments_used.size() > 0 else "[Game.gd] Starting game with default settings"

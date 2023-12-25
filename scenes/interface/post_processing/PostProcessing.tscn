@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://o5uggbs47tvv"]
+
+[ext_resource type="Script" path="res://scenes/interface/post_processing/post_processing.gd" id="1_vuxc7"]
+[ext_resource type="Material" uid="uid://dypsoec1nh11b" path="res://resources/materials/InterfaceStatic.tres" id="2_83pwd"]
+
+[node name="PostProcessing" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_vuxc7")
+
+[node name="MenuNoise" type="ColorRect" parent="."]
+material = ExtResource("2_83pwd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

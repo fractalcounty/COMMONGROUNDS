@@ -4,4 +4,4 @@
 
 [resource]
 shader = ExtResource("1_ys2cn")
-shader_parameter/strength = 25.0
+shader_parameter/strength = 18.0

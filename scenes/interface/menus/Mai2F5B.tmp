@@ -1,0 +1,1987 @@
+[gd_scene load_steps=170 format=3 uid="uid://s3sf4ltqfaxn"]
+
+[ext_resource type="Script" path="res://scenes/interface/menus/MainMenu.gd" id="1_r4jk3"]
+[ext_resource type="Script" path="res://addons/GodotSky/Scripts/GodotSky.gd" id="2_7812c"]
+[ext_resource type="Script" path="res://addons/GodotSky/Presets/sky_presets.gd" id="3_4fwjo"]
+[ext_resource type="Texture2D" uid="uid://cgx4sl3aogvl1" path="res://addons/GodotSky/Presets/default/baseSkyColor.tres" id="3_6hpla"]
+[ext_resource type="Curve" uid="uid://cbqp5kavktxj0" path="res://addons/GodotSky/Presets/default/sunLightIntensity.tres" id="4_hh8x3"]
+[ext_resource type="PackedScene" uid="uid://bbfmcwdf17bqm" path="res://scenes/interface/menus/title.tscn" id="4_nsfj3"]
+[ext_resource type="Texture2D" uid="uid://djvanj1c4svii" path="res://addons/GodotSky/Presets/default/horizonFogColor.tres" id="4_qi3m5"]
+[ext_resource type="Theme" uid="uid://cnjtetudthuan" path="res://resources/styles/windows_95_theme/save1.tres" id="4_rd1jr"]
+[ext_resource type="FontFile" uid="uid://80f5vdk0lhte" path="res://resources/styles/windows_95_theme/MS Sans Serif.ttf" id="5_nar5q"]
+[ext_resource type="Shader" path="res://resources/shaders/color_blur.gdshader" id="6_dbo47"]
+[ext_resource type="FontFile" uid="uid://cqw63mte3fp2c" path="res://resources/fonts/AlteHaasGroteskBold.ttf" id="8_4iivw"]
+[ext_resource type="Texture2D" uid="uid://c1833rva8bi5u" path="res://resources/styles/windows_95_theme/Windows_95_panel1.png" id="10_u1q4y"]
+[ext_resource type="Texture2D" uid="uid://xpia3nv1ivsg" path="res://resources/styles/windows_95_theme/Windows_95_panel2.png" id="12_0maxc"]
+[ext_resource type="Texture2D" uid="uid://decstt4wbp31w" path="res://resources/styles/windows_95_theme/Windows_95_panel5.png" id="13_bl35s"]
+[ext_resource type="Texture2D" uid="uid://d12ct5xjy8ppl" path="res://resources/styles/windows_95_theme/Windows_95_panel11.png" id="14_rr25c"]
+[ext_resource type="Texture2D" uid="uid://t7wopq302hlj" path="res://resources/styles/windows_95_theme/check_disabled.png" id="15_l4i0m"]
+[ext_resource type="Texture2D" uid="uid://xeuh2k457n21" path="res://resources/styles/windows_95_theme/radio_checked.png" id="16_jayal"]
+[ext_resource type="Texture2D" uid="uid://c1km5n07p5t7v" path="res://resources/styles/windows_95_theme/radio_checked_disabled.png" id="17_kx8gu"]
+[ext_resource type="Texture2D" uid="uid://bwms5fmgamnyo" path="res://resources/styles/windows_95_theme/radio_unchecked.png" id="18_2pk22"]
+[ext_resource type="Texture2D" uid="uid://k7rjuus1d4bq" path="res://resources/styles/windows_95_theme/radio_unchecked_disabled.png" id="19_vnhdl"]
+[ext_resource type="Texture2D" uid="uid://f25tislcse3m" path="res://resources/styles/windows_95_theme/Windows_95_panel10.png" id="20_x6i4y"]
+[ext_resource type="Texture2D" uid="uid://dsfh0rybdwh1s" path="res://resources/styles/windows_95_theme/unchecked_disabled.png" id="21_d55ku"]
+[ext_resource type="Texture2D" uid="uid://drtyqsu3p4y1j" path="res://resources/styles/windows_95_theme/Windows_95_panel8.png" id="22_1vqcu"]
+[ext_resource type="Texture2D" uid="uid://c7m07tr4c0ajt" path="res://resources/styles/windows_95_theme/Windows_95_panel9.png" id="23_nwhlt"]
+[ext_resource type="Texture2D" uid="uid://7avnfcwnd7yf" path="res://resources/styles/windows_95_theme/close.png" id="24_wknpk"]
+[ext_resource type="Texture2D" uid="uid://dxx6bs8aqtahq" path="res://resources/styles/windows_95_theme/Windows_95_panel12.png" id="25_67qwe"]
+[ext_resource type="Texture2D" uid="uid://bglwmc1p0g780" path="res://resources/styles/windows_95_theme/Windows_95_panel13.png" id="26_tj2yy"]
+[ext_resource type="Texture2D" uid="uid://dfowy3tdax43h" path="res://resources/styles/windows_95_theme/arrow.png" id="27_64khb"]
+[ext_resource type="Texture2D" uid="uid://d2x4us7finahw" path="res://resources/styles/windows_95_theme/Windows_95_panel6.png" id="28_fdpb8"]
+[ext_resource type="Texture2D" uid="uid://b15rexdw7nmn7" path="res://resources/styles/windows_95_theme/Windows_95_panel7.png" id="29_hparc"]
+[ext_resource type="Texture2D" uid="uid://daat8crwacal" path="res://resources/styles/windows_95_theme/tab1.png" id="30_7t1m4"]
+[ext_resource type="Texture2D" uid="uid://b4ee6b2c23r5y" path="res://resources/styles/windows_95_theme/menu.png" id="31_vxcgb"]
+[ext_resource type="Texture2D" uid="uid://bor14ncoefmbi" path="res://resources/styles/windows_95_theme/minus.png" id="32_ka0xc"]
+[ext_resource type="Texture2D" uid="uid://cqoqid4x5nmkw" path="res://resources/styles/windows_95_theme/plus.png" id="33_odvgv"]
+[ext_resource type="Texture2D" uid="uid://d3ltxplgcdrom" path="res://resources/styles/windows_95_theme/close_pressed.png" id="34_y3fmt"]
+
+[sub_resource type="Shader" id="Shader_kus74"]
+code = "shader_type sky;
+render_mode use_half_res_pass, use_quarter_res_pass;
+
+uniform vec4 baseColor : source_color = vec4(0.052192,0.101373,0.192708,1.0);
+uniform sampler2D scatteringLUT;
+uniform vec3 scatterColor : source_color = vec3(1.0);
+uniform vec3 scatterColor2 : source_color = vec3(1.0);
+
+// Bools
+uniform bool bAnimClouds = true;
+//uniform bool bStaticClouds = true; *DEPRECATED*
+uniform bool bAnimStars = true;
+uniform int cloudType = 0;
+
+// Sun
+uniform float sunRadius;
+uniform float sunEdgeBlur;
+uniform vec3 sunDiscColor : source_color;
+uniform vec4 sunGlowColor : source_color;
+uniform vec3 sunlightColor;
+uniform float sunGlowIntensity;
+
+// Moon
+uniform float moonRadius;
+uniform float moonEdgeBlur;
+uniform vec4 moonGlowColor : source_color;
+uniform vec3 moonLightColor;
+uniform float moonGlowIntensity;
+
+// 2D Clouds
+uniform vec3 baseCloudColor : source_color = vec3(1.0);
+uniform float cloudDensity : hint_range(5.0, 10.0, 0.05) = 7.0;
+uniform float cloudEdge : hint_range(0.0, 1.0, 0.01) = 0.0;
+uniform float cloudCoverage : hint_range(-1.0,1.0,0.01) = 0.0;
+uniform vec2 cloudDirection = vec2(1.0,1.0);
+uniform sampler2D cloudTexture;
+uniform sampler2D cloudTexture2;
+uniform sampler2D cloudNoise;
+uniform sampler2D weatherMap;
+uniform float mgSize : hint_range(0.5, 0.99, 0.01) = 0.92;
+uniform float cloudAlpha : hint_range(0.0, 1.0, 0.1) = 1.0;
+uniform float cloudSpeed = 0.001;
+uniform float absorption : hint_range(0.0, 5.0, 0.1) = 5.0;
+uniform float henyeyGreensteinLevel : hint_range(0.5, 0.75, 0.01) = 0.69;
+uniform float dynamicCloudBrightness : hint_range(0.5, 1.0, 0.01) = 0.9;
+uniform float horizonUVCurve : hint_range(0.5, 1.0, 0.01);
+
+// Horizon
+uniform vec4 horizonFogColor : source_color;
+uniform float horizonAlpha : hint_range(0.0, 1.0, 0.1) = 1.0;
+uniform float horizonSize : hint_range(1.0, 7.0, 0.1);
+
+// Stars
+uniform sampler2D starTexture;
+uniform sampler2D starNoise;
+uniform vec3 starColor : source_color;
+uniform float starBrightness : hint_range(0.0, 0.5, 0.01) = 0.2;
+uniform float twinkleSpeed : hint_range(0.0, 0.05, 0.001) = 0.025;
+uniform float twinkleScale : hint_range(0.5, 5.0, 0.1) = 4.0;
+uniform float starResolution : hint_range(-1.0, 3.0, 1.0) = 2.0;
+uniform float starSpeed = 0.002;
+
+const vec3 camPos = vec3(0.0,1.0,0.0); 
+
+float remap(float v, float minOld, float maxOld, float minNew, float maxNew) {
+    return minNew + (v-minOld) * (maxNew - minNew) / (maxOld-minOld);
+}
+
+// Phase function
+float henyey_greenstein(float cos_theta, float g) {
+	const float k = 0.0795774715459;
+	return k * (1.0 - g * g) / (pow(1.0 + g * g - 2.0 * g * cos_theta, 1.5));
+}
+
+// Create sun and moon discs based on the directional lights
+vec3 createSunMoonDisc(vec3 dir, vec3 sunDir, vec3 color, float r, float edgeBlur) {
+	float disc = 0.0;
+	float discSizeCheck = (1.0 - (r * 2.0));
+	if (dot(dir,sunDir) > discSizeCheck) {
+		disc = pow((dot(dir,sunDir) - discSizeCheck) * edgeBlur,5.0);
+	}
+	vec3 discColored;
+	discColored = clamp(vec3(disc) * color,0.0,1.0);
+	return discColored;
+}
+
+vec3 createSunGlow(vec3 dir, vec3 sunDir, float r) {
+	float sunGlow = 0.0;
+	float glowSize = (1.0 - ((0.0003 * 800.0) * 2.0));
+	if (dot(dir,sunDir) > glowSize) {
+		sunGlow = mix(0.0,(dot(dir,sunDir) - glowSize * 1.05) * (1.0 - dir.y),sunGlowIntensity);
+	}
+	vec3 sunGlowFinal = clamp((pow(sunGlow - 0.1,1.0) * sunGlowColor.rgb),0.0,1.0) * sunGlowColor.a;
+	return sunGlowFinal;
+}
+
+vec3 createMoonGlow(vec3 dir, vec3 moonDir, float r) {
+	float moonGlow = 0.0;
+	float glowSize = (1.0 - ((0.0003 * 400.0) * 2.0));
+	if (dot(dir,moonDir) > glowSize) {
+		moonGlow = mix(0.0,(dot(dir,moonDir) - glowSize),moonGlowIntensity);
+	}
+	vec3 moonGlowFinal = pow(vec3(moonGlow),vec3(3.0)) * moonGlowColor.rgb * moonGlowColor.a;
+	return moonGlowFinal;
+}
+
+float createHorizonFog(vec3 vertexColor) {
+	float clampedVertexColor = 0.0;
+	if (vertexColor.y < 0.0) {
+		clampedVertexColor = 1.0;
+	}
+	else { 
+		clampedVertexColor = vertexColor.y;
+	}
+	float fogAlpha = clamp(pow((1.0 - clampedVertexColor),horizonSize) - (1.0 - horizonAlpha),0.0,1.0) * horizonFogColor.a ;
+	return fogAlpha;
+}
+
+// Setup base light scattering with day and night
+vec3 scatterLight(vec3 vertexColor, vec2 skyUV) {
+
+	// Clamp lower hemisphere vertex normal Y (creates solid lower hemisphere color)
+	float clampedVertexColor = 0.0;
+	if (vertexColor.y < 0.0) { clampedVertexColor = 0.0001; }
+	else { clampedVertexColor = vertexColor.y; }
+	
+	float vertexSlope = pow((1.0 - vertexColor.y),2.0);
+	
+	// Calculate SUN X and Y position on scattering LUT texture UV
+	// Sun
+	float UVx = mix(vertexSlope,1.0,0.5);
+	float UVy = clamp(LIGHT0_DIRECTION.y / -2.0,-0.495,0.495) + 0.5;
+	
+	// Moon
+	float UVx2 = mix(vertexSlope,1.0,0.1);
+	float UVy2 = clamp(LIGHT1_DIRECTION.y / 2.0,-0.495,0.495) + 0.5;
+	
+	// Sample scattering LUT lexture and apply scattercolor adjustment
+	vec3 sunLightScattered = texture(scatteringLUT,vec2(UVx,UVy)).rgb * scatterColor;
+	vec3 moonLightScattered = texture(scatteringLUT,vec2(UVx2,UVy2)).rgb * scatterColor2 + 0.15;
+	vec3 lightScattered = sunLightScattered + moonLightScattered;
+	lightScattered = lightScattered * baseColor.rgb;
+	
+	vec3 baseSkyColor = lightScattered;
+	
+	float a1 = 0.0;
+	if (bAnimStars == true) {
+		a1 = (TIME * starSpeed);
+	}
+	else {
+		a1 = 0.0;
+	}
+	vec3 starMap = textureLod(starTexture, vec2(skyUV.x + a1,skyUV.y), starResolution).rgb;
+	vec3 starMap2 = textureLod(starTexture, vec2(skyUV.x + a1,skyUV.y), starResolution + 1.0).rgb;
+	
+	vec2 animUV = vec2(vertexColor.x,vertexColor.z) * twinkleScale + (TIME * twinkleSpeed);
+
+	starMap = min(starMap,starMap2 * 0.3) + ((clamp(starMap - (starMap2 * 1.3),0.0,1.0)) * (texture(starNoise,animUV / 4.0).r * 10.0 ));
+	
+	baseSkyColor += starMap * starColor * starBrightness; // Add stars
+	
+	return baseSkyColor;
+}
+
+vec3 generateStaticClouds(vec3 dir, vec3 pos, vec2 skyUV, vec3 sunDir, vec3 moonDir) {
+	vec4 xyMask = vec4(0.0);
+	float zMask = 0.0;
+	
+	float sR = clamp(sunDir.x * -1.0,0.0,1.0);
+	float sG = clamp(sunDir.x,0.0,1.0);
+	float sB = clamp(sunDir.z,0.0,1.0);
+	float sA = clamp(sunDir.z * -1.0,0.0,1.0);
+	float sZ = clamp(sunDir.y * -1.0,0.0,1.0);
+	
+	float mR = clamp(moonDir.x * -1.0,0.0,1.0);
+	float mG = clamp(moonDir.x,0.0,1.0);
+	float mB = clamp(moonDir.z,0.0,1.0);
+	float mA = clamp(moonDir.z * -1.0,0.0,1.0);
+	float mZ = clamp(moonDir.y * -1.0,0.0,1.0);
+	
+	xyMask = mix(vec4(sR,sG,sB,sA), vec4(mR,mG,mB,mA), clamp(sunDir.y * 6.0,0.0,1.0)) * 0.7;
+	zMask =  mix(sZ,mZ,clamp(sunDir.y * 6.0,0.0,1.0)) * 0.7;
+	
+	float a1 = 0.0;
+	if (bAnimClouds == true) {
+		a1 = (TIME * cloudSpeed);
+	}
+	else {
+		a1 = 0.0;
+	}
+	
+	float cloudsAlpha = textureLod(cloudTexture,vec2(skyUV.x + a1,skyUV.y), -1.0).r;
+	float cloudAlpha2 = textureLod(cloudTexture,vec2(skyUV.x + a1,skyUV.y), -1.0).g * zMask;
+	vec4 cloudShading = xyMask * textureLod(cloudTexture2,vec2(skyUV.x + a1,skyUV.y), -1.0);
+	float cloudShading2 = (cloudShading.r + cloudShading.g) + (cloudShading.b + cloudShading.a);
+	float cloudMainShadingMask = pow(cloudAlpha2 + cloudShading2,1.2);
+	
+	float cloudShine = ((1.0 - cloudsAlpha) + pow(cloudAlpha2 + cloudShading2,2.5)) * 17.0 * createSunGlow(dir,sunDir, 0.5).r;
+	
+	vec3 clouds = vec3(cloudMainShadingMask,cloudShine,cloudsAlpha);
+	
+	return clouds;
+}
+
+vec2 generate2DClouds(vec3 dir, vec3 sunDir, vec3 moonDir) {
+	float cloudsFinal = 0.0;
+	
+	float horizonCurve = dir.y / horizonUVCurve;
+	float clouds = texture(cloudNoise,vec2(dir.x / horizonCurve, dir.z / horizonCurve) / 5.0 + (TIME * 4.0 * cloudSpeed * cloudDirection)).r;
+	float density = remap(cloudDensity,0.0,8.0,0.0,1.0);
+	clouds *= textureLod(cloudNoise,vec2(dir.x / horizonCurve, dir.z / horizonCurve) / 10.0 + (TIME * 4.0 * cloudSpeed * cloudDirection),-2.0).r;
+	clouds = clamp(mix(cloudCoverage,cloudCoverage + 1.0,clouds),cloudCoverage,1.0);
+	clouds = clamp(pow(clouds,1.0 + cloudEdge),0.0,1.0);
+	float weather = texture(weatherMap,vec2(dir.x / horizonCurve, dir.z / horizonCurve) / 20.0 + (TIME * 6.0 * cloudSpeed * cloudDirection)).r + 0.5;
+	float cloudFade = clamp(dir.y,0.0,1.0);
+	cloudsFinal = clamp(clouds - (clamp(weather + 0.5,0.0,1.0) * (1.0 - cloudCoverage / 2.0)),0.0,1.0);
+	float cloudsFinal2 = cloudsFinal * mix(5.0,cloudDensity,dir.y) * (cloudFade * 2.0);
+	float transmittance = exp(-cloudsFinal2);
+	return vec2(transmittance,weather);
+}
+
+vec3 generateSky(vec3 dir, vec3 pos, vec2 skyUV, vec3 sunDir, float sunEnergy, vec3 sunColor, vec3 moonDir, vec3 moonColor, float moonEnergy) {
+	vec3 skyColor = vec3(0.0);
+	vec3 cloudColors = vec3(0.0);
+	vec3 cloudMask = vec3(0.0);
+	vec2 dynClouds = vec2(0.0);
+	float dynCloudAlpha = 1.0 - dynClouds.x;
+	
+	float horizonCurve = dir.y / horizonUVCurve;
+	
+	float fogA = createHorizonFog(dir);
+	vec3 atmos = scatterLight(dir,skyUV);
+	
+	if (cloudType == 0) {
+		cloudMask = generateStaticClouds(dir,pos,skyUV,sunDir,moonDir);
+	}
+	
+	if (cloudType == 1) {
+		dynClouds = generate2DClouds(dir,sunDir,moonDir);
+		dynCloudAlpha = 1.0 - dynClouds.x;
+		cloudMask = clamp(vec3(dynCloudAlpha * 7.0),0.0,1.0);
+	}
+	
+	skyColor += atmos;
+	skyColor += createSunMoonDisc(dir,sunDir,sunColor,sunRadius,sunEdgeBlur) * (1.0 - cloudMask.z * cloudAlpha);
+	skyColor += createSunMoonDisc(dir,moonDir,moonColor,moonRadius,moonEdgeBlur) * (1.0 - cloudMask.z * cloudAlpha);
+	
+	if (cloudType == 0) {
+		float density = clamp((cloudDensity) / 5.0,0.0,1.0);
+		vec3 cloudColor = mix(atmos * mix(dir.y,1.15,0.5),vec3(0.0),density);
+		vec3 cloudLight = sunlightColor * 1.4 * cloudColor;
+		vec3 cloudShading = pow((cloudLight + (cloudLight * cloudMask.y)) * cloudMask.x,vec3(1.2));
+		vec3 cloudFinal = mix(cloudShading,baseCloudColor,0.1);
+		
+		cloudColors = baseCloudColor * cloudMask.z * cloudMask.x;
+		if (dot(dir,sunDir) > mgSize) {
+			float cloudGlow = remap(dot(dir,sunDir),mgSize,1.0,0.0,1.0);
+			vec3 cloudGlow2 = mix(vec3(1.0),sunlightColor * 5.0,pow(cloudGlow, 3.0));
+			float cloudGlow3 = 1.0 - cloudMask.z * 0.9 + cloudMask.x * 0.25;
+			cloudColors = baseCloudColor * cloudGlow2 * cloudMask.z * cloudMask.x;
+		}
+		if (dot(dir,moonDir) > mgSize) {
+			float cloudGlow = remap(dot(dir,moonDir),mgSize,1.0,0.0,1.0);
+			vec3 cloudGlow2 = mix(vec3(1.0),vec3(1.0) * 10.0,pow(cloudGlow, 4.0));
+			float cloudGlow3 = 1.0 - cloudMask.z * 0.9 + cloudMask.x * 0.25;
+			cloudColors = baseCloudColor * cloudGlow2 * cloudMask.z * cloudMask.x;
+		}
+		
+		skyColor *= clamp((1.0 - pow(cloudMask.z,3.0) * cloudAlpha),0.0,1.0) ;
+		skyColor += (cloudFinal * (pow(cloudMask.z,3.0) * (1.0 - clamp((1.0 - 1.25) * 2.0,0.0,1.0))) + cloudColors) * cloudAlpha;
+	}
+	
+	if (cloudType == 1) {
+		float sun = dot(normalize(LIGHT0_DIRECTION), dir);
+		float moon = dot(normalize(LIGHT1_DIRECTION), dir);
+		skyColor = skyColor * dynClouds.x + (baseCloudColor * dynamicCloudBrightness * dynCloudAlpha);
+		float hg = max(henyey_greenstein(sun,henyeyGreensteinLevel - 0.15),henyey_greenstein(moon,henyeyGreensteinLevel + 0.05));
+		skyColor = skyColor + ((baseCloudColor * ((dynClouds.x) * hg * absorption)) * dynCloudAlpha);
+		skyColor -= (clamp(texture(cloudNoise,vec2(dir.x / horizonCurve, dir.z / horizonCurve) / 5.0 + (TIME * 4.0 * cloudSpeed  * cloudDirection)).r - 0.5,0.0,1.0) *  baseCloudColor) * dynCloudAlpha;
+	}
+	
+	skyColor = mix(skyColor,horizonFogColor.rgb * horizonFogColor.a,fogA) + createSunMoonDisc(dir,sunDir,sunColor,sunRadius,sunEdgeBlur) * (1.0 - cloudMask.z * cloudAlpha) + createSunMoonDisc(dir,moonDir,moonColor,moonRadius,moonEdgeBlur) * (1.0 - cloudMask.z * cloudAlpha);
+	if (dir.y < 0.0) {
+		skyColor = horizonFogColor.rgb;
+	}
+	skyColor += createSunGlow(dir,sunDir,sunRadius);
+	skyColor += createMoonGlow(dir,moonDir,moonRadius);
+	
+	return skyColor;
+}
+
+void sky() {
+	vec3 rayDirection = EYEDIR;
+	
+	vec3 background = horizonFogColor.rgb * horizonFogColor.a;
+	
+	if (rayDirection.y > 0.0) {
+		background = generateSky(rayDirection, camPos, SKY_COORDS, LIGHT0_DIRECTION, LIGHT0_ENERGY, sunDiscColor, LIGHT1_DIRECTION, LIGHT1_COLOR, LIGHT1_ENERGY);
+	}
+	
+	if (AT_QUARTER_RES_PASS && AT_CUBEMAP_PASS) {
+		COLOR = background.rgb;
+	} else if (AT_HALF_RES_PASS && !AT_CUBEMAP_PASS) {
+		COLOR = background.rgb;
+	} else if (AT_CUBEMAP_PASS) {
+		COLOR = QUARTER_RES_COLOR.rgb;
+	} else {
+		COLOR = background.rgb;
+	}
+}"
+
+[sub_resource type="Gradient" id="Gradient_a10k4"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.125, 0.95)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qm7kc"]
+noise_type = 2
+frequency = 0.021
+fractal_octaves = 4
+fractal_gain = 0.547
+fractal_weighted_strength = 0.58
+cellular_distance_function = 3
+cellular_jitter = 0.7
+cellular_return_type = 3
+domain_warp_enabled = true
+domain_warp_amplitude = 6.0
+domain_warp_frequency = 1.0
+domain_warp_fractal_octaves = 7
+domain_warp_fractal_lacunarity = 5.0
+domain_warp_fractal_gain = 2.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_agymw"]
+invert = true
+seamless = true
+seamless_blend_skirt = 0.401
+color_ramp = SubResource("Gradient_a10k4")
+noise = SubResource("FastNoiseLite_qm7kc")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d4t4l"]
+load_path = "res://.godot/imported/StaticCloudsAlpha.tga-a8bb8606b44cbcc95f3f39ae8663bed9.bptc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dyr8n"]
+load_path = "res://.godot/imported/StaticCloudsXY.tga-51ee0af221b6fd4e7f0de22edc5abe99.bptc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_32wlm"]
+load_path = "res://.godot/imported/scatteringLUT.HDR-ff55772d5459e05403a6f8ffd115d7e8.bptc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4baau"]
+load_path = "res://.godot/imported/Stars_Noise.TGA-26be3e2f9f4965e0c2d3d3ab7f2ac3e9.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ujf64"]
+load_path = "res://.godot/imported/starmap_8k.jpg-3a462514074ce21762f6dd88d2c2065d.bptc.ctex"
+
+[sub_resource type="Gradient" id="Gradient_tht1h"]
+interpolation_mode = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kicfr"]
+noise_type = 4
+seed = 34
+frequency = 0.042
+fractal_octaves = 3
+fractal_lacunarity = 1.605
+fractal_gain = 2.397
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jdy3i"]
+seamless = true
+seamless_blend_skirt = 0.061
+color_ramp = SubResource("Gradient_tht1h")
+noise = SubResource("FastNoiseLite_kicfr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_exco7"]
+shader = SubResource("Shader_kus74")
+shader_parameter/baseColor = Color(0.691203, 0.689554, 0.86868, 1)
+shader_parameter/scatterColor = Color(1, 1, 1, 1)
+shader_parameter/scatterColor2 = Color(1, 1, 1, 1)
+shader_parameter/bAnimClouds = true
+shader_parameter/bAnimStars = true
+shader_parameter/cloudType = 1
+shader_parameter/sunRadius = 0.00078
+shader_parameter/sunEdgeBlur = 10000.0
+shader_parameter/sunDiscColor = Color(0.765041, 0.557968, 0.395529, 0.983329)
+shader_parameter/sunGlowColor = Color(0.974913, 0.919267, 0.420472, 1)
+shader_parameter/sunlightColor = null
+shader_parameter/sunGlowIntensity = 0.81
+shader_parameter/moonRadius = 0.00071
+shader_parameter/moonEdgeBlur = 10000.0
+shader_parameter/moonGlowColor = Color(1, 1, 1, 0)
+shader_parameter/moonLightColor = null
+shader_parameter/moonGlowIntensity = 1.0
+shader_parameter/baseCloudColor = Color(0.548607, 0.444158, 0.362819, 1)
+shader_parameter/cloudDensity = 0.2
+shader_parameter/cloudEdge = 0.187
+shader_parameter/cloudCoverage = 0.643
+shader_parameter/cloudDirection = Vector2(1, 1)
+shader_parameter/mgSize = 0.6
+shader_parameter/cloudAlpha = 1.0
+shader_parameter/cloudSpeed = 0.003
+shader_parameter/absorption = 2.826
+shader_parameter/henyeyGreensteinLevel = 0.711
+shader_parameter/dynamicCloudBrightness = 0.5
+shader_parameter/horizonUVCurve = 0.658
+shader_parameter/horizonFogColor = Color(0.729641, 0.58225, 0.467701, 1)
+shader_parameter/horizonAlpha = 1.0
+shader_parameter/horizonSize = 7.0
+shader_parameter/starColor = Color(0.43, 0.55, 0.91, 1)
+shader_parameter/starBrightness = 0.5
+shader_parameter/twinkleSpeed = 0.041
+shader_parameter/twinkleScale = 1.8
+shader_parameter/starResolution = 3.0
+shader_parameter/starSpeed = 0.002
+shader_parameter/scatteringLUT = SubResource("CompressedTexture2D_32wlm")
+shader_parameter/cloudTexture = SubResource("CompressedTexture2D_d4t4l")
+shader_parameter/cloudTexture2 = SubResource("CompressedTexture2D_dyr8n")
+shader_parameter/cloudNoise = SubResource("NoiseTexture2D_agymw")
+shader_parameter/weatherMap = SubResource("NoiseTexture2D_jdy3i")
+shader_parameter/starTexture = SubResource("CompressedTexture2D_ujf64")
+shader_parameter/starNoise = SubResource("CompressedTexture2D_4baau")
+
+[sub_resource type="Sky" id="Sky_l2oom"]
+sky_material = SubResource("ShaderMaterial_exco7")
+process_mode = 3
+
+[sub_resource type="Environment" id="Environment_eu2ts"]
+background_mode = 2
+background_energy_multiplier = 0.69
+sky = SubResource("Sky_l2oom")
+sky_custom_fov = 91.7
+sky_rotation = Vector3(3.38594, 0, 0.0122173)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.47
+ambient_light_energy = 2.3
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_exposure = 0.5
+tonemap_white = 0.2
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 1.99
+sdfgi_min_cell_size = 0.01
+sdfgi_cascade0_distance = 0.64
+sdfgi_max_distance = 10.24
+sdfgi_normal_bias = 0.1
+sdfgi_probe_bias = 0.1
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 6.32
+glow_strength = 1.48
+glow_hdr_threshold = 0.5
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 106.53
+glow_map_strength = 0.0
+fog_light_color = Color(0.705882, 0.819608, 0.941176, 1)
+fog_light_energy = 0.55
+fog_density = 0.0151
+fog_aerial_perspective = 0.765
+fog_sky_affect = 0.843
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.006864
+volumetric_fog_temporal_reprojection_amount = 0.99
+
+[sub_resource type="Gradient" id="Gradient_6xxph"]
+offsets = PackedFloat32Array(0.419118, 0.553191, 0.601064, 0.977444)
+colors = PackedColorArray(0.0601829, 0.0849014, 0.199897, 1, 0.381723, 0.127307, 0.10311, 1, 0.638549, 0.335553, 0.0995967, 1, 0.899258, 0.899258, 0.899258, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_damii"]
+gradient = SubResource("Gradient_6xxph")
+use_hdr = true
+
+[sub_resource type="Gradient" id="Gradient_rc4a6"]
+offsets = PackedFloat32Array(0.482759, 0.612069)
+colors = PackedColorArray(0.544003, 0.651053, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dw4rm"]
+gradient = SubResource("Gradient_rc4a6")
+
+[sub_resource type="Gradient" id="Gradient_n3vyd"]
+offsets = PackedFloat32Array(0.161812, 0.521036, 0.612069)
+colors = PackedColorArray(0.756432, 0.784098, 0.887911, 1, 0.471032, 0.514768, 0.697211, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kj61u"]
+gradient = SubResource("Gradient_n3vyd")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_6575m"]
+min_value = -1024.0
+max_value = 1024.0
+_data = [Vector2(0, 1024), 0.0, 0.0, 0, 0, Vector2(0.576159, 1024), 0.0, 0.0, 0, 0, Vector2(0.903973, 1024), -1188.01, -1188.01, 0, 0, Vector2(1, 993.444), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_lwox2"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.296992, 0.778196)
+colors = PackedColorArray(0.775064, 0.775063, 0.775064, 1, 0.377919, 0.377919, 0.377919, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jb620"]
+gradient = SubResource("Gradient_lwox2")
+use_hdr = true
+
+[sub_resource type="Gradient" id="Gradient_ep3k2"]
+offsets = PackedFloat32Array(0.366379, 0.49569, 0.901639)
+colors = PackedColorArray(0, 0, 0, 1, 0.776471, 0.501961, 0.309804, 0.976471, 0.737255, 0.694118, 0.603922, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1bsxp"]
+gradient = SubResource("Gradient_ep3k2")
+use_hdr = true
+
+[sub_resource type="Gradient" id="Gradient_sxehj"]
+offsets = PackedFloat32Array(0.443182, 0.566343, 0.660194)
+colors = PackedColorArray(0, 0, 0, 1, 0.94902, 0.882353, 0, 1, 1, 0.955033, 0.827864, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a0cwi"]
+gradient = SubResource("Gradient_sxehj")
+
+[sub_resource type="Gradient" id="Gradient_vf85j"]
+offsets = PackedFloat32Array(0, 0.365696, 0.462783, 0.612782, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.71298, 0.203695, 1.47464e-07, 1, 0.979906, 0.738618, 0.391285, 1, 1.251, 1.251, 1.051, 0.905)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cwobm"]
+gradient = SubResource("Gradient_vf85j")
+use_hdr = true
+
+[sub_resource type="Resource" id="Resource_gp5rn"]
+script = ExtResource("3_4fwjo")
+sunRadius = 0.00078
+sunEdgeBlur = 10000.0
+sunLightIntensity = ExtResource("4_hh8x3")
+sunGlowIntensity = 0.81
+moonRadius = 0.00071
+moonEdgeBlur = 10000.0
+moonLightIntensity = SubResource("Curve_6575m")
+moonGlowIntensity = 1.0
+horizonSize = 7.0
+horizonAlpha = 1.0
+cloudSpeed = 0.003
+cloudDirection = Vector2(1, 1)
+cloudDensity = 0.2
+cloudGlow = 0.6
+cloudLightAbsorption = 2.826
+cloudBrightness = 0.5
+cloudUvCurvature = 0.658
+cloudEdge = 0.187
+anisotropy = 0.711
+starColor = Color(0.43, 0.55, 0.91, 1)
+starBrightness = 0.5
+starResolution = 3.0
+twinkleSpeed = 0.041
+twinkleScale = 1.8
+starSpeed = 0.002
+baseSkyColor = ExtResource("3_6hpla")
+baseCloudColor = SubResource("GradientTexture1D_damii")
+overcastCloudColor = SubResource("GradientTexture1D_jb620")
+horizonFogColor = ExtResource("4_qi3m5")
+sunLightColor = SubResource("GradientTexture1D_cwobm")
+sunDiscColor = SubResource("GradientTexture1D_1bsxp")
+sunGlow = SubResource("GradientTexture1D_a0cwi")
+moonLightColor = SubResource("GradientTexture1D_kj61u")
+moonGlowColor = SubResource("GradientTexture1D_dw4rm")
+
+[sub_resource type="SphereMesh" id="SphereMesh_pkqrv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ackkx"]
+
+[sub_resource type="Animation" id="Animation_0xcsc"]
+resource_name = "blinker"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jmox5"]
+_data = {
+"blinker": SubResource("Animation_0xcsc")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a82ee"]
+shader = ExtResource("6_dbo47")
+shader_parameter/blur_amount = 9.5e-08
+shader_parameter/mix_amount = 0.0
+shader_parameter/color_over = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v2u2g"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qa7k6"]
+content_margin_left = 82.0
+content_margin_top = 8.0
+content_margin_right = 82.0
+content_margin_bottom = 8.0
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nsp3n"]
+content_margin_left = 82.0
+content_margin_top = 8.0
+content_margin_right = 82.0
+content_margin_bottom = 8.0
+texture = ExtResource("12_0maxc")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.854902, 0.854902, 0.854902, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvi5g"]
+content_margin_left = 82.0
+content_margin_top = 8.0
+content_margin_right = 82.0
+content_margin_bottom = 8.0
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.913725, 0.913725, 0.913725, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ugsi1"]
+content_margin_left = 82.0
+content_margin_top = 8.0
+content_margin_right = 82.0
+content_margin_bottom = 8.0
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5xbk"]
+content_margin_left = 82.0
+content_margin_top = 8.0
+content_margin_right = 82.0
+content_margin_bottom = 8.0
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.854902, 0.854902, 0.854902, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x38eq"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4p3od"]
+texture = ExtResource("12_0maxc")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i8w7j"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_chjll"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghqbl"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ek7yb"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_exwr5"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0q3wl"]
+texture = ExtResource("12_0maxc")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0kcq0"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ng32i"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ukhf"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4dfva"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qj0ht"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eohs0"]
+texture = ExtResource("12_0maxc")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o20hq"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hk7m0"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1y6qy"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qvo4i"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_csdlj"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2u7t"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u6a36"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a8la2"]
+texture = ExtResource("23_nwhlt")
+texture_margin_top = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uayha"]
+texture = ExtResource("23_nwhlt")
+texture_margin_top = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bxiym"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcwfo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j38r4"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ats0"]
+texture = ExtResource("26_tj2yy")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c3f2q"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c3w7f"]
+texture = ExtResource("12_0maxc")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_piw25"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4tly"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qee6e"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l8iwb"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_op3o1"]
+texture = ExtResource("12_0maxc")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5x1oh"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_epayl"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kpvj0"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3hcqt"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uh4kx"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5anr6"]
+texture = ExtResource("12_0maxc")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i3p2l"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rtok"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_niq4f"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhsui"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gh0o7"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_isje2"]
+texture = ExtResource("13_bl35s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8t12s"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5xlo5"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rva3h"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tusv2"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ptevm"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0e78a"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jm6de"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dgx1r"]
+texture = ExtResource("28_fdpb8")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmyn1"]
+texture = ExtResource("29_hparc")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1bo7u"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tle21"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="Image" id="Image_y0ysx"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 78, 254, 255, 254, 136, 254, 255, 254, 173, 254, 255, 254, 173, 254, 255, 254, 135, 252, 255, 252, 77, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 21, 255, 255, 255, 144, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 143, 255, 255, 255, 20, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 144, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 236, 237, 236, 195, 122, 123, 122, 224, 133, 134, 133, 221, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 143, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 78, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 236, 237, 236, 195, 112, 113, 112, 227, 92, 92, 92, 233, 125, 126, 125, 223, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 252, 255, 252, 76, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 136, 254, 255, 254, 191, 254, 255, 254, 191, 236, 237, 236, 195, 112, 113, 112, 227, 92, 92, 92, 233, 115, 116, 115, 226, 240, 241, 240, 194, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 133, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 173, 254, 255, 254, 191, 254, 255, 254, 191, 122, 122, 122, 224, 92, 92, 92, 233, 115, 116, 115, 226, 240, 241, 240, 194, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 173, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 173, 254, 255, 254, 191, 254, 255, 254, 191, 123, 124, 123, 224, 92, 92, 92, 233, 116, 117, 116, 226, 238, 240, 238, 194, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 172, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 135, 254, 255, 254, 191, 254, 255, 254, 191, 237, 238, 237, 195, 115, 115, 115, 226, 92, 92, 92, 233, 115, 116, 115, 226, 237, 238, 237, 195, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 133, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 252, 255, 252, 77, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 237, 238, 237, 195, 115, 115, 115, 226, 92, 92, 92, 233, 125, 125, 125, 223, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 75, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 254, 255, 254, 143, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 237, 238, 237, 195, 125, 125, 125, 223, 134, 134, 134, 220, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 142, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 20, 254, 255, 254, 143, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 142, 255, 255, 255, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 252, 255, 252, 76, 255, 255, 255, 133, 254, 255, 254, 173, 254, 255, 254, 172, 255, 255, 255, 133, 255, 255, 255, 75, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_tbcmm"]
+image = SubResource("Image_y0ysx")
+
+[sub_resource type="Image" id="Image_a7tku"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 104, 254, 255, 254, 181, 254, 255, 254, 231, 254, 255, 254, 231, 254, 255, 254, 180, 255, 255, 255, 102, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 27, 254, 255, 254, 193, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 191, 255, 255, 255, 26, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 254, 255, 254, 193, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 233, 234, 233, 255, 77, 77, 77, 255, 93, 93, 93, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 191, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 104, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 233, 234, 233, 255, 61, 61, 61, 255, 26, 26, 26, 255, 81, 81, 81, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 255, 255, 255, 101, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 181, 254, 255, 254, 255, 254, 255, 254, 255, 233, 234, 233, 255, 61, 61, 61, 255, 26, 26, 26, 255, 67, 67, 67, 255, 237, 238, 237, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 178, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 231, 254, 255, 254, 255, 254, 255, 254, 255, 75, 75, 75, 255, 26, 26, 26, 255, 67, 67, 67, 255, 237, 238, 237, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 231, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 231, 254, 255, 254, 255, 254, 255, 254, 255, 78, 78, 78, 255, 26, 26, 26, 255, 66, 66, 66, 255, 236, 237, 236, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 230, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 180, 254, 255, 254, 255, 254, 255, 254, 255, 235, 236, 235, 255, 64, 64, 64, 255, 26, 26, 26, 255, 65, 65, 65, 255, 235, 236, 235, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 178, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 102, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 235, 236, 235, 255, 64, 64, 64, 255, 26, 26, 26, 255, 79, 79, 79, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 255, 255, 255, 100, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 254, 255, 254, 191, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 235, 236, 235, 255, 79, 79, 79, 255, 96, 96, 96, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 189, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 26, 254, 255, 254, 191, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 189, 255, 255, 255, 25, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 101, 254, 255, 254, 178, 254, 255, 254, 231, 254, 255, 254, 230, 254, 255, 254, 178, 255, 255, 255, 100, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_3xl3e"]
+image = SubResource("Image_a7tku")
+
+[sub_resource type="Image" id="Image_hgy2s"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 211, 211, 211, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 32,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_nf31y"]
+image = SubResource("Image_hgy2s")
+
+[sub_resource type="Image" id="Image_a3hvp"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 78, 254, 255, 254, 136, 254, 255, 254, 173, 254, 255, 254, 173, 254, 255, 254, 135, 252, 255, 252, 77, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 21, 255, 255, 255, 144, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 143, 255, 255, 255, 20, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 144, 254, 255, 254, 191, 254, 255, 254, 191, 130, 130, 130, 221, 123, 124, 123, 224, 237, 238, 237, 195, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 143, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 78, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 122, 123, 122, 224, 92, 92, 92, 233, 115, 115, 115, 226, 237, 238, 237, 195, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 252, 255, 252, 76, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 136, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 237, 238, 237, 195, 115, 115, 115, 226, 92, 92, 92, 233, 115, 115, 115, 226, 237, 238, 237, 195, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 133, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 173, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 237, 238, 237, 195, 115, 115, 115, 226, 92, 92, 92, 233, 125, 125, 125, 223, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 173, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 173, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 236, 237, 236, 195, 115, 115, 115, 226, 92, 92, 92, 233, 123, 125, 123, 223, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 172, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 135, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 234, 236, 234, 195, 114, 114, 114, 226, 92, 92, 92, 233, 116, 117, 116, 226, 238, 240, 238, 194, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 133, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 252, 255, 252, 77, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 122, 122, 122, 224, 92, 92, 92, 233, 116, 117, 116, 226, 238, 240, 238, 194, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 75, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 254, 255, 254, 143, 254, 255, 254, 191, 254, 255, 254, 191, 132, 133, 132, 221, 123, 125, 123, 223, 238, 240, 238, 194, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 142, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 20, 254, 255, 254, 143, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 142, 255, 255, 255, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 252, 255, 252, 76, 255, 255, 255, 133, 254, 255, 254, 173, 254, 255, 254, 172, 255, 255, 255, 133, 255, 255, 255, 75, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_mjea1"]
+image = SubResource("Image_a3hvp")
+
+[sub_resource type="Image" id="Image_7tqer"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 104, 254, 255, 254, 181, 254, 255, 254, 231, 254, 255, 254, 231, 254, 255, 254, 180, 255, 255, 255, 102, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 27, 254, 255, 254, 193, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 191, 255, 255, 255, 26, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 254, 255, 254, 193, 254, 255, 254, 255, 254, 255, 254, 255, 88, 88, 88, 255, 78, 78, 78, 255, 234, 235, 234, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 191, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 104, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 77, 77, 77, 255, 26, 26, 26, 255, 63, 63, 63, 255, 234, 235, 234, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 255, 255, 255, 101, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 181, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 234, 235, 234, 255, 63, 63, 63, 255, 26, 26, 26, 255, 63, 63, 63, 255, 234, 235, 234, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 178, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 231, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 234, 235, 234, 255, 63, 63, 63, 255, 26, 26, 26, 255, 79, 79, 79, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 231, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 231, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 233, 234, 233, 255, 63, 63, 63, 255, 26, 26, 26, 255, 80, 80, 80, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 230, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 180, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 232, 233, 232, 255, 62, 62, 62, 255, 26, 26, 26, 255, 66, 66, 66, 255, 236, 237, 236, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 178, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 102, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 74, 74, 74, 255, 26, 26, 26, 255, 66, 66, 66, 255, 236, 237, 236, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 255, 255, 255, 100, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 254, 255, 254, 191, 254, 255, 254, 255, 254, 255, 254, 255, 91, 91, 91, 255, 80, 80, 80, 255, 236, 237, 236, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 189, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 26, 254, 255, 254, 191, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 255, 254, 189, 255, 255, 255, 25, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 101, 254, 255, 254, 178, 254, 255, 254, 231, 254, 255, 254, 230, 254, 255, 254, 178, 255, 255, 255, 100, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_jt5b5"]
+image = SubResource("Image_7tqer")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_13ygn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4rr0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pswtk"]
+texture = ExtResource("30_7t1m4")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t72e2"]
+texture = ExtResource("30_7t1m4")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ji4ut"]
+texture = ExtResource("30_7t1m4")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_doige"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2b0d"]
+texture = ExtResource("30_7t1m4")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mn3n"]
+texture = ExtResource("30_7t1m4")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sle0d"]
+texture = ExtResource("30_7t1m4")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_orqxf"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nlclv"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k07ct"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0wj8"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lybwc"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tfh84"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3kdbo"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8mi20"]
+texture = ExtResource("25_67qwe")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0cwcx"]
+texture = ExtResource("10_u1q4y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y75w0"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4h1s7"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yqyu5"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlltb"]
+texture = ExtResource("23_nwhlt")
+texture_margin_left = 12.0
+texture_margin_right = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gqprs"]
+texture = ExtResource("23_nwhlt")
+texture_margin_left = 12.0
+texture_margin_right = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4y4m3"]
+texture = ExtResource("22_1vqcu")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="Theme" id="Theme_rkys7"]
+default_font = ExtResource("5_nar5q")
+default_font_size = 28
+AcceptDialog/styles/panel = SubResource("StyleBoxTexture_v2u2g")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+Button/colors/icon_focus_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_normal_color = Color(0, 0, 0, 1)
+Button/colors/icon_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 28
+Button/fonts/font = ExtResource("5_nar5q")
+Button/styles/disabled = SubResource("StyleBoxTexture_qa7k6")
+Button/styles/focus = SubResource("StyleBoxTexture_nsp3n")
+Button/styles/hover = SubResource("StyleBoxTexture_mvi5g")
+Button/styles/normal = SubResource("StyleBoxTexture_ugsi1")
+Button/styles/pressed = SubResource("StyleBoxTexture_g5xbk")
+CheckBox/colors/font_color = Color(0, 0, 0, 1)
+CheckBox/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+CheckBox/colors/font_focus_color = Color(0, 0, 0, 1)
+CheckBox/colors/font_hover_color = Color(0, 0, 0, 1)
+CheckBox/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+CheckBox/colors/font_pressed_color = Color(0, 0, 0, 1)
+CheckBox/font_sizes/font_size = 26
+CheckBox/fonts/font = ExtResource("5_nar5q")
+CheckBox/icons/checked = ExtResource("14_rr25c")
+CheckBox/icons/checked_disabled = ExtResource("15_l4i0m")
+CheckBox/icons/radio_checked = ExtResource("16_jayal")
+CheckBox/icons/radio_checked_disabled = ExtResource("17_kx8gu")
+CheckBox/icons/radio_unchecked = ExtResource("18_2pk22")
+CheckBox/icons/radio_unchecked_disabled = ExtResource("19_vnhdl")
+CheckBox/icons/unchecked = ExtResource("20_x6i4y")
+CheckBox/icons/unchecked_disabled = ExtResource("21_d55ku")
+CheckBox/styles/disabled = SubResource("StyleBoxTexture_x38eq")
+CheckBox/styles/focus = SubResource("StyleBoxTexture_4p3od")
+CheckBox/styles/hover = SubResource("StyleBoxTexture_i8w7j")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxTexture_chjll")
+CheckBox/styles/normal = SubResource("StyleBoxTexture_ghqbl")
+CheckBox/styles/pressed = SubResource("StyleBoxTexture_ek7yb")
+CheckButton/colors/font_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+CheckButton/colors/font_focus_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_hover_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+CheckButton/font_sizes/font_size = 26
+CheckButton/fonts/font = ExtResource("5_nar5q")
+CheckButton/styles/disabled = SubResource("StyleBoxTexture_exwr5")
+CheckButton/styles/focus = SubResource("StyleBoxTexture_0q3wl")
+CheckButton/styles/hover = SubResource("StyleBoxTexture_0kcq0")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxTexture_ng32i")
+CheckButton/styles/normal = SubResource("StyleBoxTexture_0ukhf")
+CheckButton/styles/pressed = SubResource("StyleBoxTexture_4dfva")
+CodeEdit/font_sizes/font_size = 26
+CodeEdit/fonts/font = ExtResource("5_nar5q")
+ColorPickerButton/colors/font_color = Color(0, 0, 0, 1)
+ColorPickerButton/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+ColorPickerButton/colors/font_focus_color = Color(0, 0, 0, 1)
+ColorPickerButton/colors/font_hover_color = Color(0, 0, 0, 1)
+ColorPickerButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+ColorPickerButton/font_sizes/font_size = 26
+ColorPickerButton/fonts/font = ExtResource("5_nar5q")
+ColorPickerButton/styles/disabled = SubResource("StyleBoxTexture_qj0ht")
+ColorPickerButton/styles/focus = SubResource("StyleBoxTexture_eohs0")
+ColorPickerButton/styles/hover = SubResource("StyleBoxTexture_o20hq")
+ColorPickerButton/styles/normal = SubResource("StyleBoxTexture_hk7m0")
+ColorPickerButton/styles/pressed = SubResource("StyleBoxTexture_1y6qy")
+ColorPresetButton/styles/preset_fg = SubResource("StyleBoxTexture_qvo4i")
+Fonts/fonts/large = ExtResource("5_nar5q")
+Fonts/fonts/normal = ExtResource("5_nar5q")
+GraphNode/fonts/title_font = ExtResource("5_nar5q")
+HScrollBar/styles/grabber = SubResource("StyleBoxTexture_csdlj")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_u2u7t")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_u6a36")
+HScrollBar/styles/scroll = SubResource("StyleBoxTexture_a8la2")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxTexture_uayha")
+Icons/icons/close = ExtResource("24_wknpk")
+ItemList/colors/font_color = Color(0, 0, 0, 1)
+ItemList/colors/font_selected_color = Color(0, 0, 0.501961, 1)
+ItemList/font_sizes/font_size = 26
+ItemList/fonts/font = ExtResource("5_nar5q")
+ItemList/styles/panel = SubResource("StyleBoxTexture_bxiym")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 26
+Label/fonts/font = ExtResource("5_nar5q")
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/clear_button_color = Color(0, 0, 0, 1)
+LineEdit/colors/clear_button_color_pressed = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_uneditable_color = Color(0.501961, 0.501961, 0.501961, 1)
+LineEdit/colors/selection_color = Color(0, 0, 0.501961, 1)
+LineEdit/font_sizes/font_size = 26
+LineEdit/fonts/font = ExtResource("5_nar5q")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_lcwfo")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_j38r4")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_1ats0")
+LinkButton/colors/font_color = Color(0, 0, 0.501961, 1)
+LinkButton/fonts/font = ExtResource("5_nar5q")
+MenuBar/colors/font_color = Color(0, 0, 0, 1)
+MenuBar/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+MenuBar/colors/font_focus_color = Color(0, 0, 0, 1)
+MenuBar/colors/font_hover_color = Color(0, 0, 0, 1)
+MenuBar/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+MenuBar/colors/font_pressed_color = Color(0, 0, 0, 1)
+MenuBar/font_sizes/font_size = 26
+MenuBar/fonts/font = ExtResource("5_nar5q")
+MenuBar/styles/disabled = SubResource("StyleBoxTexture_c3f2q")
+MenuBar/styles/focus = SubResource("StyleBoxTexture_c3w7f")
+MenuBar/styles/hover = SubResource("StyleBoxTexture_piw25")
+MenuBar/styles/normal = SubResource("StyleBoxTexture_w4tly")
+MenuBar/styles/pressed = SubResource("StyleBoxTexture_qee6e")
+MenuButton/colors/font_color = Color(0, 0, 0, 1)
+MenuButton/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+MenuButton/colors/font_focus_color = Color(0, 0, 0, 1)
+MenuButton/colors/font_hover_color = Color(0, 0, 0, 1)
+MenuButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+MenuButton/font_sizes/font_size = 26
+MenuButton/fonts/font = ExtResource("5_nar5q")
+MenuButton/styles/disabled = SubResource("StyleBoxTexture_l8iwb")
+MenuButton/styles/focus = SubResource("StyleBoxTexture_op3o1")
+MenuButton/styles/hover = SubResource("StyleBoxTexture_5x1oh")
+MenuButton/styles/normal = SubResource("StyleBoxTexture_epayl")
+MenuButton/styles/pressed = SubResource("StyleBoxTexture_kpvj0")
+OptionButton/colors/font_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+OptionButton/colors/font_focus_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_hover_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+OptionButton/font_sizes/font_size = 26
+OptionButton/fonts/font = ExtResource("5_nar5q")
+OptionButton/icons/arrow = ExtResource("27_64khb")
+OptionButton/styles/disabled = SubResource("StyleBoxTexture_3hcqt")
+OptionButton/styles/disabled_mirrored = SubResource("StyleBoxTexture_uh4kx")
+OptionButton/styles/focus = SubResource("StyleBoxTexture_5anr6")
+OptionButton/styles/hover = SubResource("StyleBoxTexture_i3p2l")
+OptionButton/styles/hover_mirrored = SubResource("StyleBoxTexture_7rtok")
+OptionButton/styles/normal = SubResource("StyleBoxTexture_niq4f")
+OptionButton/styles/normal_mirrored = SubResource("StyleBoxTexture_yhsui")
+OptionButton/styles/pressed = SubResource("StyleBoxTexture_gh0o7")
+OptionButton/styles/pressed_mirrored = SubResource("StyleBoxTexture_isje2")
+Panel/styles/panel = SubResource("StyleBoxTexture_8t12s")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_5xlo5")
+PopupDialog/styles/panel = SubResource("StyleBoxTexture_rva3h")
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+PopupMenu/colors/font_hover_color = Color(0, 0, 0, 1)
+PopupMenu/fonts/font = ExtResource("5_nar5q")
+PopupMenu/fonts/font_separator = ExtResource("5_nar5q")
+PopupMenu/icons/checked = ExtResource("14_rr25c")
+PopupMenu/icons/checked_disabled = ExtResource("15_l4i0m")
+PopupMenu/icons/radio_checked = ExtResource("16_jayal")
+PopupMenu/icons/radio_checked_disabled = ExtResource("17_kx8gu")
+PopupMenu/icons/radio_unchecked = ExtResource("18_2pk22")
+PopupMenu/icons/radio_unchecked_disabled = ExtResource("19_vnhdl")
+PopupMenu/icons/unchecked = ExtResource("20_x6i4y")
+PopupMenu/icons/unchecked_disabled = ExtResource("21_d55ku")
+PopupMenu/styles/hover = SubResource("StyleBoxTexture_tusv2")
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_ptevm")
+PopupMenu/styles/panel_disabled = SubResource("StyleBoxTexture_0e78a")
+PopupPanel/styles/panel = SubResource("StyleBoxTexture_jm6de")
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/font_sizes/font_size = 26
+ProgressBar/fonts/font = ExtResource("5_nar5q")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_dgx1r")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_cmyn1")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_selected_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/selection_color = Color(0, 0, 0.501961, 1)
+RichTextLabel/fonts/bold_font = ExtResource("5_nar5q")
+RichTextLabel/fonts/bold_italics_font = ExtResource("5_nar5q")
+RichTextLabel/fonts/italics_font = ExtResource("5_nar5q")
+RichTextLabel/fonts/mono_font = ExtResource("5_nar5q")
+RichTextLabel/fonts/normal_font = ExtResource("5_nar5q")
+RichTextLabel/styles/focus = SubResource("StyleBoxTexture_1bo7u")
+RichTextLabel/styles/normal = SubResource("StyleBoxTexture_tle21")
+TabBar/colors/drop_mark_color = Color(0, 0, 0, 1)
+TabBar/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+TabBar/colors/font_selected_color = Color(0, 0, 0, 1)
+TabBar/colors/font_unselected_color = Color(0, 0, 0, 1)
+TabBar/constants/h_separation = 4
+TabBar/constants/outline_size = 0
+TabBar/font_sizes/font_size = 26
+TabBar/fonts/font = ExtResource("5_nar5q")
+TabBar/icons/close = ExtResource("24_wknpk")
+TabBar/icons/decrement = SubResource("ImageTexture_tbcmm")
+TabBar/icons/decrement_highlight = SubResource("ImageTexture_3xl3e")
+TabBar/icons/drop_mark = SubResource("ImageTexture_nf31y")
+TabBar/icons/increment = SubResource("ImageTexture_mjea1")
+TabBar/icons/increment_highlight = SubResource("ImageTexture_jt5b5")
+TabBar/styles/button_highlight = SubResource("StyleBoxEmpty_13ygn")
+TabBar/styles/button_pressed = SubResource("StyleBoxEmpty_f4rr0")
+TabBar/styles/tab_disabled = SubResource("StyleBoxTexture_pswtk")
+TabBar/styles/tab_selected = SubResource("StyleBoxTexture_t72e2")
+TabBar/styles/tab_unselected = SubResource("StyleBoxTexture_ji4ut")
+TabContainer/colors/drop_mark_color = Color(0, 0, 0, 1)
+TabContainer/colors/font_disabled_color = Color(0.501961, 0.501961, 0.501961, 1)
+TabContainer/colors/font_selected_color = Color(0, 0, 0, 1)
+TabContainer/colors/font_unselected_color = Color(0, 0, 0, 1)
+TabContainer/font_sizes/font_size = 26
+TabContainer/fonts/font = ExtResource("5_nar5q")
+TabContainer/icons/menu = ExtResource("31_vxcgb")
+TabContainer/icons/menu_highlight = ExtResource("31_vxcgb")
+TabContainer/styles/panel = SubResource("StyleBoxTexture_doige")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxTexture_x2b0d")
+TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_5mn3n")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_sle0d")
+TextEdit/colors/caret_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_readonly_color = Color(0.501961, 0.501961, 0.501961, 1)
+TextEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+TextEdit/colors/search_result_color = Color(0, 0, 0.501961, 1)
+TextEdit/colors/selection_color = Color(0, 0, 0.501961, 1)
+TextEdit/colors/word_highlighted_color = Color(0, 0, 0.501961, 1)
+TextEdit/font_sizes/font_size = 26
+TextEdit/fonts/font = ExtResource("5_nar5q")
+TextEdit/styles/focus = SubResource("StyleBoxTexture_orqxf")
+TextEdit/styles/normal = SubResource("StyleBoxTexture_nlclv")
+TextEdit/styles/read_only = SubResource("StyleBoxTexture_k07ct")
+TooltipLabel/colors/font_color = Color(0, 0, 0, 1)
+TooltipLabel/font_sizes/font_size = 26
+TooltipLabel/fonts/font = ExtResource("5_nar5q")
+TooltipPanel/styles/panel = SubResource("StyleBoxTexture_g0wj8")
+Tree/colors/font_color = Color(0, 0, 0, 1)
+Tree/colors/font_selected_color = Color(0, 0, 0, 1)
+Tree/colors/title_button_color = Color(0, 0, 0.501961, 1)
+Tree/font_sizes/font_size = 26
+Tree/fonts/font = ExtResource("5_nar5q")
+Tree/fonts/title_button_font = ExtResource("5_nar5q")
+Tree/icons/arrow = ExtResource("32_ka0xc")
+Tree/icons/arrow_collapsed = ExtResource("33_odvgv")
+Tree/icons/arrow_collapsed_mirrored = ExtResource("33_odvgv")
+Tree/icons/checked = ExtResource("14_rr25c")
+Tree/icons/unchecked = ExtResource("20_x6i4y")
+Tree/styles/custom_button = SubResource("StyleBoxTexture_lybwc")
+Tree/styles/custom_button_hover = SubResource("StyleBoxTexture_tfh84")
+Tree/styles/panel = SubResource("StyleBoxTexture_3kdbo")
+Tree/styles/title_button_normal = SubResource("StyleBoxTexture_8mi20")
+Tree/styles/title_button_pressed = SubResource("StyleBoxTexture_0cwcx")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_y75w0")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_4h1s7")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_yqyu5")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_wlltb")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxTexture_gqprs")
+Window/colors/title_color = Color(0, 0, 0, 1)
+Window/font_sizes/title_font_size = 26
+Window/fonts/title_font = ExtResource("5_nar5q")
+Window/icons/close = ExtResource("24_wknpk")
+Window/icons/close_pressed = ExtResource("34_y3fmt")
+Window/styles/embedded_border = SubResource("StyleBoxTexture_4y4m3")
+
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("camera")]
+layer = 3
+follow_viewport_scale = 574.099
+script = ExtResource("1_r4jk3")
+camera = NodePath("SubViewportContainer2/SubViewport/Camera3D")
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2"]
+handle_input_locally = false
+use_hdr_2d = true
+canvas_item_default_texture_filter = 0
+canvas_item_default_texture_repeat = 1
+gui_disable_input = true
+positional_shadow_atlas_size = 128
+positional_shadow_atlas_16_bits = false
+positional_shadow_atlas_quad_2 = 2
+positional_shadow_atlas_quad_3 = 2
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+
+[node name="GodotSky" type="WorldEnvironment" parent="SubViewportContainer2/SubViewport"]
+environment = SubResource("Environment_eu2ts")
+script = ExtResource("2_7812c")
+timeOfDay = 1712.13
+simulateTime = true
+rateOfTime = 0.03
+skyRotation = 166.3
+cloudType = "2D Dynamic"
+cloudCoverage = 0.643
+skyPreset = SubResource("Resource_gp5rn")
+
+[node name="SunMoon" type="Node3D" parent="SubViewportContainer2/SubViewport/GodotSky"]
+transform = Transform3D(-0.971549, -0.230599, -0.0540038, -1.99341e-08, -0.22802, 0.973657, -0.236838, 0.945955, 0.221532, 0, 0, 0)
+
+[node name="Sun" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport/GodotSky/SunMoon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transparency = 1.0
+mesh = SubResource("SphereMesh_pkqrv")
+
+[node name="SunLight" type="DirectionalLight3D" parent="SubViewportContainer2/SubViewport/GodotSky/SunMoon/Sun"]
+transform = Transform3D(1, 0, 1.49012e-08, -1.49012e-08, -8.19564e-08, -1, 2.98023e-08, 1, -3.72529e-08, 0, 0, 0)
+light_color = Color(0.980766, 0.740243, 0.393377, 0.999699)
+light_energy = 0.157
+shadow_enabled = true
+
+[node name="Moon" type="MeshInstance3D" parent="SubViewportContainer2/SubViewport/GodotSky/SunMoon"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
+transparency = 1.0
+mesh = SubResource("SphereMesh_ackkx")
+
+[node name="MoonLight" type="DirectionalLight3D" parent="SubViewportContainer2/SubViewport/GodotSky/SunMoon/Moon"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer2/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.281, 20.171)
+current = true
+fov = 70.0
+size = 5.435
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer2/SubViewport"]
+transform = Transform3D(0.999835, 0, -0.0181853, 0, 1, 0, 0.0181853, 0, 0.999835, 0.350071, 3.07292, 19.1649)
+visible = false
+light_color = Color(0.886275, 0.364706, 0.666667, 1)
+light_energy = 14.054
+light_indirect_energy = 5.772
+light_volumetric_fog_energy = 5.491
+light_size = 0.619
+light_specular = 3.406
+shadow_enabled = true
+omni_range = 5.958
+omni_attenuation = 1.10957
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer2/SubViewport"]
+transform = Transform3D(0.993672, 0, -0.112319, 0, 1, 0, 0.112319, 0, 0.993672, -3.79482, 1.07947, 20.535)
+light_color = Color(1, 1, 0.427451, 1)
+light_energy = 1.468
+light_indirect_energy = 5.772
+light_volumetric_fog_energy = 5.491
+light_size = 0.298
+light_specular = 0.594
+shadow_enabled = true
+omni_range = 8.625
+omni_attenuation = 1.31951
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer2/SubViewport"]
+transform = Transform3D(0.993672, 5.50175e-09, -0.112319, -0.0387724, 0.938529, -0.343016, 0.105414, 0.3452, 0.93259, -0.0129334, -2.71603, 17.3833)
+visible = false
+light_color = Color(0, 1, 1, 1)
+light_energy = 17.2
+light_indirect_energy = 5.772
+light_volumetric_fog_energy = 5.491
+light_size = 0.298
+light_specular = 0.594
+shadow_enabled = true
+omni_range = 4.26
+omni_attenuation = 1.31951
+
+[node name="title" parent="SubViewportContainer2/SubViewport" instance=ExtResource("4_nsfj3")]
+transform = Transform3D(1.625, 0, 0, 0, 1.54547, -0.502153, 0, 0.502153, 1.54547, 0, -0.435, 20.234)
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+split_offset = 540
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VSplitContainer/CenterContainer"]
+root_node = NodePath("../Label")
+libraries = {
+"": SubResource("AnimationLibrary_jmox5")
+}
+autoplay = "blinker"
+
+[node name="Label" type="Label" parent="VSplitContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_4iivw")
+theme_override_font_sizes/font_size = 51
+text = "Press enter to begin"
+uppercase = true
+
+[node name="BlurRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_a82ee")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="QuitConfirm" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_rkys7")
+
+[node name="Panel" type="Panel" parent="QuitConfirm"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -151.0
+offset_right = 293.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="QuitConfirm/Panel"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 29.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="QuitConfirm/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ColorRect" type="ColorRect" parent="QuitConfirm/Panel/MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.00392157, 0.0156863, 0.501961, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuitConfirm/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="QuitConfirm/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_rd1jr")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Closing game..."
+
+[node name="HSeparator" type="HSeparator" parent="QuitConfirm/Panel/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="QuitConfirm/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.191
+anchor_right = 1.002
+anchor_bottom = 1.0
+offset_top = -3.109
+offset_right = -4.22003
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuitConfirm/Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 85
+
+[node name="Label" type="Label" parent="QuitConfirm/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Are you sure you want to quit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="QuitConfirm/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 60
+
+[node name="OK" type="Button" parent="QuitConfirm/Panel/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_nar5q")
+text = "OK"
+
+[node name="Cancel" type="Button" parent="QuitConfirm/Panel/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_nar5q")
+text = "Cancel"
+
+[connection signal="button_up" from="QuitConfirm/Panel/CenterContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_quit_confirm_ok_button_up"]
+[connection signal="button_up" from="QuitConfirm/Panel/CenterContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_quit_confirm_cancel_button_up"]

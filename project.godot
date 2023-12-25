@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+TextTransitionSettings="*res://addons/awesome_label/text_transition_settings.gd"
 
 [debug]
 
@@ -30,11 +31,14 @@ gdscript/warnings/untyped_declaration=1
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/resizable=false
-window/stretch/mode="canvas_items"
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=0
 
 [editor]
 
@@ -43,7 +47,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/tessarakkt.oceanfft/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/awesome_label/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/tessarakkt.oceanfft/plugin.cfg")
 
 [file_customization]
 
@@ -52,6 +56,13 @@ folder_colors={
 "res://scenes/": "teal",
 "res://src/": "blue"
 }
+
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
+theme/default_font_antialiasing=0
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
 
 [input]
 
@@ -119,6 +130,15 @@ action_escape={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(188, 16),"global_position":Vector2(192, 57),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+mouse={
+"deadzone": 0.5,
+"events": []
+}
 
 [physics]
 
@@ -127,7 +147,7 @@ common/physics_ticks_per_second=120
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=2
+textures/canvas_textures/default_texture_filter=0
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=4
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality.mobile=2
 textures/default_filters/anisotropic_filtering_level=3
@@ -135,6 +155,7 @@ environment/ssao/quality=3
 environment/ssil/quality=3
 environment/screen_space_reflection/roughness_quality=2
 environment/subsurface_scattering/subsurface_scattering_quality=2
+environment/defaults/default_clear_color=Color(0.262745, 0.262745, 0.262745, 1)
 anti_aliasing/quality/msaa_3d=2
 viewport/hdr_2d=true
 anti_aliasing/quality/screen_space_aa=1

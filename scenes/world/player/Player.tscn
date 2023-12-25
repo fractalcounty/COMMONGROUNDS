@@ -1,38 +1,38 @@
 [gd_scene load_steps=32 format=3 uid="uid://dauj0oyj1t0b2"]
 
-[ext_resource type="Script" path="res://scenes/world/player/player.gd" id="1_bxp6j"]
-[ext_resource type="PackedScene" uid="uid://bsdy5aoth4sgb" path="res://scenes/world/player/camera/ortho_camera_3d.tscn" id="2_xv0sh"]
-[ext_resource type="Texture2D" uid="uid://xlfh2wh620xl" path="res://resources/sprites/rolus_sprites/rolus_sit_1.png" id="3_ru3af"]
-[ext_resource type="Texture2D" uid="uid://cetl5d4uy2vml" path="res://resources/sprites/rolus_sprites/rolus_sit_2.png" id="4_cxujx"]
-[ext_resource type="Texture2D" uid="uid://dehbf40xwkfot" path="res://resources/sprites/rolus_sprites/rolus_sit_3.png" id="5_f8282"]
-[ext_resource type="Texture2D" uid="uid://bsltx0a3vxp5i" path="res://resources/sprites/rolus_sprites/rolus_still_down.png" id="6_ol35h"]
-[ext_resource type="Texture2D" uid="uid://0yj4gvr1fs8" path="res://resources/sprites/rolus_sprites/rolus_still_side.png" id="7_ncyy8"]
-[ext_resource type="Texture2D" uid="uid://cap7gkhuyisat" path="res://resources/sprites/rolus_sprites/rolus_still_up.png" id="8_u2f5e"]
-[ext_resource type="Texture2D" uid="uid://c347rq8nbdopx" path="res://resources/sprites/rolus_sprites/rolus_walk_down_1.png" id="9_qnewu"]
-[ext_resource type="Texture2D" uid="uid://5i3rw8cangos" path="res://resources/sprites/rolus_sprites/rolus_walk_down_2.png" id="10_o8jih"]
-[ext_resource type="Texture2D" uid="uid://40al4reghvrf" path="res://resources/sprites/rolus_sprites/rolus_walk_down_3.png" id="11_0d7wl"]
-[ext_resource type="Texture2D" uid="uid://c4fpyuhtfu63c" path="res://resources/sprites/rolus_sprites/rolus_walk_down_4.png" id="12_crs0v"]
-[ext_resource type="Texture2D" uid="uid://n4geonapeuk" path="res://resources/sprites/rolus_sprites/rolus_walk_side_1.png" id="13_6amel"]
-[ext_resource type="Texture2D" uid="uid://b7u7v6w73wsyt" path="res://resources/sprites/rolus_sprites/rolus_walk_side_2.png" id="14_cubi0"]
-[ext_resource type="Texture2D" uid="uid://cbgfecudvslq4" path="res://resources/sprites/rolus_sprites/rolus_walk_side_3.png" id="15_5257q"]
-[ext_resource type="Texture2D" uid="uid://bwjj1j4by2wal" path="res://resources/sprites/rolus_sprites/rolus_walk_side_4.png" id="16_o1j24"]
-[ext_resource type="Texture2D" uid="uid://b7nlraa5yfvrr" path="res://resources/sprites/rolus_sprites/rolus_walk_up_1.png" id="17_1qufs"]
-[ext_resource type="Texture2D" uid="uid://dgo17wnb43p3v" path="res://resources/sprites/rolus_sprites/rolus_walk_up_2.png" id="18_8fql0"]
-[ext_resource type="Texture2D" uid="uid://baca4dhmyusgb" path="res://resources/sprites/rolus_sprites/rolus_walk_up_3.png" id="19_vnqjv"]
-[ext_resource type="Texture2D" uid="uid://d1na64qpvsed7" path="res://resources/sprites/rolus_sprites/rolus_walk_up_4.png" id="20_wjyf6"]
-[ext_resource type="Script" path="res://scenes/world/map/player/States/StateMachine.gd" id="21_5nbe6"]
+[ext_resource type="Script" path="res://scenes/world/player/player.gd" id="1_qeufi"]
+[ext_resource type="PackedScene" uid="uid://bsdy5aoth4sgb" path="res://scenes/world/player/camera/ortho_camera_3d.tscn" id="2_yrcv1"]
+[ext_resource type="Texture2D" uid="uid://xlfh2wh620xl" path="res://resources/sprites/rolus_sprites/rolus_sit_1.png" id="3_f68yr"]
+[ext_resource type="Texture2D" uid="uid://cetl5d4uy2vml" path="res://resources/sprites/rolus_sprites/rolus_sit_2.png" id="4_toc8i"]
+[ext_resource type="Texture2D" uid="uid://dehbf40xwkfot" path="res://resources/sprites/rolus_sprites/rolus_sit_3.png" id="5_jfppw"]
+[ext_resource type="Texture2D" uid="uid://bsltx0a3vxp5i" path="res://resources/sprites/rolus_sprites/rolus_still_down.png" id="6_3edni"]
+[ext_resource type="Texture2D" uid="uid://0yj4gvr1fs8" path="res://resources/sprites/rolus_sprites/rolus_still_side.png" id="7_jd61m"]
+[ext_resource type="Texture2D" uid="uid://cap7gkhuyisat" path="res://resources/sprites/rolus_sprites/rolus_still_up.png" id="8_a05ih"]
+[ext_resource type="Texture2D" uid="uid://c347rq8nbdopx" path="res://resources/sprites/rolus_sprites/rolus_walk_down_1.png" id="9_5rkds"]
+[ext_resource type="Texture2D" uid="uid://5i3rw8cangos" path="res://resources/sprites/rolus_sprites/rolus_walk_down_2.png" id="10_opigt"]
+[ext_resource type="Texture2D" uid="uid://40al4reghvrf" path="res://resources/sprites/rolus_sprites/rolus_walk_down_3.png" id="11_ytvtv"]
+[ext_resource type="Texture2D" uid="uid://c4fpyuhtfu63c" path="res://resources/sprites/rolus_sprites/rolus_walk_down_4.png" id="12_7rsfa"]
+[ext_resource type="Texture2D" uid="uid://n4geonapeuk" path="res://resources/sprites/rolus_sprites/rolus_walk_side_1.png" id="13_18c1n"]
+[ext_resource type="Texture2D" uid="uid://b7u7v6w73wsyt" path="res://resources/sprites/rolus_sprites/rolus_walk_side_2.png" id="14_32s06"]
+[ext_resource type="Texture2D" uid="uid://cbgfecudvslq4" path="res://resources/sprites/rolus_sprites/rolus_walk_side_3.png" id="15_nqxga"]
+[ext_resource type="Texture2D" uid="uid://bwjj1j4by2wal" path="res://resources/sprites/rolus_sprites/rolus_walk_side_4.png" id="16_q8gft"]
+[ext_resource type="Texture2D" uid="uid://b7nlraa5yfvrr" path="res://resources/sprites/rolus_sprites/rolus_walk_up_1.png" id="17_bkg1g"]
+[ext_resource type="Texture2D" uid="uid://dgo17wnb43p3v" path="res://resources/sprites/rolus_sprites/rolus_walk_up_2.png" id="18_3ux2u"]
+[ext_resource type="Texture2D" uid="uid://baca4dhmyusgb" path="res://resources/sprites/rolus_sprites/rolus_walk_up_3.png" id="19_bjl40"]
+[ext_resource type="Texture2D" uid="uid://d1na64qpvsed7" path="res://resources/sprites/rolus_sprites/rolus_walk_up_4.png" id="20_j5gv3"]
+[ext_resource type="Script" path="res://scenes/world/player/States/StateMachine.gd" id="21_sgihx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ubx6w"]
 animations = [{
 "frames": [{
 "duration": 18.0,
-"texture": ExtResource("3_ru3af")
+"texture": ExtResource("3_f68yr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_cxujx")
+"texture": ExtResource("4_toc8i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_f8282")
+"texture": ExtResource("5_jfppw")
 }],
 "loop": true,
 "name": &"sit",
@@ -40,7 +40,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_ol35h")
+"texture": ExtResource("6_3edni")
 }],
 "loop": true,
 "name": &"still_down",
@@ -48,7 +48,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_ncyy8")
+"texture": ExtResource("7_jd61m")
 }],
 "loop": true,
 "name": &"still_side",
@@ -56,7 +56,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_u2f5e")
+"texture": ExtResource("8_a05ih")
 }],
 "loop": true,
 "name": &"still_up",
@@ -64,16 +64,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_qnewu")
+"texture": ExtResource("9_5rkds")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_o8jih")
+"texture": ExtResource("10_opigt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_0d7wl")
+"texture": ExtResource("11_ytvtv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_crs0v")
+"texture": ExtResource("12_7rsfa")
 }],
 "loop": true,
 "name": &"walk_down",
@@ -81,16 +81,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_6amel")
+"texture": ExtResource("13_18c1n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_cubi0")
+"texture": ExtResource("14_32s06")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_5257q")
+"texture": ExtResource("15_nqxga")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_o1j24")
+"texture": ExtResource("16_q8gft")
 }],
 "loop": true,
 "name": &"walk_side",
@@ -98,16 +98,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("17_1qufs")
+"texture": ExtResource("17_bkg1g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_8fql0")
+"texture": ExtResource("18_3ux2u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_vnqjv")
+"texture": ExtResource("19_bjl40")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_wjyf6")
+"texture": ExtResource("20_j5gv3")
 }],
 "loop": true,
 "name": &"walk_up",
@@ -323,9 +323,9 @@ _data = {
 }
 
 [node name="TopdownPlayer3D" type="CharacterBody3D"]
-script = ExtResource("1_bxp6j")
+script = ExtResource("1_qeufi")
 
-[node name="OrthoCamera3D" parent="." instance=ExtResource("2_xv0sh")]
+[node name="OrthoCamera3D" parent="." instance=ExtResource("2_yrcv1")]
 camera_follow_speed = 1.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
@@ -333,7 +333,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999922, 0)
 offset = Vector2(0, -25)
 billboard = 1
 alpha_cut = 1
-texture_filter = 5
+texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_ubx6w")
 animation = &"sit"
 autoplay = "still_down"
@@ -353,6 +353,6 @@ wait_time = 5.0
 one_shot = true
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("21_5nbe6")
+script = ExtResource("21_sgihx")
 
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

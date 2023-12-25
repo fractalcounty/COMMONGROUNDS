@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cryoc1mw1tyjj"]
 
-[ext_resource type="Script" path="res://scenes/Game.gd" id="1_7237c"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_7237c"]
 [ext_resource type="Script" path="res://scenes/Interface.gd" id="2_gnbwa"]
 [ext_resource type="AudioStream" uid="uid://wiqja1noty80" path="res://resources/audio/interface/click1.wav" id="3_ngxk8"]
 [ext_resource type="AudioStream" uid="uid://cgnhewc40j5ni" path="res://resources/audio/interface/switch21.wav" id="4_oewtn"]

@@ -1,11 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cryoc1mw1tyjj"]
 
-[ext_resource type="Script" path="res://scenes/Game.gd" id="1_rasbb"]
-[ext_resource type="PackedScene" uid="uid://blmc6ru4i5roh" path="res://scenes/interface/Interface.tscn" id="2_5v7rn"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_rasbb"]
+[ext_resource type="PackedScene" uid="uid://b7x8j0revg2us" path="res://scenes/interface/loading_screen/LoadingScreen.tscn" id="2_kdx80"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_rasbb")
-SKIP_INTRO = false
 
-[node name="Interface" parent="." node_paths=PackedStringArray("game") instance=ExtResource("2_5v7rn")]
-game = NodePath("..")
+[node name="InterfaceContainer" type="CanvasLayer" parent="."]
+
+[node name="LoadingScreen" parent="InterfaceContainer" instance=ExtResource("2_kdx80")]
+layer = 20
+
+[node name="WorldContainer" type="Node3D" parent="."]
