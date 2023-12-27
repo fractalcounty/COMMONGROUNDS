@@ -9,12 +9,7 @@ res://scenes/interface/post_processing/PostProcessing.tscn
 res://scenes/world/player/player.tscn
 res://scenes/world/Overworld.tscn
 res://addons/debug_menu/debug_menu.tscn
-res://src/MouseManager.gd
+res://scenes/interface/mouse/DebugMouse.tscn
 res://src/MouseManager.tscn
 res://scenes/interface/mouse/Mouse.tscn
-res://scenes/interface/mouse/mouse.tres
 res://src/rich_text_effects/MouseManager.tscn
-res://scenes/interface/mouse/DebugMouse.tscn
-res://scenes/game.gd
-res://scenes/world/player/character_visual.gd
-res://scenes/world/player/player.gd
