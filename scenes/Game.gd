@@ -11,14 +11,15 @@ extends Node
 @export var SKIP_MENU : bool = false ## Skips the menu
 
 ## References to the two children of the main Game node that are already instantiated in the editor
-@onready var interface_container : CanvasLayer = $InterfaceContainer
-@onready var loading_screen : CanvasLayer = $InterfaceContainer/LoadingScreen
-@onready var world_container : Node3D = $WorldContainer
+@onready var interface_container : Node = $Interface
+@onready var post_processing : CanvasLayer = $Interface/PostProcessing
+@onready var pause_menu : PopupMenu = $Interface/PauseMenu
+@onready var loading_screen : Node = $Interface/LoadingScreen
+@onready var world_container : Node3D = $World
 #@onready var world_subviewport : SubViewport = $WorldContainer/WorldSubviewport
 
 const PATH : Dictionary = {
 	"splash": "res://scenes/interface/splash/Splash.tscn",
-	"post_processing": "res://scenes/interface/post_processing/PostProcessing.tscn",
 	"main_menu": "res://scenes/interface/menus/MainMenu.tscn",
 	"main_menu_bg": "res://scenes/world/MainMenuBackground.tscn",
 	"overworld": "res://scenes/world/Overworld.tscn",
@@ -27,11 +28,10 @@ const PATH : Dictionary = {
 
 ## References to instances of the scenes above
 ## These are null until they are actually instantiated
-@onready var splash : CanvasLayer = null ## Animation of Godot logo and publisher that first plays when game starts
-@onready var post_processing : CanvasLayer = null ## Child of the InterfaceLayer that contains FX like film grain and color correciton
-@onready var main_menu : CanvasLayer = null  ## 2D Main menu that occurs after the splash sequence. Child of the InterfaceContainer
-@onready var main_menu_bg : Node3D = null ## The 3D background of the previously mentioned main menu scene. Child of the WorldSubviewport.
-@onready var overworld : Node3D = null ## The 3D gameworld that is loaded as a child of the WorldSubviewport when the player presses play in the main menu
+@onready var splash : Node = null ## Animation of Godot logo and publisher that first plays when game starts
+@onready var main_menu : Node = null  ## 2D Main menu that occurs after the splash sequence. Child of the InterfaceContainer
+@onready var main_menu_bg : Node = null ## The 3D background of the previously mentioned main menu scene. Child of the WorldSubviewport.
+@onready var overworld : Node = null ## The 3D gameworld that is loaded as a child of the WorldSubviewport when the player presses play in the main menu
 
 var scene_references := {}
 var load_start_time : int
@@ -39,27 +39,24 @@ var next_scene_path : String = ""
 var on_async_scene_loaded : Callable
 var success_flag : bool = false
 
-
-
 ## Tracking of node status & loading and whatnot
 signal main_menu_ready
 signal overworld_ready
 signal hide_loading_screen
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print(_startup_logs())
 	
 	set_process(false)
-	_load_post_processing()
 	_load_splash()
+
+func _input(event: InputEvent) -> void:
+	Input
 
 func _load_threaded(scene_path: String, scene_key: String, callback: Callable) -> void:
 	scene_references[scene_key] = null
 	_start_async_load(scene_path, callback)
-
-func _load_post_processing() -> void:
-	post_processing = preload(PATH.post_processing).instantiate()
-	interface_container.add_child(post_processing)
 
 func _load_splash() -> void:
 	if not SKIP_SPLASH:
@@ -67,17 +64,18 @@ func _load_splash() -> void:
 		interface_container.add_child(splash)
 		await splash.finished
 		loading_screen.fade_in()
-		await loading_screen.safe
+		await loading_screen.fade_in_finished
 		splash.queue_free()
 		_load_main_menu()
 	else:
 		_load_main_menu()
 	
-
 func _load_main_menu() -> void:
 	if not SKIP_MENU:
 		main_menu = preload(PATH.main_menu).instantiate()
 		interface_container.add_child(main_menu)
+		await main_menu.is_node_ready()
+		main_menu.game = self
 		_start_async_load(PATH.main_menu_bg, Callable(self, "_on_main_menu_bg_loaded")) # Ensure this is the correct path
 	else:
 		load_overworld()
@@ -88,7 +86,6 @@ func _on_main_menu_bg_loaded(loaded_scene: Node3D) -> void:
 		main_menu_bg = loaded_scene
 		world_container.add_child(main_menu_bg)
 		if splash != null:
-			splash.kill_self()
 			splash = null
 		loading_screen.fade_out()
 		await main_menu.main_menu_enter
@@ -98,7 +95,7 @@ func _on_main_menu_bg_loaded(loaded_scene: Node3D) -> void:
 
 func _on_main_menu_enter() -> void:
 	loading_screen.fade_in()
-	await loading_screen.safe
+	await loading_screen.fade_in_finished
 	load_overworld()
 
 func load_overworld() -> void:
@@ -111,7 +108,7 @@ func _on_overworld_loaded(loaded_scene: Node3D) -> void:
 		main_menu.queue_free()
 		main_menu_bg.queue_free()
 		main_menu.play()
-	post_processing.menu_noise.hide()
+	post_processing.grain_out()
 	overworld = loaded_scene
 	world_container.add_child(overworld)
 	loading_screen.fade_out()

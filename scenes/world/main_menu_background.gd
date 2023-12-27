@@ -36,28 +36,3 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	cam.global_transform.origin = cam.global_transform.origin.lerp(target_position, smoothing_factor)
 	cam.rotation_degrees = cam.rotation_degrees.lerp(target_rotation, smoothing_factor)
-
-#func _process(_delta):
-	#if Input.is_action_just_pressed("click"):
-		#print("hooplah")
-		#process_click()
-#
-#func process_click() -> void:
-	#var mouse_pos = get_viewport().get_mouse_position()
-	#mouse_ray_origin = cam.project_ray_origin(mouse_pos)
-	#mouse_ray_direction = cam.project_ray_normal(mouse_pos)
-#
-#func _physics_process(delta: float) -> void:
-	#var space_state = get_world_3d().direct_space_state
-	#var ray_parameters = PhysicsRayQueryParameters3D.create(mouse_ray_origin, mouse_ray_origin + mouse_ray_direction * 1000)
-	#var result = space_state.intersect_ray(ray_parameters)
-#
-	#if result and result.collider in letters:
-		#print("hitting")
-		#apply_force_to_letter(result.collider)
-#
-#func apply_force_to_letter(letter: PhysicsBody3D) -> void:
-	## Launch the letter by applying a force
-	## You might need to adjust these values depending on your game's needs
-	#var force = Vector3(rng.randf_range(-100, 100), rng.randf_range(200, 300), rng.randf_range(-100, 100))
-	#letter.apply_impulse(Vector3(), force)

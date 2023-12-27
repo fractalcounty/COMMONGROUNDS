@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://db6xa2hghdb18"]
+
+[ext_resource type="Shader" path="res://resources/shaders/glass_blur.gdshader" id="1_bgrah"]
+
+[resource]
+shader = ExtResource("1_bgrah")
+shader_parameter/blur_color = Color(0.286275, 0.501961, 1, 0)
+shader_parameter/blur_amount = 0.0

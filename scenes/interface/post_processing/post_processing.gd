@@ -1,17 +1,51 @@
 extends CanvasLayer
 
-@onready var menu_noise : ColorRect = $MenuNoise
+@onready var grain : ColorRect = $GrainLayer/Grain
+@onready var blur : ColorRect = $BlurLayer/Blur
+@onready var blur_out_color : Color = Color.TRANSPARENT
+@export var blur_in_color : Color ## This is the variable I want to pass to the shader, the end result color
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	grain_in()
+	EventManager.popup_hidden.connect(_on_popup_hidden)
+	EventManager.popup_visible.connect(_on_popup_visible)
 
-func _on_map_ready() -> void:
-	menu_noise.hide()
+func _on_popup_hidden() -> void:
+	blur_out()
+	
+func _on_popup_visible() -> void:
+	blur_in()
 
-func _on_map_exit() -> void:
-	menu_noise.show()
+func blur_in() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tween.tween_method(_set_blur_amount, 0.0, 1.5, 0.5)  # Adjust the duration as needed
+	tween.tween_method(_set_blur_color, blur_out_color, blur_in_color, 0.5)  # Same duration for color
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func blur_out() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tween.tween_method(_set_blur_amount, 1.5, 0.0, 0.5)  # Adjust the duration as needed
+	tween.tween_method(_set_blur_color, blur_in_color, blur_out_color, 0.5)  # Same duration for color
+
+func _set_blur_amount(value: float) -> void:
+	blur.material.set_shader_parameter("blur_amount", value)
+	
+func _set_blur_color(value : Color) -> void:
+	blur.material.set_shader_parameter("blur_color", value)
+
+func grain_in() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tween.tween_method(_set_grain_amount, 0.0, 0.002, 0.5)  # Adjust the duration as needed
+
+func grain_out() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tween.tween_method(_set_grain_amount, 0.002, 0.0, 0.5)  # Adjust the duration as needed
+
+func _set_grain_amount(value: float) -> void:
+	grain.material.set_shader_parameter("intensity", value)

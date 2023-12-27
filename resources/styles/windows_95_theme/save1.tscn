@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://iyiovq15y4tt"]
 
-[ext_resource type="Theme" uid="uid://cnjtetudthuan" path="res://resources/styles/windows_95_theme/save1.tres" id="1_16vbp"]
+[ext_resource type="Theme" uid="uid://cnjtetudthuan" path="res://resources/styles/windows_95_theme/win95theme.tres" id="1_16vbp"]
 
 [sub_resource type="FontFile" id="FontFile_tbfod"]
 cache/0/16/0/ascent = 0.0

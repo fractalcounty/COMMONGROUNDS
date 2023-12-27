@@ -24,13 +24,13 @@ func _physics_process(delta: float) -> void:
 
 	## Input handling
 	if camera:
-		if Input.is_action_pressed("move_right"):
+		if Input.is_action_pressed("action_right"):
 			direction += camera.global_transform.basis.x
-		if Input.is_action_pressed("move_left"):
+		if Input.is_action_pressed("action_left"):
 			direction -= camera.global_transform.basis.x
-		if Input.is_action_pressed("move_down"):
+		if Input.is_action_pressed("action_down"):
 			direction += camera.global_transform.basis.z
-		if Input.is_action_pressed("move_up"):
+		if Input.is_action_pressed("action_up"):
 			direction -= camera.global_transform.basis.z
 
 	direction.y = 0

@@ -889,6 +889,22 @@ tracks/6/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_8ldej"]
+resource_name = "fade_out"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.5, -0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_f1hva"]
 length = 4.0
 step = 0.0166667
@@ -992,22 +1008,6 @@ tracks/7/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_8ldej"]
-resource_name = "fade_out"
-length = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(0.5, -0.5),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ihn5s"]
 _data = {
 "RESET": SubResource("Animation_bbik0"),
@@ -1029,7 +1029,7 @@ glow_hdr_scale = 1.78
 glow_hdr_luminance_cap = 141.52
 glow_map_strength = 0.84
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_4jp66"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_178vv"]
 
 [node name="Splash" type="CanvasLayer"]
 layer = 4
@@ -1071,7 +1071,7 @@ mouse_filter = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/HBoxContainer/Control"]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_a28lo")
 autoplay = "default"
 speed_scale = 0.0
@@ -1081,8 +1081,8 @@ modulate = Color(10, 10, 10, 1)
 texture_filter = 1
 texture_repeat = 1
 material = SubResource("ShaderMaterial_urkt5")
-position = Vector2(3, -21)
-scale = Vector2(0.25, 0.25)
+position = Vector2(0, -9.88)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("196_p6xwy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
@@ -1096,7 +1096,7 @@ autoplay = "splash"
 environment = SubResource("Environment_c7013")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
-stream = SubResource("AudioStreamPolyphonic_4jp66")
+stream = SubResource("AudioStreamPolyphonic_178vv")
 
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_finish"]
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

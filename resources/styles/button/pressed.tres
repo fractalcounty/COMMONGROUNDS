@@ -1,0 +1,16 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bbnsp5xb0gfok"]
+
+[ext_resource type="Texture2D" uid="uid://decstt4wbp31w" path="res://resources/styles/windows_95_theme/Windows_95_panel5.png" id="1_yt1qt"]
+
+[resource]
+content_margin_left = 12.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+texture = ExtResource("1_yt1qt")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.831373, 0.831373, 0.831373, 1)

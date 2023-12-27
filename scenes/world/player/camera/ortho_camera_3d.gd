@@ -21,7 +21,6 @@ class_name OrthoCamera3D extends Camera3D
 
 @onready var reset_timer : Timer = $ResetTimer
 @onready var player : TopdownPlayer3D = get_parent()
-#@onready var camera_base : Marker3D = get_parent()
 
 var snap_threshold : float = 0.01
 var current_zoom: float = default_zoom
@@ -29,7 +28,6 @@ var target_zoom: float = default_zoom
 
 func _ready() -> void:
 	_handle_camera_follow()
-	projection = PROJECTION_ORTHOGONAL
 	size = current_zoom
 	reset_timer.wait_time = reset_time
 
@@ -42,10 +40,10 @@ func _handle_camera_follow() -> void:
 	look_at(player.global_transform.origin + look_at_offset, Vector3.UP)
 
 func _handle_zoom(delta: float) -> void:
-	if Input.is_action_just_pressed("action_scroll_up"):
+	if Input.is_action_just_pressed("action_zoom_in"):
 		target_zoom = max(floor(current_zoom) - zoom_increment, min_zoom)
 		reset_timer.start()
-	elif Input.is_action_just_pressed("action_scroll_down"):
+	elif Input.is_action_just_pressed("action_zoom_out"):
 		target_zoom = min(ceil(current_zoom) + zoom_increment, max_zoom)
 		reset_timer.start()
 

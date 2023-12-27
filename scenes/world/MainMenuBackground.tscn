@@ -1,11 +1,11 @@
 [gd_scene load_steps=67 format=3 uid="uid://bbfmcwdf17bqm"]
 
 [ext_resource type="Script" path="res://scenes/world/main_menu_background.gd" id="1_017j2"]
-[ext_resource type="Script" path="res://addons/GodotSky/Scripts/GodotSky.gd" id="2_73th0"]
-[ext_resource type="Texture2D" uid="uid://cgx4sl3aogvl1" path="res://addons/GodotSky/Presets/default/baseSkyColor.tres" id="3_5mjpn"]
-[ext_resource type="Texture2D" uid="uid://djvanj1c4svii" path="res://addons/GodotSky/Presets/default/horizonFogColor.tres" id="4_87naa"]
-[ext_resource type="Script" path="res://addons/GodotSky/Presets/sky_presets.gd" id="5_r5wgs"]
-[ext_resource type="Curve" uid="uid://cbqp5kavktxj0" path="res://addons/GodotSky/Presets/default/sunLightIntensity.tres" id="6_c3c1b"]
+[ext_resource type="Script" path="res://GodotSky/Scripts/GodotSky.gd" id="2_73th0"]
+[ext_resource type="Texture2D" uid="uid://cgx4sl3aogvl1" path="res://GodotSky/Presets/default/baseSkyColor.tres" id="3_5mjpn"]
+[ext_resource type="Texture2D" uid="uid://djvanj1c4svii" path="res://GodotSky/Presets/default/horizonFogColor.tres" id="4_87naa"]
+[ext_resource type="Script" path="res://GodotSky/Presets/sky_presets.gd" id="5_r5wgs"]
+[ext_resource type="Curve" uid="uid://cbqp5kavktxj0" path="res://GodotSky/Presets/default/sunLightIntensity.tres" id="6_c3c1b"]
 [ext_resource type="Material" uid="uid://dbe8ro73hpj50" path="res://resources/shaders/bubble_1.tres" id="7_8xe73"]
 [ext_resource type="Shader" path="res://resources/shaders/bubble_1.gdshader" id="8_1orr8"]
 
@@ -383,24 +383,24 @@ noise = SubResource("FastNoiseLite_ax1j6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pbwsw"]
 shader = SubResource("Shader_kus74")
-shader_parameter/baseColor = Color(0.204346, 0.344014, 0.5625, 1)
+shader_parameter/baseColor = Color(0.0145395, 0.0244694, 0.0874464, 1)
 shader_parameter/scatterColor = Color(1, 1, 1, 1)
 shader_parameter/scatterColor2 = Color(1, 1, 1, 1)
-shader_parameter/bAnimClouds = true
+shader_parameter/bAnimClouds = false
 shader_parameter/bAnimStars = true
 shader_parameter/cloudType = 1
 shader_parameter/sunRadius = 0.00078
 shader_parameter/sunEdgeBlur = 10000.0
-shader_parameter/sunDiscColor = Color(0.745336, 0.65452, 0.543313, 0.995151)
-shader_parameter/sunGlowColor = Color(1, 0.955033, 0.827864, 1)
+shader_parameter/sunDiscColor = Color(0, 0, 0, 1)
+shader_parameter/sunGlowColor = Color(0, 0, 0, 1)
 shader_parameter/sunlightColor = null
 shader_parameter/sunGlowIntensity = 0.81
 shader_parameter/moonRadius = 0.00071
 shader_parameter/moonEdgeBlur = 10000.0
-shader_parameter/moonGlowColor = Color(1, 1, 1, 0)
+shader_parameter/moonGlowColor = Color(0.544003, 0.651053, 1, 1)
 shader_parameter/moonLightColor = null
 shader_parameter/moonGlowIntensity = 1.0
-shader_parameter/baseCloudColor = Color(0.524605, 0.478778, 0.44309, 1)
+shader_parameter/baseCloudColor = Color(0.519851, 0.528675, 0.569729, 1)
 shader_parameter/cloudDensity = 0.2
 shader_parameter/cloudEdge = 0.187
 shader_parameter/cloudCoverage = 0.643
@@ -412,7 +412,7 @@ shader_parameter/absorption = 2.826
 shader_parameter/henyeyGreensteinLevel = 0.711
 shader_parameter/dynamicCloudBrightness = 0.5
 shader_parameter/horizonUVCurve = 0.658
-shader_parameter/horizonFogColor = Color(0.996724, 1.08439, 1.26758, 1)
+shader_parameter/horizonFogColor = Color(0.044411, 0.0610755, 0.16292, 1)
 shader_parameter/horizonAlpha = 1.0
 shader_parameter/horizonSize = 7.0
 shader_parameter/starColor = Color(0.43, 0.55, 0.91, 1)
@@ -985,16 +985,17 @@ script = ExtResource("1_017j2")
 [node name="GodotSky" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e0x02")
 script = ExtResource("2_73th0")
-timeOfDay = 1536.72
+timeOfDay = 2018.1
 simulateTime = true
 rateOfTime = 0.03
 skyRotation = 166.3
 cloudType = "2D Dynamic"
 cloudCoverage = 0.643
+animateStaticClouds = false
 skyPreset = SubResource("Resource_xku52")
 
 [node name="SunMoon" type="Node3D" parent="GodotSky"]
-transform = Transform3D(-0.971548, -0.182771, -0.150622, -5.55983e-08, -0.635971, 0.771713, -0.236838, 0.749757, 0.617877, 0, 0, 0)
+transform = Transform3D(-0.971548, -0.199269, 0.128002, -4.72485e-08, 0.540461, 0.841369, -0.236838, 0.817432, -0.525084, 0, 0, 0)
 
 [node name="Sun" type="MeshInstance3D" parent="GodotSky/SunMoon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -1003,8 +1004,8 @@ mesh = SubResource("SphereMesh_pemsd")
 
 [node name="SunLight" type="DirectionalLight3D" parent="GodotSky/SunMoon/Sun"]
 transform = Transform3D(1, 0, 1.49012e-08, -1.49012e-08, -8.19564e-08, -1, 2.98023e-08, 1, -3.72529e-08, 0, 0, 0)
-light_color = Color(1.12357, 1.01015, 0.740896, 0.949655)
-light_energy = 0.157
+light_color = Color(0, 0, 0, 1)
+light_energy = 0.0
 shadow_enabled = true
 
 [node name="Moon" type="MeshInstance3D" parent="GodotSky/SunMoon"]
@@ -1014,11 +1015,11 @@ mesh = SubResource("SphereMesh_bnut0")
 
 [node name="MoonLight" type="DirectionalLight3D" parent="GodotSky/SunMoon/Moon"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-light_color = Color(0, 0, 0, 1)
+light_color = Color(0.70244, 0.733146, 0.851835, 1)
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.746419, 0, 0, 0, -2.98023e-08, 0.746419, 0, -0.746419, -2.98023e-08, 0.133, 3.252, -0.057)
+transform = Transform3D(0.746419, 0, 0, 0, -2.98023e-08, 0.746419, 0, -0.746419, -2.98023e-08, 0.223, 3.252, -0.057)
 current = true
 fov = 55.9
 size = 5.435
@@ -1036,7 +1037,6 @@ omni_range = 8.625
 omni_attenuation = 1.31951
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 gravity_scale = 0.0
 can_sleep = false
 
