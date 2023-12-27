@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://cjevqus5jatbf"]
 
-[ext_resource type="Texture2D" path="res://resources/textures/kenney_tiny_dungeon/Tilemap/tilemap.png" id="tileset"]
+[ext_resource type="Texture2D" uid="uid://c5tsf0jordusw" path="res://resources/textures/kenney_tiny_dungeon/Tilemap/tilemap.png" id="tileset"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0"]
 texture = ExtResource("tileset")
@@ -139,8 +139,6 @@ separation = Vector2i(1, 1)
 11:10/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_0"]
-tile_shape = 0
-tile_layout = 0
 sources/0 = SubResource("TileSetAtlasSource_0")
 
 [node name="sampleMap" type="TileMap"]

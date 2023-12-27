@@ -1,2 +1,15 @@
-ColorRect
+VBoxContainer
+Timer
+Smoothing2D
+TileMap
+CollisionShape2D
+RichTextLabel
+Control
+Marker2D
+CanvasLayer
+Panel
 Label
+AnimationPlayer
+AnimationTree
+AwesomeLabel
+Camera2DPlus

@@ -1054,7 +1054,7 @@ glow_hdr_scale = 1.78
 glow_hdr_luminance_cap = 141.52
 glow_map_strength = 0.84
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_vh10x"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ejhwd"]
 
 [node name="Splash" type="CanvasLayer"]
 layer = 4
@@ -1140,7 +1140,7 @@ autoplay = "splash"
 environment = SubResource("Environment_c7013")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
-stream = SubResource("AudioStreamPolyphonic_vh10x")
+stream = SubResource("AudioStreamPolyphonic_ejhwd")
 
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_finish"]
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

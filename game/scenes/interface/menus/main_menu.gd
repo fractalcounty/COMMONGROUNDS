@@ -3,7 +3,7 @@ extends CanvasLayer
 signal main_menu_enter
 
 @onready var game : Node
-@onready var anim : AnimationPlayer = $Control/VSplitContainer/MarginContainer2/Label/AnimationPlayer
+@onready var anim : AnimationPlayer = $MarginContainer4/Control/Label/AnimationPlayer
 @onready var quit_confirmation_dialog = $QuitConfirmationDialog
 var popup_visible : bool = false
 

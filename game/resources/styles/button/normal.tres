@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://c1833rva8bi5u" path="res://resources/styles/windows_95_theme/Windows_95_panel1.png" id="1_tej8i"]
 
 [resource]
-content_margin_left = 12.0
 content_margin_right = 10.0
 content_margin_bottom = 8.0
 texture = ExtResource("1_tej8i")

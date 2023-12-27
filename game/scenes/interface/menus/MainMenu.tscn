@@ -1,18 +1,130 @@
-[gd_scene load_steps=17 format=3 uid="uid://s3sf4ltqfaxn"]
+[gd_scene load_steps=23 format=3 uid="uid://s3sf4ltqfaxn"]
 
 [ext_resource type="Script" path="res://scenes/interface/menus/main_menu.gd" id="1_iullt"]
-[ext_resource type="FontFile" uid="uid://d3yqdwpfs12r3" path="res://resources/fonts/monogram-extended.ttf" id="2_3s1of"]
-[ext_resource type="FontFile" uid="uid://bi8tdixrxktn" path="res://resources/fonts/plackett-Regular.otf" id="2_6jeql"]
 [ext_resource type="Script" path="res://addons/awesome_label/awesome_label.gd" id="2_56f5k"]
+[ext_resource type="FontFile" uid="uid://cqw63mte3fp2c" path="res://resources/fonts/AlteHaasGroteskBold.ttf" id="2_hm81i"]
 [ext_resource type="Texture2D" uid="uid://bcijy1xtmqhqx" path="res://resources/textures/logo.png" id="3_auxxn"]
 [ext_resource type="Script" path="res://src/rich_text_effects/Jump.gd" id="3_fg6y1"]
 [ext_resource type="Script" path="res://addons/awesome_label/transitions/embers.gd" id="5_gluwg"]
 [ext_resource type="Theme" uid="uid://c1sc5tq0yhd7b" path="res://resources/styles/Interface.tres" id="8_cpamo"]
 
-[sub_resource type="FontVariation" id="FontVariation_q6mpj"]
-fallbacks = Array[Font]([ExtResource("2_6jeql")])
-base_font = ExtResource("2_3s1of")
-spacing_space = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yila1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xaae3"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsq1m"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vp6g"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2lcd"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5n7t"]
+bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+expand_margin_bottom = 32.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agxfp"]
+expand_margin_left = 470.0
+expand_margin_top = 335.0
+expand_margin_right = 370.0
+expand_margin_bottom = 390.0
+
+[sub_resource type="Theme" id="Theme_v3xhy"]
+default_font_size = 42
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 0.517647)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 42
+Button/fonts/font = ExtResource("2_hm81i")
+Button/styles/disabled = SubResource("StyleBoxFlat_yila1")
+Button/styles/focus = SubResource("StyleBoxFlat_xaae3")
+Button/styles/hover = SubResource("StyleBoxFlat_fsq1m")
+Button/styles/normal = SubResource("StyleBoxFlat_5vp6g")
+Button/styles/pressed = SubResource("StyleBoxFlat_b2lcd")
+Window/colors/title_color = Color(1, 1, 0.301961, 0)
+Window/constants/close_v_offset = 0
+Window/constants/resize_margin = 4
+Window/fonts/title_font = ExtResource("2_hm81i")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_i5n7t")
+Window/styles/embedded_unfocused_border = SubResource("StyleBoxFlat_agxfp")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_kv0lt"]
 script = ExtResource("3_fg6y1")
@@ -119,29 +231,19 @@ layer = 3
 script = ExtResource("1_iullt")
 
 [node name="QuitConfirmationDialog" type="ConfirmationDialog" parent="."]
-snap_2d_transforms_to_pixel = true
-snap_2d_vertices_to_pixel = true
+msaa_2d = 1
 canvas_item_default_texture_filter = 0
 canvas_item_default_texture_repeat = 1
 initial_position = 1
-size = Vector2i(244, 103)
+size = Vector2i(866, 295)
 unresizable = true
-content_scale_mode = 2
-content_scale_aspect = 2
-content_scale_stretch = 1
-theme = ExtResource("8_cpamo")
+transparent = true
+popup_window = true
+content_scale_aspect = 4
+theme = SubResource("Theme_v3xhy")
 dialog_text = "Are you sure you want to exit?"
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control"]
-layout_mode = 1
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -149,59 +251,49 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -124.0
-offset_top = -56.0
-offset_right = 1654.0
-offset_bottom = 557.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.135258, 0.135258)
+[node name="MarginContainer4" type="MarginContainer" parent="."]
+texture_filter = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 124
+theme_override_constants/margin_top = 124
+theme_override_constants/margin_right = 124
+theme_override_constants/margin_bottom = 124
+
+[node name="Control" type="VBoxContainer" parent="MarginContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer4/Control"]
+custom_minimum_size = Vector2(0, 387.905)
+layout_mode = 2
 texture = ExtResource("3_auxxn")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="VSplitContainer" type="VSplitContainer" parent="Control"]
-texture_filter = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-split_offset = 540
-dragger_visibility = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/VSplitContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer4/Control"]
 texture_filter = 2
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
+theme_override_constants/margin_top = 60
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/VSplitContainer"]
-texture_filter = 2
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_bottom = 40
-
-[node name="Label" type="RichTextLabel" parent="Control/VSplitContainer/MarginContainer2"]
-texture_filter = 1
-texture_repeat = 2
+[node name="Label" type="RichTextLabel" parent="MarginContainer4/Control"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
+theme = ExtResource("8_cpamo")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.937255)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/normal_font = SubResource("FontVariation_q6mpj")
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[embers][wave amp=35.0 freq=3.0 connected=]press enter to begin [/wave][/embers]"
 fit_content = true
@@ -212,7 +304,7 @@ custom_effects = [SubResource("RichTextEffect_kv0lt"), SubResource("RichTextEffe
 script = ExtResource("2_56f5k")
 length = 8.181
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/VSplitContainer/MarginContainer2/Label"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer4/Control/Label"]
 libraries = {
 "": SubResource("AnimationLibrary_7ds1l")
 }
