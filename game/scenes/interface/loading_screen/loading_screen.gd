@@ -6,7 +6,7 @@ signal fade_in_finished
 signal fade_out_finished
 
 func _ready() -> void:
-	anim.current_animation = "RESET"
+	anim.play("RESET")
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_in":

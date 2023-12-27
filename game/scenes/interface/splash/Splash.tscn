@@ -1,6 +1,7 @@
-[gd_scene load_steps=206 format=3 uid="uid://ck3rmhhxmmt8q"]
+[gd_scene load_steps=207 format=3 uid="uid://ck3rmhhxmmt8q"]
 
 [ext_resource type="Script" path="res://scenes/interface/splash/Splash.gd" id="1_mg6co"]
+[ext_resource type="Theme" uid="uid://c1sc5tq0yhd7b" path="res://resources/styles/Interface.tres" id="2_3gjtm"]
 [ext_resource type="Texture2D" uid="uid://hm7dpicuwov6" path="res://resources/sprites/splash/splash_00032.png" id="2_311b6"]
 [ext_resource type="Texture2D" uid="uid://cw8x4lrn22ive" path="res://resources/sprites/splash/splash_00033.png" id="3_5puol"]
 [ext_resource type="Texture2D" uid="uid://0gd6w5xilssv" path="res://resources/sprites/splash/splash_00034.png" id="4_sv52j"]
@@ -796,7 +797,7 @@ shader = ExtResource("195_iogfw")
 shader_parameter/percentage = 1.0
 shader_parameter/masked_alpha = 1.0
 shader_parameter/unmasked_alpha = 0.0
-shader_parameter/horizontal = true
+shader_parameter/horizontal = false
 shader_parameter/invert = true
 
 [sub_resource type="Animation" id="Animation_bbik0"]
@@ -887,6 +888,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/HBoxContainer/Control/Label:visible_characters")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
 }
 
 [sub_resource type="Animation" id="Animation_8ldej"]
@@ -1007,6 +1020,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Control/HBoxContainer/Control/Label:visible_characters")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.7515, 1.0354, 3.2398, 3.5738),
+"transitions": PackedFloat32Array(0.217637, 0.217637, 0.217637, 0.217637),
+"update": 0,
+"values": [0, 35, 35, 0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ihn5s"]
 _data = {
@@ -1029,7 +1054,7 @@ glow_hdr_scale = 1.78
 glow_hdr_luminance_cap = 141.52
 glow_map_strength = 0.84
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_60tmo"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_vh10x"]
 
 [node name="Splash" type="CanvasLayer"]
 layer = 4
@@ -1069,9 +1094,26 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 mouse_filter = 2
 
+[node name="Label" type="Label" parent="Control/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -157.0
+offset_right = 536.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3gjtm")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 61
+text = "Toony the rolus faggot productions"
+visible_ratio = -0.0294118
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/HBoxContainer/Control"]
 texture_filter = 1
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_a28lo")
 autoplay = "default"
 speed_scale = 0.0
@@ -1081,9 +1123,11 @@ modulate = Color(10, 10, 10, 1)
 texture_filter = 1
 texture_repeat = 1
 material = SubResource("ShaderMaterial_urkt5")
-position = Vector2(0, -9.88)
-scale = Vector2(0.2, 0.2)
+position = Vector2(0, 27.195)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("196_p6xwy")
+region_enabled = true
+region_rect = Rect2(0, 206, 1127, 326)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
 root_node = NodePath("../..")
@@ -1096,7 +1140,7 @@ autoplay = "splash"
 environment = SubResource("Environment_c7013")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
-stream = SubResource("AudioStreamPolyphonic_60tmo")
+stream = SubResource("AudioStreamPolyphonic_vh10x")
 
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_finish"]
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

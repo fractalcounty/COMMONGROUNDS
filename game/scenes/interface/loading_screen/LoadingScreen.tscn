@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/interface/loading_screen/loading_screen.gd" id="1_i2vxs"]
 [ext_resource type="Shader" path="res://resources/shaders/transition_dissolve.gdshader" id="2_fth2t"]
-[ext_resource type="FontFile" uid="uid://d3yqdwpfs12r3" path="res://resources/fonts/monogram-extended.ttf" id="3_ddl1o"]
+[ext_resource type="Theme" uid="uid://c1sc5tq0yhd7b" path="res://resources/styles/Interface.tres" id="3_54r1t"]
 
 [sub_resource type="Animation" id="Animation_8s2nt"]
 length = 0.001
@@ -16,6 +16,18 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoadingContainer/RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wkyfx"]
@@ -92,6 +104,7 @@ script = ExtResource("1_i2vxs")
 libraries = {
 "": SubResource("AnimationLibrary_tyujg")
 }
+autoplay = "RESET"
 
 [node name="TransitionRect" type="ColorRect" parent="."]
 texture_filter = 1
@@ -105,7 +118,6 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="LoadingContainer" type="MarginContainer" parent="."]
-texture_filter = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -117,17 +129,18 @@ grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(190, 79)
 mouse_filter = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 49
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LoadingContainer"]
 modulate = Color(1, 1, 1, 0)
+texture_filter = 2
 clip_contents = false
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("3_ddl1o")
-theme_override_font_sizes/normal_font_size = 32
+theme = ExtResource("3_54r1t")
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[wave amp=50.0 freq=5.0 connected=1]LOADING...[/wave]"
 fit_content = true

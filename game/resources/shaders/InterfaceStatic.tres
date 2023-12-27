@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_ys2cn")
-shader_parameter/INTENSITY = 0.007
-shader_parameter/MEAN = -1.0
-shader_parameter/VARIANCE = 0.317
+shader_parameter/INTENSITY = 0.033
+shader_parameter/MEAN = -0.591
+shader_parameter/VARIANCE = 0.34

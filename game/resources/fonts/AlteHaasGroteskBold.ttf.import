@@ -13,14 +13,14 @@ dest_files=["res://.godot/imported/AlteHaasGroteskBold.ttf-5055c39a7a27b219c8339
 [params]
 
 Rendering=null
-antialiasing=0
-generate_mipmaps=false
-multichannel_signed_distance_field=false
+antialiasing=1
+generate_mipmaps=true
+multichannel_signed_distance_field=true
 msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=false
 force_autohinter=false
-hinting=0
+hinting=1
 subpixel_positioning=0
 oversampling=0.0
 Fallbacks=null

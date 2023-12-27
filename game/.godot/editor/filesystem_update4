@@ -1,2 +1,9 @@
-res://scenes/Game.tscn
+res://scenes/interface/loading_screen/LoadingScreen.tscn
 res://resources/styles/Interface.tres
+res://scenes/interface/menus/MainMenu.tscn
+res://scenes/Game.tscn
+res://scenes/interface/loading_screen/loading_screen.gd
+res://scenes/interface/splash/Splash.tscn
+res://scenes/interface/post_processing/PostProcessing.tscn
+res://resources/shaders/grain.gdshader
+res://resources/shaders/InterfaceStatic.tres

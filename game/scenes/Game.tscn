@@ -20,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PostProcessing" parent="Interface" instance=ExtResource("2_ypvet")]
+blur_in_color = Color(0.286275, 0.501961, 1, 0.0117647)
 
 [node name="LoadingScreen" parent="Interface" instance=ExtResource("2_kdx80")]
 layer = 20
