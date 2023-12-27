@@ -10,6 +10,8 @@
 
 [node name="Game" type="Node"]
 script = ExtResource("1_rasbb")
+SKIP_SPLASH = true
+SKIP_MENU = true
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3

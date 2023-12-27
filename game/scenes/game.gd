@@ -43,6 +43,7 @@ signal overworld_ready
 signal hide_loading_screen
 
 func _ready() -> void:
+	MouseManager.world = world
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print(_startup_logs())
 	

@@ -6,20 +6,39 @@ extends Node2D
 @onready var name_tag: RichTextLabel = $NameTag
 @onready var player_stats: PlayerStats = get_parent().player_stats
 @export var tag_offset: Vector2 = Vector2(0, -170)
+@onready var debug_container : VBoxContainer = $DebugContainer
+@onready var debug_label_1 : RichTextLabel = $DebugContainer/DebugTag1
+@onready var debug_label_2 : RichTextLabel = $DebugContainer/DebugTag2
+@onready var debug_container_offset : Vector2 = Vector2(0, 50)
 
 var last_ver_direction: float = 0
 var was_moving_horiz: bool = false
 var last_horiz_direction: float = 0  # New variable to track the last horizontal direction
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("action_debug"):
+		debug_container.show()
+	if Input.is_action_just_released("action_debug"):
+		debug_container.hide()
+
 func _ready():
+	debug_container.hide()
 	set_name_tag_text()
 	anim.play("idle_down")
 
 func _physics_process(delta: float) -> void:
+	if debug_container.visible:
+		var world_pos : Vector2i = Vector2i(get_parent().position)
+		debug_label_1.text = "world: " + str(world_pos)
+		
 	update_name_tag_position()
+	update_debug_tag_position()
 
 func set_name_tag_text():
 	name_tag.text = "[jump][center]%s[/center][/jump]" % player_stats.username
+
+func update_debug_tag_position():
+	debug_container.position = (sprite.position + debug_container_offset) - (debug_container.size / 2)
 
 func update_name_tag_position():
 	name_tag.position = (sprite.position + tag_offset) - (name_tag.size / 2)

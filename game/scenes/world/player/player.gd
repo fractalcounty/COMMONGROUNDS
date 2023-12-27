@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var player_stats: PlayerStats
 @export var speed : float = 100
 @export var acceleration : float = 10
+@onready var collision : CollisionShape2D = $CollisionShape2D
 
 @onready var visual : PlayerVisualComponent = $VisualComponent
 
