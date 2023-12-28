@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8emmcj2abm43"]
+
+[ext_resource type="Script" path="res://scenes/TestApiScene/ApiButton.gd" id="2_6ic0r"]
+
+[node name="ApiTest" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 179.0
+offset_bottom = 52.0
+text = "Get Data From API"
+script = ExtResource("2_6ic0r")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Button"]
+
+[connection signal="button_up" from="Button" to="." method="_Get_Api_Data"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="request_completed" from="Button/HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="Button/HTTPRequest" to="Button" method="_on_request_completed"]
