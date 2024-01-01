@@ -1,12 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://botvvtx74i08m"]
+[gd_scene load_steps=37 format=3 uid="uid://botvvtx74i08m"]
 
-[ext_resource type="Script" path="res://scenes/world/player/player.gd" id="1_dx4em"]
-[ext_resource type="Script" path="res://scenes/world/player/player_stats.gd" id="2_py1yr"]
+[ext_resource type="Script" path="res://scenes/actor/actor.gd" id="1_dx4em"]
 [ext_resource type="Texture2D" uid="uid://dwgodpyatbd3a" path="res://resources/textures/placeholder_art/shadow.png" id="2_ue53t"]
 [ext_resource type="Texture2D" uid="uid://bsltx0a3vxp5i" path="res://resources/sprites/rolus_sprites/rolus_still_down.png" id="3_1j7gc"]
 [ext_resource type="Texture2D" uid="uid://0yj4gvr1fs8" path="res://resources/sprites/rolus_sprites/rolus_still_side.png" id="4_3gv8l"]
 [ext_resource type="FontFile" uid="uid://cnseiewfryake" path="res://resources/fonts/CommitMono-400-Regular.otf" id="4_6n0ou"]
-[ext_resource type="Script" path="res://scenes/world/player/character_visual.gd" id="4_rbomj"]
+[ext_resource type="Script" path="res://scenes/actor/actor_visual.gd" id="4_rbomj"]
 [ext_resource type="Texture2D" uid="uid://xlfh2wh620xl" path="res://resources/sprites/rolus_sprites/rolus_sit_1.png" id="5_6xofs"]
 [ext_resource type="Texture2D" uid="uid://cetl5d4uy2vml" path="res://resources/sprites/rolus_sprites/rolus_sit_2.png" id="6_07i31"]
 [ext_resource type="Texture2D" uid="uid://dehbf40xwkfot" path="res://resources/sprites/rolus_sprites/rolus_sit_3.png" id="7_slctj"]
@@ -24,10 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://baca4dhmyusgb" path="res://resources/sprites/rolus_sprites/rolus_walk_up_3.png" id="19_neywq"]
 [ext_resource type="Texture2D" uid="uid://d1na64qpvsed7" path="res://resources/sprites/rolus_sprites/rolus_walk_up_4.png" id="20_r6fv4"]
 [ext_resource type="Script" path="res://src/rich_text_effects/Jump.gd" id="24_1agfe"]
-
-[sub_resource type="Resource" id="Resource_b8l7b"]
-script = ExtResource("2_py1yr")
-username = "cheeseburger69"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmsj5"]
 radius = 18.0
@@ -353,12 +348,12 @@ _data = {
 "move_up": SubResource("Animation_om6qx")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Actor" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_dx4em")
-player_stats = SubResource("Resource_b8l7b")
 speed = 600.0
 acceleration = 100.0
+username = "cheeseburger69"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

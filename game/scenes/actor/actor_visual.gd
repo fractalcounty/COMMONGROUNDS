@@ -1,10 +1,9 @@
-class_name PlayerVisualComponent
+class_name ActorVisualComponent
 extends Node2D
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $Body
 @onready var name_tag: RichTextLabel = $NameTag
-@onready var player_stats: PlayerStats = get_parent().player_stats
 @export var tag_offset: Vector2 = Vector2(0, -170)
 @onready var debug_container : VBoxContainer = $DebugContainer
 @onready var debug_label_1 : RichTextLabel = $DebugContainer/DebugTag1
@@ -14,12 +13,6 @@ extends Node2D
 var last_ver_direction: float = 0
 var was_moving_horiz: bool = false
 var last_horiz_direction: float = 0  # New variable to track the last horizontal direction
-
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("action_debug"):
-		debug_container.show()
-	if Input.is_action_just_released("action_debug"):
-		debug_container.hide()
 
 func _ready():
 	debug_container.hide()
@@ -35,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	update_debug_tag_position()
 
 func set_name_tag_text():
-	name_tag.text = "[jump][center]%s[/center][/jump]" % player_stats.username
+	name_tag.text = "[jump][center]%s[/center][/jump]" % get_parent().username
 
 func update_debug_tag_position():
 	debug_container.position = (sprite.position + debug_container_offset) - (debug_container.size / 2)

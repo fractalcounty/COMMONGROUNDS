@@ -1,4 +1,4 @@
-# Godot 4+ specific ignores
 .game/godot/
+.game/exports/
 *.translation
 *.tmp

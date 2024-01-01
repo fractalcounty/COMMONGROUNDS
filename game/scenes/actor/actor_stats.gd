@@ -1,5 +1,5 @@
 extends Resource
-class_name PlayerStats 
+class_name ActorStats 
 
 signal stats_changed
 

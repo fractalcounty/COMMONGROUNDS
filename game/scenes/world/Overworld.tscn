@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dv0koyqtswelw"]
 
-[ext_resource type="PackedScene" uid="uid://botvvtx74i08m" path="res://scenes/world/player/player.tscn" id="1_krnkn"]
+[ext_resource type="PackedScene" uid="uid://botvvtx74i08m" path="res://scenes/actor/Actor.tscn" id="1_krnkn"]
 [ext_resource type="Texture2D" uid="uid://dwayw5v5gf76k" path="res://resources/textures/gridmap-default.png" id="1_xrjpu"]
 [ext_resource type="Script" path="res://addons/camera_2d_plus/objects/camera_2d_plus/camera_2d_plus_script.gd" id="2_08cs6"]
 

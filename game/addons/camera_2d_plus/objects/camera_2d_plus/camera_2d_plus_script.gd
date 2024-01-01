@@ -66,7 +66,6 @@ var _zoom_level: float = 1.0:
 			update_camera_zoom()
 			restart_zoom_reset_timer()
 		if _zoom_level == maximum_zoom:
-			print("resting")
 			await get_tree().create_timer(0.5).timeout
 			_done_bouncing = true
 			resting = true
