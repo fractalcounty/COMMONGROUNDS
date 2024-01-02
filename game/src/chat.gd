@@ -3,7 +3,7 @@ extends CanvasLayer
 
 @onready var margin_container : MarginContainer = $ScreenControl/MarginContainer
 @onready var label : RichTextLabel = $ScreenControl/MarginContainer/PanelContainer/VBoxContainer/RichTextLabel
-@onready var line_edit : LineEdit = $ScreenControl/MarginContainer/PanelContainer/VBoxContainer/LineEdit
+@onready var line_edit : LineEdit = $ScreenControl/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/LineEdit
 @onready var username : String = 'username'
 @onready var actor : Actor = null
 
@@ -13,9 +13,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_pressed() and event.keycode == KEY_ENTER:
 			if not focused:
-				if not margin_container.visible:
-					start()  # or margin_container.show()
-			
 				line_edit.grab_focus()
 				focused = true
 				get_viewport().set_input_as_handled()
@@ -23,14 +20,13 @@ func _input(event: InputEvent) -> void:
 				_on_line_edit_text_submitted(line_edit.text)
 			
 func _ready() -> void:
+	stop()
 	label.bbcode_enabled = true
 	clear()
-	if margin_container.visible:
-		margin_container.hide()
-	add_message('Welcome to the COMMONGROUNDS!', '', true)
 
 func start() -> void:
 	margin_container.show()
+	add_message('Welcome to the COMMONGROUNDS!', '', true)
 
 func stop() -> void:
 	margin_container.hide()
@@ -54,11 +50,16 @@ func add_message(content: String, prefix: String = '', system: bool = false) -> 
 	label.scroll_to_line(label.get_line_count())
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
-	add_message(new_text, username, false)
-	actor.visual.speech.say(new_text)
-	line_edit.clear()
-	line_edit.release_focus()
-	focused = false
+	if new_text != '':
+		add_message(new_text, username, false)
+		actor.visual.speech.say(new_text)
+		line_edit.clear()
+		line_edit.release_focus()
+		focused = false
+	else:
+		line_edit.clear()
+		line_edit.release_focus()
+		focused = false
 
 
 func _on_panel_container_focus_entered() -> void:
@@ -88,3 +89,15 @@ func _on_margin_container_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		line_edit.release_focus()
 		focused = false
+
+
+func _on_texture_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		label.hide()
+		line_edit.release_focus()
+		focused = false
+	else:
+		label.show()
+		line_edit.release_focus()
+		focused = false
+		

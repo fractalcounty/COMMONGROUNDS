@@ -4,6 +4,7 @@ extends CanvasLayer
 
 signal fade_in_finished
 signal fade_out_finished
+signal scene_visible
 
 func _ready() -> void:
 	anim.play("RESET")
@@ -19,3 +20,6 @@ func fade_in() -> void:
 
 func fade_out() -> void:
 	anim.play("fade_out")
+
+func on_new_scene_visible() -> void:
+	scene_visible.emit()

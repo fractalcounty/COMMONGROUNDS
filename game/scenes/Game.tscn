@@ -1,12 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cryoc1mw1tyjj"]
+[gd_scene load_steps=4 format=3 uid="uid://cryoc1mw1tyjj"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_rasbb"]
 [ext_resource type="PackedScene" uid="uid://b7x8j0revg2us" path="res://scenes/interface/loading_screen/LoadingScreen.tscn" id="2_kdx80"]
 [ext_resource type="PackedScene" uid="uid://o5uggbs47tvv" path="res://scenes/interface/post_processing/PostProcessing.tscn" id="2_ypvet"]
-[ext_resource type="Theme" uid="uid://c1sc5tq0yhd7b" path="res://resources/styles/Interface.tres" id="4_qndgl"]
-[ext_resource type="Texture2D" uid="uid://c25ggsyyskent" path="res://resources/styles/windows_95_theme/utopia_smiley.png" id="5_3hx8o"]
-[ext_resource type="Texture2D" uid="uid://df4t40dxpmgwi" path="res://resources/styles/windows_95_theme/input_devices-1.png" id="6_t4heh"]
-[ext_resource type="Texture2D" uid="uid://c1qqy6mymuyqq" path="res://resources/styles/windows_95_theme/computer_explorer-1.png" id="7_aq8bn"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_rasbb")
@@ -26,24 +22,5 @@ grow_vertical = 2
 [node name="LoadingScreen" parent="Interface" instance=ExtResource("2_kdx80")]
 layer = 20
 
-[node name="PauseMenu" type="PopupMenu" parent="Interface"]
-title = "Paused"
-initial_position = 1
-size = Vector2i(186, 105)
-wrap_controls = false
-borderless = false
-always_on_top = true
-theme = ExtResource("4_qndgl")
-allow_search = false
-item_count = 3
-item_0/text = "Play"
-item_0/icon = ExtResource("5_3hx8o")
-item_0/id = 0
-item_1/text = "Options"
-item_1/icon = ExtResource("6_t4heh")
-item_1/id = 1
-item_2/text = "Return to menu"
-item_2/icon = ExtResource("7_aq8bn")
-item_2/id = 2
-
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true

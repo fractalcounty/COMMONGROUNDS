@@ -46,6 +46,8 @@ func grain_out() -> void:
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	tween.tween_method(_set_grain_amount, 0.002, 0.0, 0.5)  # Adjust the duration as needed
+	await tween.finished
+	grain.hide()
 
 func _set_grain_amount(value: float) -> void:
 	grain.material.set_shader_parameter("intensity", value)

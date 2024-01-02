@@ -20,10 +20,10 @@ class_name Camera2DPlus
 @export_range(0.001, 1.0) var TILT_POSITION_DECAY: float = 0.05 ## How long it takes the camera to go back to its correct position.
 @export_range(0.001, 1.0) var TILT_ANGLE_DECAY: float = 0.05 ## How long it takes the camera to go back to its correct angle.
 
-@export_group("Cinematic Mode")
-@export_range(0, 1280) var HORIZONTAL_CUT_SIZE: int = 100 ## The size of the horizontal cut when the cinematic mode is enabled.
-@export_range(0, 1280) var VERTICAL_CUT_SIZE: int = 80 ## The size of the vertical cut when the cinematic mode is enabled.
-@export_range(-99, 99) var CINEMATIC_LAYER: int = 2 ## The layer of the CanvasLayer that the cinematic effects will be at.
+#@export_group("Cinematic Mode")
+#@export_range(0, 1280) var HORIZONTAL_CUT_SIZE: int = 100 ## The size of the horizontal cut when the cinematic mode is enabled.
+#@export_range(0, 1280) var VERTICAL_CUT_SIZE: int = 80 ## The size of the vertical cut when the cinematic mode is enabled.
+#@export_range(-99, 99) var CINEMATIC_LAYER: int = 2 ## The layer of the CanvasLayer that the cinematic effects will be at.
 
 @export_group("Smoothing")
 @export var MAX_FPS : int = 60
@@ -134,10 +134,10 @@ func _ready() -> void:
 	flash_layer.layer = FLASH_LAYER # Updating the layer of the new CanvasLayer.
 	call_deferred("add_child", flash_layer) # Adding the new CanvasLayer to the scene.
 	
-	cinematic_layer = CanvasLayer.new() # Creating a new CanvasLayer.
-	cinematic_layer.name = "CinematicLayer" # Updating the name of the new CanvasLayer.
-	cinematic_layer.layer = CINEMATIC_LAYER # Updating the layer of the new CanvasLayer.
-	call_deferred("add_child", cinematic_layer) # Adding the new CanvasLayer to the scene.
+	#cinematic_layer = CanvasLayer.new() # Creating a new CanvasLayer.
+	#cinematic_layer.name = "CinematicLayer" # Updating the name of the new CanvasLayer.
+	#cinematic_layer.layer = CINEMATIC_LAYER # Updating the layer of the new CanvasLayer.
+	#call_deferred("add_child", cinematic_layer) # Adding the new CanvasLayer to the scene.
 	
 	## Adding all the necessary ColorRects so the Camera2D+ can work properly.
 	flash_rect = ColorRect.new() # Creating a new ColorRect.
@@ -146,33 +146,33 @@ func _ready() -> void:
 	flash_rect.color = Color.TRANSPARENT # Updating the color of the new ColorRect.
 	flash_layer.call_deferred("add_child", flash_rect) # Adding the new ColorRect to the scene.
 	
-	top_rect = ColorRect.new() # Creating a new ColorRect.
-	top_rect.name = "TopRect" # Updating the name of the new ColorRect.
-	top_rect.size = get_viewport_rect().size # Updating the size of the new ColorRect to make it cover the entire screen.
-	top_rect.color = Color.BLACK # Updating the color of the new ColorRect.
-	top_rect.global_position.y = -get_viewport_rect().size.y # Updating the position of the new ColorRect.
-	cinematic_layer.call_deferred("add_child", top_rect) # Adding the new ColorRect to the scene.
-	
-	bottom_rect = ColorRect.new() # Creating a new ColorRect.
-	bottom_rect.name = "BottomRect" # Updating the name of the new ColorRect.
-	bottom_rect.size = get_viewport_rect().size # Updating the size of the new ColorRect to make it cover the entire screen.
-	bottom_rect.color = Color.BLACK # Updating the color of the new ColorRect.
-	bottom_rect.global_position.y = get_viewport_rect().size.y # Updating the position of the new ColorRect.
-	cinematic_layer.call_deferred("add_child", bottom_rect) # Adding the new ColorRect to the scene.
-	
-	left_rect = ColorRect.new() # Creating a new ColorRect.
-	left_rect.name = "TopRect" # Updating the name of the new ColorRect.
-	left_rect.size = get_viewport_rect().size # Updating the size of the new ColorRect to make it cover the entire screen.
-	left_rect.color = Color.BLACK # Updating the color of the new ColorRect.
-	left_rect.global_position.x = -get_viewport_rect().size.x # Updating the position of the new ColorRect.
-	cinematic_layer.call_deferred("add_child", left_rect) # Adding the new ColorRect to the scene.
-	
-	right_rect = ColorRect.new() # Creating a new ColorRect.
-	right_rect.name = "BottomRect" # Updating the name of the new ColorRect.
-	right_rect.size = get_viewport_rect().size # Updating the size of the new ColorRect to make it cover the entire screen.
-	right_rect.color = Color.BLACK # Updating the color of the new ColorRect.
-	right_rect.global_position.x = get_viewport_rect().size.x # Updating the position of the new ColorRect.
-	cinematic_layer.call_deferred("add_child", right_rect) # Adding the new ColorRect to the scene.
+	#top_rect = ColorRect.new() # Creating a new ColorRect.
+	#top_rect.name = "TopRect" # Updating the name of the new ColorRect.
+	#top_rect.size = get_viewport_rect().size # Updating the size of the new ColorRect to make it cover the entire screen.
+	#top_rect.color = Color.BLACK # Updating the color of the new ColorRect.
+	#top_rect.global_position.y = -get_viewport_rect().size.y # Updating the position of the new ColorRect.
+	#cinematic_layer.call_deferred("add_child", top_rect) # Adding the new ColorRect to the scene.
+	#
+	#bottom_rect = ColorRect.new() # Creating a new ColorRect.
+	#bottom_rect.name = "BottomRect" # Updating the name of the new ColorRect.
+	#bottom_rect.size = get_viewport_rect().size # Updating the size of the new ColorRect to make it cover the entire screen.
+	#bottom_rect.color = Color.BLACK # Updating the color of the new ColorRect.
+	#bottom_rect.global_position.y = get_viewport_rect().size.y # Updating the position of the new ColorRect.
+	#cinematic_layer.call_deferred("add_child", bottom_rect) # Adding the new ColorRect to the scene.
+	#
+	#left_rect = ColorRect.new() # Creating a new ColorRect.
+	#left_rect.name = "TopRect" # Updating the name of the new ColorRect.
+	#left_rect.size = get_viewport_rect().size # Updating the size of the new ColorRect to make it cover the entire screen.
+	#left_rect.color = Color.BLACK # Updating the color of the new ColorRect.
+	#left_rect.global_position.x = -get_viewport_rect().size.x # Updating the position of the new ColorRect.
+	#cinematic_layer.call_deferred("add_child", left_rect) # Adding the new ColorRect to the scene.
+	#
+	#right_rect = ColorRect.new() # Creating a new ColorRect.
+	#right_rect.name = "BottomRect" # Updating the name of the new ColorRect.
+	#right_rect.size = get_viewport_rect().size # Updating the size of the new ColorRect to make it cover the entire screen.
+	#right_rect.color = Color.BLACK # Updating the color of the new ColorRect.
+	#right_rect.global_position.x = get_viewport_rect().size.x # Updating the position of the new ColorRect.
+	#cinematic_layer.call_deferred("add_child", right_rect) # Adding the new ColorRect to the scene.
 
 
 func _process(delta: float) -> void:
@@ -247,34 +247,34 @@ func set_shake(strength: float) -> void:
 	shake_strength = strength # Setting `shake_strength` to `strength`.
 
 
-## This function toggles the cinematic mode.
-func toggle_cinematic(horizontal: bool, vertical: bool = false) -> void:
-	## Creating and setting up the Tween responsable for moving all the rects.
-	var tween: Tween = get_tree().create_tween() # Creating a new Tween.
-	tween.set_ease(Tween.EASE_IN_OUT) # Updating the Tween's easing type.
-	tween.set_trans(Tween.TRANS_QUINT) # Updating the Tween's transition type.
-	tween.set_parallel(true) # Making the Tween able to tween multiple properties at the same time.
-	
-	## Enabling / Disabling the horizontal cinematic mode.
-	if (horizontal): # Checking if `horizontal` is true.
-		## Tweening the position of the bottom and the top rect.
-		tween.tween_property(bottom_rect, "global_position", Vector2(0, get_viewport_rect().size.y - HORIZONTAL_CUT_SIZE), 1.0) # Tweening the bottom rect.
-		tween.tween_property(top_rect, "global_position", Vector2(0, -get_viewport_rect().size.y + HORIZONTAL_CUT_SIZE), 1.0) # Tweening the top rect.
-	else:
-		## Tweening the position of the bottom and the top rect.
-		tween.tween_property(bottom_rect, "global_position", Vector2(0, get_viewport_rect().size.y + HORIZONTAL_CUT_SIZE), 1.0) # Tweening the bottom rect.
-		tween.tween_property(top_rect, "global_position", Vector2(0, -get_viewport_rect().size.y - HORIZONTAL_CUT_SIZE), 1.0) # Tweening the top rect.
-		
-	## Enabling / Disabling the vertical cinematic mode.
-	if (vertical): # Checking if `horizontal` is true.
-		## Tweening the position of the bottom and the top rect.
-		tween.tween_property(left_rect, "global_position", Vector2(-get_viewport_rect().size.x + VERTICAL_CUT_SIZE, 0), 1.0) # Tweening the left rect.
-		tween.tween_property(right_rect, "global_position", Vector2(get_viewport_rect().size.x - VERTICAL_CUT_SIZE, 0), 1.0) # Tweening the right rect.
-	else:
-		## Tweening the position of the bottom and the top rect.
-		tween.tween_property(left_rect, "global_position", Vector2(-get_viewport_rect().size.x - VERTICAL_CUT_SIZE, 0), 1.0) # Tweening the left rect.
-		tween.tween_property(right_rect, "global_position", Vector2(get_viewport_rect().size.x + VERTICAL_CUT_SIZE, 0), 1.0) # Tweening the right rect.
-		
-	## Updating variables.
-	horizontal_enabled = horizontal # Updating the horizontal variable.
-	vertical_enabled = vertical # Updating the vertical variable.
+### This function toggles the cinematic mode.
+#func toggle_cinematic(horizontal: bool, vertical: bool = false) -> void:
+	### Creating and setting up the Tween responsable for moving all the rects.
+	#var tween: Tween = get_tree().create_tween() # Creating a new Tween.
+	#tween.set_ease(Tween.EASE_IN_OUT) # Updating the Tween's easing type.
+	#tween.set_trans(Tween.TRANS_QUINT) # Updating the Tween's transition type.
+	#tween.set_parallel(true) # Making the Tween able to tween multiple properties at the same time.
+	#
+	### Enabling / Disabling the horizontal cinematic mode.
+	#if (horizontal): # Checking if `horizontal` is true.
+		### Tweening the position of the bottom and the top rect.
+		#tween.tween_property(bottom_rect, "global_position", Vector2(0, get_viewport_rect().size.y - HORIZONTAL_CUT_SIZE), 1.0) # Tweening the bottom rect.
+		#tween.tween_property(top_rect, "global_position", Vector2(0, -get_viewport_rect().size.y + HORIZONTAL_CUT_SIZE), 1.0) # Tweening the top rect.
+	#else:
+		### Tweening the position of the bottom and the top rect.
+		#tween.tween_property(bottom_rect, "global_position", Vector2(0, get_viewport_rect().size.y + HORIZONTAL_CUT_SIZE), 1.0) # Tweening the bottom rect.
+		#tween.tween_property(top_rect, "global_position", Vector2(0, -get_viewport_rect().size.y - HORIZONTAL_CUT_SIZE), 1.0) # Tweening the top rect.
+		#
+	### Enabling / Disabling the vertical cinematic mode.
+	#if (vertical): # Checking if `horizontal` is true.
+		### Tweening the position of the bottom and the top rect.
+		#tween.tween_property(left_rect, "global_position", Vector2(-get_viewport_rect().size.x + VERTICAL_CUT_SIZE, 0), 1.0) # Tweening the left rect.
+		#tween.tween_property(right_rect, "global_position", Vector2(get_viewport_rect().size.x - VERTICAL_CUT_SIZE, 0), 1.0) # Tweening the right rect.
+	#else:
+		### Tweening the position of the bottom and the top rect.
+		#tween.tween_property(left_rect, "global_position", Vector2(-get_viewport_rect().size.x - VERTICAL_CUT_SIZE, 0), 1.0) # Tweening the left rect.
+		#tween.tween_property(right_rect, "global_position", Vector2(get_viewport_rect().size.x + VERTICAL_CUT_SIZE, 0), 1.0) # Tweening the right rect.
+		#
+	### Updating variables.
+	#horizontal_enabled = horizontal # Updating the horizontal variable.
+	#vertical_enabled = vertical # Updating the vertical variable.

@@ -7,7 +7,7 @@ extends CanvasLayer
 @onready var debug_label_3 : Label = $DebugContainer/Label3
 @onready var debug_offset : Vector2 = Vector2(0, 50)
 
-var world : Node2D
+var overworld : Node2D
 
 func _ready() -> void:
 	debug_container.hide()
@@ -27,9 +27,9 @@ func _process(delta: float) -> void:
 	if Input.mouse_mode != Input.MOUSE_MODE_HIDDEN:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
-	if world != null:
-		var world_pos : Vector2i = Vector2i(world.get_local_mouse_position())
-		debug_label_2.text = "world: " + str(world_pos)
+	if overworld != null:
+		var overworld_pos : Vector2i = Vector2i(overworld.get_local_mouse_position())
+		debug_label_2.text = "overworld: " + str(overworld_pos)
 	
 	var mouse_position : Vector2 = get_viewport().get_mouse_position()
 	#mouse.position = mouse_position

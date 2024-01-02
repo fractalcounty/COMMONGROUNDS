@@ -13,9 +13,8 @@ extends Node
 ## References to the two children of the main Game node that are already instantiated in the editor
 @onready var interface_container : Node = $Interface
 @onready var post_processing : CanvasLayer = $Interface/PostProcessing
-@onready var pause_menu : PopupMenu = $Interface/PauseMenu
 @onready var loading_screen : Node = $Interface/LoadingScreen
-@onready var world : Node2D = $World
+@onready var world : CanvasLayer = $World
 
 const PATH : Dictionary = {
 	"splash": "res://scenes/interface/splash/Splash.tscn",
@@ -43,7 +42,6 @@ signal overworld_ready
 signal hide_loading_screen
 
 func _ready() -> void:
-	MouseManager.world = world
 	print(_startup_logs())
 	
 	set_process(false)
@@ -98,9 +96,13 @@ func _on_overworld_loaded(loaded_scene: Node2D) -> void:
 		main_menu.play()
 	post_processing.grain_out()
 	overworld = loaded_scene
+	MouseManager.overworld = overworld
 	world.add_child(overworld)
 	loading_screen.fade_out()
 	Chat.start()
+	await loading_screen.scene_visible
+	Chat.focused = false
+	Chat.line_edit.release_focus()
 
 func _start_async_load(path: String, callback: Callable) -> void:
 	next_scene_path = path
