@@ -1054,7 +1054,7 @@ glow_hdr_scale = 1.78
 glow_hdr_luminance_cap = 141.52
 glow_map_strength = 0.84
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_1pj6h"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_pxyw8"]
 
 [node name="Splash" type="CanvasLayer"]
 layer = 4
@@ -1095,6 +1095,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="Control/HBoxContainer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1119,6 +1120,7 @@ autoplay = "default"
 speed_scale = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/HBoxContainer/Control"]
+visible = false
 modulate = Color(10, 10, 10, 1)
 texture_filter = 1
 texture_repeat = 1
@@ -1140,7 +1142,7 @@ autoplay = "splash"
 environment = SubResource("Environment_c7013")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
-stream = SubResource("AudioStreamPolyphonic_1pj6h")
+stream = SubResource("AudioStreamPolyphonic_pxyw8")
 
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_finish"]
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -110,7 +110,7 @@ scroll_active = false
 autowrap_mode = 2
 tab_size = 0
 shortcut_keys_enabled = false
-visible_characters = 374
+visible_characters = 373
 visible_ratio = 0.309859
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScreenControl/MarginContainer/PanelContainer/VBoxContainer"]

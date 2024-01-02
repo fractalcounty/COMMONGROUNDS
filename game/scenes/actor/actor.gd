@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var visual : ActorVisualComponent = $VisualComponent
 
 func _ready() -> void:
+	EventManager.player = self
 	Chat.username = username
 	Chat.actor = self
 

@@ -124,6 +124,7 @@ func _update_zoom_level(new_zoom_level: float) -> void:
 	_zoom_level = new_zoom_level
 
 func _ready() -> void:
+	EventManager.camera = self
 	zoom = Vector2(_zoom_level, _zoom_level)
 	set_process_input(true)
 	zoom_reset_timer.timeout.connect(_on_zoom_reset_timer_timeout)
