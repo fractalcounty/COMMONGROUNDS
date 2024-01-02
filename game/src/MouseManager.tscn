@@ -19,6 +19,7 @@ animations = [{
 font = ExtResource("3_kvhmw")
 
 [node name="MouseManager" type="CanvasLayer"]
+layer = 128
 script = ExtResource("1_2xwhu")
 
 [node name="Mouse" type="AnimatedSprite2D" parent="."]

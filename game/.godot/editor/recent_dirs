@@ -1,7 +1,9 @@
+res://scenes/actor
+res://src
+res://resources/shaders
 E:/Projects/Godot Projects/NGStreet/game/exports/web
 res://exports/js
 E:/Projects/Godot Projects/NGStreet/game/exports
-res://src
 res://scenes/interface/mouse
 res://resources/textures/kenney_pattern_pack
 res://addons

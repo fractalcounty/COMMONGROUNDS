@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://botvvtx74i08m"]
+[gd_scene load_steps=38 format=3 uid="uid://botvvtx74i08m"]
 
 [ext_resource type="Script" path="res://scenes/actor/actor.gd" id="1_dx4em"]
 [ext_resource type="Texture2D" uid="uid://dwgodpyatbd3a" path="res://resources/textures/placeholder_art/shadow.png" id="2_ue53t"]
 [ext_resource type="Texture2D" uid="uid://bsltx0a3vxp5i" path="res://resources/sprites/rolus_sprites/rolus_still_down.png" id="3_1j7gc"]
+[ext_resource type="Script" path="res://scenes/actor/speech.gd" id="3_fj0d8"]
 [ext_resource type="Texture2D" uid="uid://0yj4gvr1fs8" path="res://resources/sprites/rolus_sprites/rolus_still_side.png" id="4_3gv8l"]
 [ext_resource type="FontFile" uid="uid://cnseiewfryake" path="res://resources/fonts/CommitMono-400-Regular.otf" id="4_6n0ou"]
 [ext_resource type="Script" path="res://scenes/actor/actor_visual.gd" id="4_rbomj"]
@@ -353,7 +354,6 @@ y_sort_enabled = true
 script = ExtResource("1_dx4em")
 speed = 600.0
 acceleration = 100.0
-username = "cheeseburger69"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -361,6 +361,22 @@ shape = SubResource("CapsuleShape2D_gmsj5")
 
 [node name="VisualComponent" type="Node2D" parent="."]
 script = ExtResource("4_rbomj")
+
+[node name="Speech" type="VBoxContainer" parent="VisualComponent"]
+clip_contents = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.0
+offset_top = -402.0
+offset_right = 193.0
+offset_bottom = -183.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 35
+alignment = 1
+script = ExtResource("3_fj0d8")
 
 [node name="DebugContainer" type="VBoxContainer" parent="VisualComponent"]
 anchors_preset = 5

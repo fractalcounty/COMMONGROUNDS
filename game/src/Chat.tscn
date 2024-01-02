@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwjsqi311654f"]
+
+[ext_resource type="Script" path="res://src/chat.gd" id="1_o2eks"]
+[ext_resource type="FontFile" uid="uid://cnseiewfryake" path="res://resources/fonts/CommitMono-400-Regular.otf" id="1_s27as"]
+[ext_resource type="FontFile" uid="uid://cr64yhe2gf0np" path="res://resources/fonts/CommitMono-700-Regular.otf" id="3_52moq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23352"]
+content_margin_left = 18.0
+content_margin_top = 18.0
+content_margin_right = 18.0
+content_margin_bottom = 18.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 0.615686)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="Chat" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_o2eks")
+
+[node name="ScreenControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ScreenControl"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -580.0
+offset_right = 969.0
+grow_vertical = 0
+mouse_filter = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="ScreenControl/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_23352")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenControl/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScreenControl/MarginContainer/PanelContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_s27as")
+theme_override_fonts/bold_font = ExtResource("3_52moq")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "username: Placeholder message!
+username: This would also be a placeholder message, but a longer one.
+username:  This is a placeholder message as well.
+username: Placeholder message!
+username: This would also be a placeholder message, but a longer one.
+username:  This is a placeholder message as well.
+username: Placeholder message!
+username: This would also be a placeholder message, but a longer one.
+username:  This is a placeholder message as well.
+username: Placeholder message!
+username: This would also be a placeholder message, but a longer one.
+username:  This is a placeholder message as well."
+fit_content = true
+scroll_following = true
+text_direction = 1
+
+[node name="LineEdit" type="LineEdit" parent="ScreenControl/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_s27as")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Enter a message here..."
+max_length = 128
+caret_blink = true
+
+[connection signal="gui_input" from="ScreenControl" to="." method="_on_screen_control_gui_input"]
+[connection signal="gui_input" from="ScreenControl/MarginContainer" to="." method="_on_margin_container_gui_input"]
+[connection signal="focus_entered" from="ScreenControl/MarginContainer/PanelContainer" to="." method="_on_panel_container_focus_entered"]
+[connection signal="focus_exited" from="ScreenControl/MarginContainer/PanelContainer" to="." method="_on_panel_container_focus_exited"]
+[connection signal="focus_entered" from="ScreenControl/MarginContainer/PanelContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_focus_entered"]
+[connection signal="focus_exited" from="ScreenControl/MarginContainer/PanelContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_submitted" from="ScreenControl/MarginContainer/PanelContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

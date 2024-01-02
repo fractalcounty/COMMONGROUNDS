@@ -74,10 +74,10 @@ var _zoom_level: float = 1.0:
 
 # Handling input for zooming
 func _input(event) -> void:
-	if Input.is_action_pressed("ui_zoom_in"):
+	if Input.is_action_pressed("action_zoom_in"):
 		_zoom_level -= zoom_factor
 		_done_bouncing = false # Reset value when user changes zoom manually
-	elif Input.is_action_pressed("ui_zoom_out"):
+	elif Input.is_action_pressed("action_zoom_out"):
 		_zoom_level += zoom_factor
 		_done_bouncing = false # Reset value when user changes zoom manually
 

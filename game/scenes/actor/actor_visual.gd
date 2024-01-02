@@ -9,6 +9,7 @@ extends Node2D
 @onready var debug_label_1 : RichTextLabel = $DebugContainer/DebugTag1
 @onready var debug_label_2 : RichTextLabel = $DebugContainer/DebugTag2
 @onready var debug_container_offset : Vector2 = Vector2(0, 50)
+@onready var speech : VBoxContainer = $Speech
 
 var last_ver_direction: float = 0
 var was_moving_horiz: bool = false
@@ -75,6 +76,14 @@ func get_idle_animation_name() -> String:
 		return "idle_side"
 	else:
 		return "idle_up" if last_ver_direction < 0 else "idle_down"
+
+func reset_animation():
+	# Determine the correct idle animation based on the last movement direction
+	var idle_anim = get_idle_animation_name()
+
+	# Play the idle animation if it's not already playing
+	if anim.current_animation != idle_anim:
+		anim.play(idle_anim)
 
 func apply_sprite_flip(moving_dir: Vector2):
 	sprite.flip_h = moving_dir.x < 0 if moving_dir.x != 0 else sprite.flip_h

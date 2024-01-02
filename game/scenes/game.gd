@@ -44,7 +44,6 @@ signal hide_loading_screen
 
 func _ready() -> void:
 	MouseManager.world = world
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print(_startup_logs())
 	
 	set_process(false)
@@ -101,6 +100,7 @@ func _on_overworld_loaded(loaded_scene: Node2D) -> void:
 	overworld = loaded_scene
 	world.add_child(overworld)
 	loading_screen.fade_out()
+	Chat.start()
 
 func _start_async_load(path: String, callback: Callable) -> void:
 	next_scene_path = path

@@ -1,5 +1,5 @@
-var APP_ID = ''
-var AES_ENCRYPTION_KEY = ''
+var APP_ID = '57486:ERDC0aUO'
+var AES_ENCRYPTION_KEY = '7WUH8Ts8QfAple+rMlyPIg=='
 
 var ngio = new Newgrounds.io.core(APP_ID, AES_ENCRYPTION_KEY);
 
