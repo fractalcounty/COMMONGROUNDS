@@ -26,6 +26,9 @@ TextTransitionSettings="*res://addons/awesome_label/text_transition_settings.gd"
 EventManager="*res://src/EventManager.gd"
 MouseManager="*res://src/MouseManager.tscn"
 Chat="*res://src/Chat.tscn"
+NG="*res://src/NG.gd"
+Log="*res://src/Log.gd"
+System="*res://src/System.gd"
 
 [debug]
 

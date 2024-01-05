@@ -1,4 +1,5 @@
 extends Node
+class_name Game
 ## This is the script for the main scene (Game).
 ##
 ## It handles the loading and unloading of scenes, game
@@ -42,10 +43,21 @@ signal overworld_ready
 signal hide_loading_screen
 
 func _ready() -> void:
-	print(_startup_logs())
+	Log.debug(_startup_logs(), self)
+	
+	NG.request_completed.connect(_on_request_completed)
+	#Log.debug("Requesting NG.io component 'Gateway.getVersion' with parameters: {}", self)
+	#NG.request("Gateway.getVersion", {}, Callable(self, "_on_version_get"))
+	NG.request("Gateway.getVersion", {})
 	
 	set_process(false)
 	_load_splash()
+
+func _on_version_get(response_data: Dictionary) -> void:
+	Log.debug("Version: " + str(response_data), self)
+
+func _on_request_completed(response_data: Dictionary) -> void:
+	Log.debug("Response Data: " + str(response_data), self)
 
 func _input(event: InputEvent) -> void:
 	Input
@@ -140,4 +152,4 @@ func _startup_logs() -> String:
 	if SKIP_SPLASH:
 		arguments_used.append("SKIP_SPLASH")
 
-	return "[Game.gd] Starting game with arguments: " + ", ".join(arguments_used) if arguments_used.size() > 0 else "[Game.gd] Starting game with default settings"
+	return "Starting game with arguments: " + ", ".join(arguments_used) if arguments_used.size() > 0 else "[Game.gd] Starting game with default settings"
