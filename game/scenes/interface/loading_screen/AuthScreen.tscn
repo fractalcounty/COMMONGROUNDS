@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7x8j0revg2us"]
+[gd_scene load_steps=9 format=3 uid="uid://cahq7w4xrf6et"]
 
-[ext_resource type="Script" path="res://scenes/interface/loading_screen/loading_screen.gd" id="1_i2vxs"]
-[ext_resource type="Shader" path="res://resources/shaders/transition_dissolve.gdshader" id="2_fth2t"]
-[ext_resource type="Theme" uid="uid://c1sc5tq0yhd7b" path="res://resources/styles/Interface.tres" id="3_54r1t"]
+[ext_resource type="Script" path="res://scenes/interface/loading_screen/loading_screen.gd" id="1_0ctqq"]
+[ext_resource type="Shader" path="res://resources/shaders/transition_dissolve.gdshader" id="2_ixkbb"]
+[ext_resource type="Theme" uid="uid://c1sc5tq0yhd7b" path="res://resources/styles/Interface.tres" id="3_4cgpc"]
 
 [sub_resource type="Animation" id="Animation_8s2nt"]
 length = 0.001
@@ -106,13 +106,13 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4y3t0"]
-shader = ExtResource("2_fth2t")
+shader = ExtResource("2_ixkbb")
 shader_parameter/progress = 0.0
 shader_parameter/diamondPixelSize = 24.0
 
-[node name="LoadingScreen" type="CanvasLayer"]
+[node name="AuthScreen" type="CanvasLayer"]
 layer = 100
-script = ExtResource("1_i2vxs")
+script = ExtResource("1_0ctqq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -153,17 +153,14 @@ modulate = Color(1, 1, 1, 0)
 texture_filter = 2
 clip_contents = false
 layout_mode = 2
-theme = ExtResource("3_54r1t")
-theme_override_font_sizes/normal_font_size = 48
+theme = ExtResource("3_4cgpc")
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[wave amp=50.0 freq=5.0 connected=1]LOADING...[/wave]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 tab_size = 0
-
-[node name="TimeoutTimer" type="Timer" parent="."]
-wait_time = 10.0
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_anim_changed"]

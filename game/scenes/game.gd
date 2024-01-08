@@ -9,7 +9,8 @@ class_name Game
 
 ## General launch parameters
 @export var SKIP_SPLASH : bool = false ## Skips the splash screen
-@export var SKIP_MENU : bool = false ## Skips the menu
+@export var SKIP_NG_AUTH : bool = false ## Skips the NG API auth/login
+@export var SKIP_MENU : bool = true ## Skips the menu
 
 ## References to the two children of the main Game node that are already instantiated in the editor
 @onready var interface_container : Node = $Interface
@@ -19,6 +20,7 @@ class_name Game
 
 const PATH : Dictionary = {
 	"splash": "res://scenes/interface/splash/Splash.tscn",
+	"ng_auth": "res://scenes/interface/NGAuth.tscn",
 	"main_menu": "res://scenes/interface/menus/MainMenu.tscn",
 	"main_menu_bg": "res://scenes/world/MainMenuBackground.tscn",
 	"overworld": "res://scenes/world/Overworld.tscn",
@@ -28,6 +30,7 @@ const PATH : Dictionary = {
 ## References to instances of the scenes above
 ## These are null until they are actually instantiated
 @onready var splash : Node = null
+@onready var ng_auth : Node = null
 @onready var main_menu : Node = null
 @onready var overworld : Node2D = null 
 
@@ -44,23 +47,13 @@ signal hide_loading_screen
 
 func _ready() -> void:
 	Log.debug(_startup_logs(), self)
-	
-	NG.request_completed.connect(_on_request_completed)
-	#Log.debug("Requesting NG.io component 'Gateway.getVersion' with parameters: {}", self)
-	#NG.request("Gateway.getVersion", {}, Callable(self, "_on_version_get"))
-	NG.request("Gateway.getVersion", {})
-	
 	set_process(false)
 	_load_splash()
 
-func _on_version_get(response_data: Dictionary) -> void:
-	Log.debug("Version: " + str(response_data), self)
-
-func _on_request_completed(response_data: Dictionary) -> void:
-	Log.debug("Response Data: " + str(response_data), self)
-
-func _input(event: InputEvent) -> void:
-	Input
+#func _ready() -> void:
+	#NG.request_completed.connect(_on_request_completed)
+#func _on_request_completed(response_data: Dictionary) -> void:
+	#Log.debug("Response Data: " + str(response_data), self)
 
 func _load_threaded(scene_path: String, scene_key: String, callback: Callable) -> void:
 	scene_references[scene_key] = null
@@ -71,13 +64,13 @@ func _load_splash() -> void:
 		splash = preload(PATH.splash).instantiate()
 		interface_container.add_child(splash)
 		await splash.finished
-		loading_screen.fade_in()
+		loading_screen.summon()
 		await loading_screen.fade_in_finished
 		splash.queue_free()
 		_load_main_menu()
 	else:
 		_load_main_menu()
-	
+
 func _load_main_menu() -> void:
 	if not SKIP_MENU:
 		main_menu = preload(PATH.main_menu).instantiate()
@@ -86,18 +79,28 @@ func _load_main_menu() -> void:
 		main_menu.game = self
 		if splash != null:
 			splash = null
-		loading_screen.fade_out()
+		loading_screen.banish()
 		await main_menu.main_menu_enter
 		_on_main_menu_enter()
 	else:
-		load_overworld()
+		_load_ng_auth()
 
 func _on_main_menu_enter() -> void:
-	loading_screen.fade_in()
+	loading_screen.summon()
 	await loading_screen.fade_in_finished
-	load_overworld()
+	_load_ng_auth()
+
+func _load_ng_auth() -> void:
+	if not SKIP_NG_AUTH:
+		loading_screen.set_type(loading_screen.Type.NEWGROUNDS)
+		NG.login()
+		await NG.logged_in
+		load_overworld()
+	else:
+		load_overworld()
 
 func load_overworld() -> void:
+	loading_screen.set_type(loading_screen.Type.OVERWORLD)
 	_start_async_load(PATH.overworld, Callable(self, "_on_overworld_loaded"))
 
 func _on_overworld_loaded(loaded_scene: Node2D) -> void:
@@ -110,7 +113,7 @@ func _on_overworld_loaded(loaded_scene: Node2D) -> void:
 	overworld = loaded_scene
 	MouseManager.overworld = overworld
 	world.add_child(overworld)
-	loading_screen.fade_out()
+	loading_screen.banish()
 	Chat.start()
 	await loading_screen.scene_visible
 	Chat.focused = false

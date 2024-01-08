@@ -1,5 +1,5 @@
-class_name ActorVisualComponent
 extends Node2D
+class_name ActorVisualComponent
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $Body

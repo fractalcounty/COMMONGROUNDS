@@ -1,5 +1,5 @@
-class_name Actor
 extends CharacterBody2D
+class_name Actor
 
 @export var speed : float = 100
 @export var acceleration : float = 10
