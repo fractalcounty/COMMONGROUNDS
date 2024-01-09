@@ -7,9 +7,8 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.post_processing = self
 	grain_in()
-	EventManager.popup_hidden.connect(_on_popup_hidden)
-	EventManager.popup_visible.connect(_on_popup_visible)
 
 func _on_popup_hidden() -> void:
 	blur_out()

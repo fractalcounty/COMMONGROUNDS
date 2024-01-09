@@ -4,84 +4,59 @@ signal fade_in_finished
 signal fade_out_finished
 signal scene_visible
 signal ng_connection_timed_out
-
-@export_subgroup("Loading Messages")
-@export var default_message : String = "[wave amp=50.0 freq=5.0 connected=1]LOADING...[/wave]"
-@export_range(0, 60, 1, "suffix:s") var default_timeout : float = 20.0
-@export var default_timeout_message : String = "LOADING TIMED OUT"
-@export var newgrounds_message : String = "[wave amp=50.0 freq=5.0 connected=1]CONNECTING TO NEWGROUNDS...[/wave]"
-@export_range(0, 60, 1, "suffix:s") var newgrounds_timeout : float = 5.0
-@export var newgrounds_timeout_message : String = "NEWGROUNDS CONNECTION TIMED OUT. TRY REFRESHING?"
-@export var commongrounds_message : String = "[wave amp=50.0 freq=5.0 connected=1]CONNECTING TO COMMONGROUNDS...[/wave]"
-@export_range(0, 60, 1, "suffix:s") var commongrounds_timeout : float = 10.0
-@export var commongrounds_timeout_message : String = "COMMONGROUNDS CONNECTION TIMED OUT."
-@export var overworld_message : String = "[wave amp=50.0 freq=5.0 connected=1]LOADING OVERWORLD[/wave]"
-@export_range(0, 60, 1, "suffix:s") var overworld_timeout : float = 10.0
-@export var overworld_timeout_message : String = "OVERWORLD LOADING TIMED OUT. TRY REFRESHING?"
+signal loading()
 
 ## Loading screen states
 ## Both of these can be set externally, i.e 'loading_screen.set_state(State.LOADING).
-enum Type { DEFAULT, NEWGROUNDS, COMMONGROUNDS, OVERWORLD } ## The type of loading message displayed. Use set_type(Type)
-enum State { LOADING, INACTIVE, TIMEOUT } ## The current state of the loading screen. Use set_state(State)
+enum State { LOADING, IDLE, ERROR } ## The current state of the loading screen. Use set_state(State)
 
 @onready var anim : AnimationPlayer = $AnimationPlayer
 @onready var label : RichTextLabel = $LoadingContainer/RichTextLabel
-@onready var timeout_timer : Timer = $TimeoutTimer
+@onready var err_label : Label = $CenterContainer/ErrorLabel
 
-var current_type: Type = Type.DEFAULT
 var current_state: State = State.LOADING
+var previous_state : State = State.IDLE
+
+func set_text(text: String) -> void:
+	var final_text : String = "[wave amp=30.0 freq=3.0 connected=1]" + text + "[/wave]"
+	label.text = final_text
 
 func _ready() -> void:
-	timeout_timer.timeout.connect(_on_timeout)
-	set_type(Type.DEFAULT)
+	Global.error_shown.connect(_on_error_shown)
+	Global.error_freed.connect(_on_error_freed)
+	Global.loading_screen = self
 	anim.play("RESET")
 
-func summon() -> void:
-	set_state(State.LOADING)
+func _on_error_shown(message:String) -> void:
+	previous_state = current_state
+	err_label.text = message
+	set_state(State.ERROR)
 
-func banish() -> void:
-	set_state(State.INACTIVE)
+func _on_error_freed(_message:String) -> void:
+	if previous_state == State.LOADING:
+		set_state(State.LOADING)
+	elif previous_state == State.IDLE:
+		set_state(State.IDLE)
 
 func set_state(new_state: State) -> void:
-	current_state = new_state
-	match current_state:
-		State.LOADING:
+	if Global.error_blocking and new_state != State.ERROR:
+		Log.error("Loading screen unable to transition to state '" + str(new_state) + "' due to unresolved fatal error.")
+		return
+	match [previous_state, new_state]:
+		[State.IDLE, State.ERROR]:
+			anim.play("err_fade_in")
+		[State.ERROR, State.IDLE]:
+			anim.play("err_fade_out")
+		[State.LOADING, State.ERROR]:
+			anim.play("err_trans_in")
+		[State.ERROR, State.LOADING]:
+			anim.play("err_trans_out")
+		[State.IDLE, State.LOADING]:
 			anim.play("fade_in")
-		State.INACTIVE: 
+		[State.LOADING, State.IDLE]:
 			anim.play("fade_out")
-		State.TIMEOUT:
-			Log.error("Loading state timed out of type: " + str(current_state), self)
-
-func set_type(new_type: Type) -> void:
-	current_type = new_type
-	match current_type:
-		Type.DEFAULT:
-			label.text = default_message
-			_start_timeout_timer(default_timeout)
-		Type.NEWGROUNDS:
-			label.text = newgrounds_message
-			_start_timeout_timer(newgrounds_timeout)
-		Type.COMMONGROUNDS:
-			label.text = commongrounds_message
-			_start_timeout_timer(commongrounds_timeout)
-		Type.OVERWORLD:
-			label.text = overworld_message
-			_start_timeout_timer(overworld_timeout)
-
-func _start_timeout_timer(duration: float) -> void:
-	timeout_timer.wait_time = duration
-	timeout_timer.start()
-
-func _on_timeout() -> void:
-	match current_type:
-		Type.DEFAULT:
-			label.text = default_timeout_message
-		Type.NEWGROUNDS:
-			label.text = newgrounds_timeout_message
-		Type.COMMONGROUNDS:
-			label.text = commongrounds_timeout_message
-		Type.OVERWORLD:
-			label.text = overworld_timeout_message
+	current_state = new_state
+	previous_state = new_state
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_in":

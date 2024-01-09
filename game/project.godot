@@ -23,12 +23,11 @@ config/icon="res://icon.svg"
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 TextTransitionSettings="*res://addons/awesome_label/text_transition_settings.gd"
-EventManager="*res://src/EventManager.gd"
 MouseManager="*res://src/MouseManager.tscn"
 Chat="*res://src/Chat.tscn"
-NG="*res://src/NG.gd"
-Log="*res://src/Log.gd"
-System="*res://src/System.gd"
+Newgrounds="*res://src/Newgrounds.gd"
+Log="*res://addons/logger/log.gd"
+Global="*res://src/Global.gd"
 
 [debug]
 
@@ -48,7 +47,7 @@ movie_writer/fps=120
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/awesome_label/plugin.cfg", "res://addons/camera_2d_plus/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/smoothing/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/awesome_label/plugin.cfg", "res://addons/camera_2d_plus/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/smoothing/plugin.cfg")
 
 [file_customization]
 

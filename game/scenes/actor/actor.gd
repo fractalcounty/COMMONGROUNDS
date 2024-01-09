@@ -9,7 +9,7 @@ class_name Actor
 @onready var visual : ActorVisualComponent = $VisualComponent
 
 func _ready() -> void:
-	EventManager.player = self
+	Global.player = self
 	Chat.username = username
 	Chat.actor = self
 

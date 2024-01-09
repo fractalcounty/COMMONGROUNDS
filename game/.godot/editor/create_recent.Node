@@ -1,7 +1,8 @@
+CenterContainer
+Label
 Timer
 MarginContainer
 RichTextLabel
-Label
 ColorRect
 AudioStreamPlayer
 AnimationPlayer
@@ -12,4 +13,3 @@ CheckButton
 OptionButton
 HBoxContainer
 ScrollContainer
-CanvasLayer
