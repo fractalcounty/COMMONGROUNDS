@@ -1,5 +1,5 @@
 extends NGUtils
-## Newgrounds.io autoload helper script for Godot 4.x
+## Newgrounds.io API autoload for Godot 4.x
 ##
 ## Provides various methods to call the Newgrounds.io
 ## API from your scripts with detailed logging
@@ -7,204 +7,164 @@ extends NGUtils
 ## @tutorial(Components):	http://www.newgrounds.io/help/components/
 ## @tutorial(Objects):		https://www.newgrounds.io/help/objects/
 
-signal request_completed(response_data : Dictionary)
-signal connected
-signal session_valid
-signal do_login(passport_url: String)
-signal user_login(user: UserData)
+signal initialized
 
 const APP_ID : String = "57486:i7TJksdI" ## Game app ID
 const AES_KEY : String = "4tWX2jGEhqoohsboJ5e04Q==" ## AES Base-64 Encryption key
-const GATEWAY_URI: String = "https://newgrounds.io/gateway_v3.php"
+const GATEWAY_URI: String = "https://newgrounds.io/gateway_v3.php" ## URI to Newgrounds API gateway
 
-var user: UserData
+## Data resources
+var session_data: NGSessionData 
+var user_data: NGUserData
+var user_icon_data: NGUserIconsData
 var api_request: HTTPRequest
+
+var continue_session_check: bool = true
 
 @onready var log : LogStream = LogStream.new("Newgrounds", Log.current_log_level)
 
-enum SessionState {OFFLINE, INVALID, AUTHENTICATING, VALID}
-signal is_offline
-signal is_invalid
-signal is_authenticating
-signal is_valid
-
-var is_active_ng_browser_session : bool = false
-var current_session_state : SessionState = SessionState.INVALID
-var session_id : String = ""
-var logged_in : bool = false
-var passport_url : String = ""
-
-func change_session_state(new_session_state: SessionState) -> void:
-	is_active_ng_browser_session = true if get_session_id_from_url().is_empty() else false
-	log.info("Session state changed from '" + str(current_session_state) + "' to " + str(new_session_state) + ". is_active_ng_browser_session: " + str(is_active_ng_browser_session))
-	current_session_state = new_session_state
-	match current_session_state:
-		SessionState.OFFLINE:
-			logged_in = false
-			is_offline.emit()
-			log.info("Session is now offline.")
-		SessionState.INVALID:
-			logged_in = false
-			is_invalid.emit()
-			log.info("Session is now invalid. Revalidating...")
-			if is_active_ng_browser_session:
-				session_id = str(JavaScriptBridge.eval(
-				'var urlParams = new URLSearchParams(window.location.search);' +
-				'urlParams.get("ngio_session_id");', true))
-				if not session_id.is_empty():
-					change_session_state(SessionState.AUTHENTICATING)
-				else:
-					log.error("Session ID is empty. is_active_ng_browser_session: " + str(is_active_ng_browser_session))
-					return
-			else:
-				request("App.startSession", {"force": false}, Callable(self, "_on_start_session"))
-		SessionState.AUTHENTICATING:
-			logged_in = false
-			is_authenticating.emit()
-			if session_id.is_empty():
-				log.error("Session ID is empty. is_active_ng_browser_session: " + str(is_active_ng_browser_session))
-			log.info("Session exists and is valid. Authenticating NG account...")
-			request("App.checkSession", {}, Callable(self, "_on_check_session"))
-		SessionState.VALID:
-			logged_in = true
-			is_valid.emit()
-			log.info("User session is valid!")
+func initialize() -> void:
+	log.info("Initializing Newgrounds.io session...")
+	request("App.startSession", {"force": true}, Callable(self, "_on_start_session"))
 
 func _on_start_session(results) -> void:
-	log.info("App.startSession results: " + str(results))
-	var result_data = results.get("result", {}).get("data", {})
-	var session_data = result_data.get("session", {})
+	var result_data: Dictionary = results.get("result", {}).get("data", {})
+	log.info("Successfully started Newgrounds.io session and stored response data")
+	_update_session_data(result_data)
+
+func _update_session_data(result_data: Dictionary) -> void:
+	var session_obj: Dictionary = result_data.get("session", {})
+	session_data = NGSessionData.new()
+	session_data.id = session_obj.get("id", "")
+	session_data.passport_url = session_obj.get("passport_url", "")
+	session_data.remember = session_obj.get("remember", false)
+	log.info("Saved App.startSession session data to resource: " + str(session_data))
 	
-	var new_session_id = session_data.get("id", "")
-	if new_session_id and not new_session_id.is_empty():
-		session_id = new_session_id
-		change_session_state(SessionState.AUTHENTICATING)
-	
-	var user = result_data.get("user", null)
-	var logged_in = user != null
-	
-	if not logged_in:
-		log.info("User not logged in. Sending passport URL.")
+	if "user" in session_obj and session_obj["user"]:
+		log.info("User already logged in. Getting user data... ")
+		_get_user_data(session_obj)
+	else:
+		log.info("User not logged in. Starting authentification process...")
+		_handle_user_login(session_obj)
 		
-		var new_passport_url : String = session_data.get("passport_url", "")
-		if new_passport_url and not new_passport_url.is_empty():
-			passport_url = new_passport_url
-			OS.shell_open(passport_url)
-			
-		log.info("Passport URL: " + str(passport_url))
-		do_login.emit(_on_login)
-		_wait_for_login()
+func _handle_user_login(session_obj: Dictionary) -> void:
+	var passport_url: String = session_obj.get("passport_url", "")
+	if not passport_url.is_empty():
+		log.info("Redirecting user to passport URL at: " + str(passport_url))
+		OS.shell_open(passport_url)
 	else:
-		change_session_state(SessionState.AUTHENTICATING)
-		log.info("Already logged in: ")
+		log.error("Passport URL was empty when handling user login.")
 
-func _on_check_session(results) -> void:
-	log.info("App.checkSession results: " + str(results))
-	var result_data = results.get("result", {}).get("data", {})
-	var session_data = result_data.get("session", {})
-	
-	var new_session_id = session_data.get("id", "")
-	if new_session_id and not new_session_id.is_empty():
-		session_id = new_session_id
-	
-	var user = result_data.get("user", null)
-	var logged_in = user != null
+	_start_session_check_timer()
 
-func _wait_for_login() -> void:
-	if not logged_in and current_session_state == SessionState.AUTHENTICATING:
+func _start_session_check_timer() -> void:
+	if continue_session_check:
 		await get_tree().create_timer(5.0).timeout
-		request("App.checkSession", {}, Callable(self, "_on_session_checked"))
+		_on_check_session_timer_timeout()
+
+func _on_check_session_timer_timeout() -> void:
+	request("App.checkSession", {}, Callable(self, "_on_check_session"))
+	_start_session_check_timer()
+
+func _on_check_session(results: Dictionary) -> void:
+	var result_data: Dictionary = results.get("result", {}).get("data", {})
+	var session_obj: Dictionary = result_data.get("session", {})
+
+	if "user" in session_obj and session_obj["user"]:
+		_get_user_data(session_obj)
+		continue_session_check = false
+
+		if session_data.remember:
+			# Handle 'remember' logic here
+			pass
+		log.info("User data successfully parsed from session! Finalizing authentification...")
 	else:
-		_on_login()
+		log.info("Could not parse valid user data from current Newgrounds session. Retrying in 5s...")
 
+func _get_user_data(session_obj: Dictionary) -> void:
+	## Update user resource with the data received
+	var user: Dictionary = session_obj.get("user", null)
+	user_data = NGUserData.new()
+	user_data.id = user.get("id", 0)
+	user_data.name = user.get("name", "")
+	user_data.supporter = user.get("supporter", false)
+	log.info("Saved App.startSession user data to resource: " + str(user_data))
 
-## I want to call request("App.checkSession") every 5 seconds as per the Newgrounds docs:
-## "While you user is logging in, make a call to App.checkSession every 5 seconds or so
-## (hitting the API too fast could trigger our DDOS protection and block your app).
-## If they complete their login, you will eventually get a valid 'user' object in the session
-## result. If they cancel the login, you will get an error in the return. Either way,
-## you will know they have completed some action from the browser window you sent them to.
-func _keep_auth_alive():
-	while current_session_state == SessionState.AUTHENTICATING:
-		await get_tree().create_timer(5.0).timeout
-		request("App.checkSession", {}, Callable(self, "_on_keepalive"))
-
-func _on_keepalive(results) -> void:
-	var result_data = results.get("result", {}).get("data", {})
-	var user = result_data.get("user", null)
-	if user != null:
-		Log.info("SUCCESS!!")
-	
-	
-	
-
-func _on_login() -> void:
-	log.info("User logged in!")
-	change_session_state(SessionState.VALID)
-
-func _check_session() -> void:
-	request("App.checkSession", {}, Callable(self, "_on_session_checked"))
-
-func _on_session_checked(results) -> void:
-	pass
-	#log.info("App.checkSession results: " + str(results))
+	## Initialize and update user icons resource if available
+	var icons: Dictionary = user.get("icons", {})
+	user_icon_data = NGUserIconsData.new()
+	user_icon_data.small = icons.get("large", "")
+	user_icon_data.display_name = icons.get("medium", "")
+	user_icon_data.is_supporter = icons.get("small", "")
+	user_data.icons = user_icon_data
+	log.info("Saved App.startSession user icon data to resource: " + str(user_icon_data))
 
 func request(component: String, parameters: Dictionary, callable: Callable = Callable(), on_load_function: Variant = null) -> void:
-	#log.info("Requesting component: " + str(component) + " with parameters: " + str(parameters))
-	
-	## Initialize API request
+	log.debug("Requesting component: {component} with parameters: {parameters}".format({"component": component, "parameters": JSON.stringify(parameters)}))
+
 	var api_request: HTTPRequest = HTTPRequest.new()
 	add_child(api_request)
-	
-	## Append callable functionality
-	if callable and not on_load_function:
-		api_request.request_completed.connect(_request_completed.bind(callable))
-	if callable and on_load_function:
-		api_request.request_completed.connect(_request_completed.bind(callable, on_load_function))
-	
-	## Set up API call parameters
-	var call_parameters = {
-			"component": component,
-			"parameters": parameters,
-		}
-		
-	## Encrypt API call parameters and construct final call parameters
+
+	if callable:
+		if on_load_function:
+			api_request.request_completed.connect(_on_request_completed.bind(callable, on_load_function))
+		else:
+			api_request.request_completed.connect(_on_request_completed.bind(callable))
+
+	var call_parameters: Dictionary = {"component": component, "parameters": parameters}
+	log.debug("Raw call parameters: {params}".format({"params": JSON.stringify(call_parameters)}))
+
 	var encrypted_call_parameters: String = encrypt_data(JSON.stringify(call_parameters), AES_KEY)
-	var input_parameters : Dictionary = {}
-	
-	if current_session_state != SessionState.VALID:
-		input_parameters = _unvalidated_input_parameters(encrypted_call_parameters) ## If the user cannot provide user ID
-	else:
-		input_parameters = _validated_input_parameters(encrypted_call_parameters) ## If the user can provide user ID
- 
-	## Construct and push finalized request payload
-	api_request.request(
-		GATEWAY_URI,
-		["Content-Type: application/x-www-form-urlencoded"],
-		HTTPClient.METHOD_POST,
-		"input=" + JSON.stringify(input_parameters).uri_encode()
-	)
+	var input_parameters: Dictionary = _prepare_input_parameters(encrypted_call_parameters)
 
-func _validated_input_parameters(parameters: String) -> Dictionary:
-	return {
-		"app_id": APP_ID,
-		"session_id": session_id,
-		"call": {
-			"secure": str(parameters),
-		}
-	}
+	var request_data: String = "input=" + JSON.stringify(input_parameters).uri_encode()
+	log.debug("Sending request payload: {request_data}".format({"request_data": request_data}))
 
-func _unvalidated_input_parameters(parameters: String) -> Dictionary:
-	return {
+	var error: int = api_request.request(GATEWAY_URI, ["Content-Type: application/x-www-form-urlencoded"], HTTPClient.METHOD_POST, request_data)
+	if error != OK:
+		log.error("HTTPRequest setup failed with error: {error}".format({"error": str(error)}))
+		api_request.queue_free()
+		return
+
+	log.debug("HTTPRequest started for component: {component}".format({"component": component}))
+
+func _prepare_input_parameters(encrypted_parameters: String) -> Dictionary:
+	## Includes the session ID from the session_data resource if it's available
+	var input_params: Dictionary = {
 		"app_id": APP_ID,
 		"call": {
-			"secure": str(parameters),
+			"secure": encrypted_parameters
 		}
 	}
+	if session_data and session_data.id != "":
+		input_params["session_id"] = session_data.id
+	return input_params
 
-func _request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, callable: Callable, on_load_function: Variant = null) -> void:
-	log.debug("Request completed. Result: '" + str(result) + "', code: '" + str(response_code) + "', headers: '" + str(headers) + ".")
-	if on_load_function:
-		callable.call(JSON.parse_string(body.get_string_from_ascii()), on_load_function)
+func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, callable: Callable, on_load_function: Variant = null) -> void:
+	log.debug("Request completed. Result: {result}, code: {response_code}".format({"result": str(result), "response_code": str(response_code)}))
+	if response_code != 200:
+		log.error("HTTP Request failed with code: {response_code}".format({"response_code": str(response_code)}))
+		return
+
+	var json = JSON.new()
+	var error = json.parse(body.get_string_from_utf8())
+	if error == OK:
+		var response_data: Dictionary = json.data
+		log.debug("Response parsed: {response_data}".format({"response_data": JSON.stringify(response_data)}))
+		if typeof(response_data) == TYPE_DICTIONARY:
+			if "error" in response_data:
+				var error_data = response_data["error"]
+				var error_code = error_data.get("code", "Unknown code")
+				var error_message = error_data.get("message", "No error message")
+				log.warn("Error Code: {code}, Error Message: {message}".format({"code": str(error_code), "message": error_message}))
+			
+			if callable:
+				if on_load_function:
+					callable.call(response_data, on_load_function)
+				else:
+					callable.call(response_data)
+		else:
+			log.error("Unexpected data type in JSON response")
 	else:
-		callable.call(JSON.parse_string(body.get_string_from_ascii()))
+		log.error("JSON Parse Error: {error_message} in {body} at line {error_line}".format({"error_message": json.get_error_message(), "body": body.get_string_from_utf8(), "error_line": str(json.get_error_line())}))
+

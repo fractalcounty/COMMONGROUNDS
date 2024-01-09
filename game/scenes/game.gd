@@ -78,11 +78,10 @@ func _on_main_menu_enter() -> void:
 func _load_ng_auth() -> void:
 	if not Global.SKIP_NG_AUTH:
 		loading_screen.set_text("CONNECTING TO NEWGROUNDS...")
-		log.debug("Awaiting Newgrounds auth request...")
-		Newgrounds.change_session_state(Newgrounds.SessionState.INVALID)
-		await Newgrounds.is_authenticating
-		loading_screen.set_text("AUTHORIZING WITH NEWGROUNDS...")
-		await Newgrounds.is_valid
+		Newgrounds.initialize()
+		await Newgrounds.initialized
+		#loading_screen.set_text("AUTHORIZING WITH NEWGROUNDS...")
+		#await Newgrounds.is_valid
 		load_overworld()
 	else:
 		log.debug("Skipping Newgrounds authentification...")
