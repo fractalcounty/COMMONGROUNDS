@@ -25,3 +25,5 @@ res://scenes/interface/NGAuth.tscn
 res://scenes/interface/loading_screen/AuthScreen.tscn
 res://src/Newgrounds.gd
 res://src/api/ng_utils.gd
+res://src/Global.gd
+res://scenes/world/chasing_baby.gd

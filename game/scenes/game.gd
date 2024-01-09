@@ -93,7 +93,8 @@ func load_overworld() -> void:
 
 func _on_overworld_loaded(loaded_scene: Node2D) -> void:
 	if Global.splash != null:
-		Global.splash.queue_free()
+		pass
+		#Global.splash.queue_free()
 	if not Global.SKIP_MENU:
 		Global.main_menu.queue_free()
 		Global.main_menu.play()
