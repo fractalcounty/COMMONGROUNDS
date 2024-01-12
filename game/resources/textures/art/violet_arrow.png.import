@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1da4a2w5xfjo"
-path="res://.godot/imported/violet_arrow.png-c4fe48acb883bab9da20f5ada2fde7b2.ctex"
+path="res://godot/imported/violet_arrow.png-c4fe48acb883bab9da20f5ada2fde7b2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/art/violet_arrow.png"
-dest_files=["res://.godot/imported/violet_arrow.png-c4fe48acb883bab9da20f5ada2fde7b2.ctex"]
+dest_files=["res://godot/imported/violet_arrow.png-c4fe48acb883bab9da20f5ada2fde7b2.ctex"]
 
 [params]
 

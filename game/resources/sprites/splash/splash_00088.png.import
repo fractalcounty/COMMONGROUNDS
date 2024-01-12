@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d20fl6kjry8lf"
-path="res://.godot/imported/splash_00088.png-00d5bf6c2198c16a162f91a1b61a0116.ctex"
+path="res://godot/imported/splash_00088.png-00d5bf6c2198c16a162f91a1b61a0116.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/sprites/splash/splash_00088.png"
-dest_files=["res://.godot/imported/splash_00088.png-00d5bf6c2198c16a162f91a1b61a0116.ctex"]
+dest_files=["res://godot/imported/splash_00088.png-00d5bf6c2198c16a162f91a1b61a0116.ctex"]
 
 [params]
 

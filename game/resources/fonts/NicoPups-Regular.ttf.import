@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cxeoejccl7npv"
-path="res://.godot/imported/NicoPups-Regular.ttf-86877af61596c12f89bc74cc3dfb1a40.fontdata"
+path="res://godot/imported/NicoPups-Regular.ttf-86877af61596c12f89bc74cc3dfb1a40.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/NicoPups-Regular.ttf"
-dest_files=["res://.godot/imported/NicoPups-Regular.ttf-86877af61596c12f89bc74cc3dfb1a40.fontdata"]
+dest_files=["res://godot/imported/NicoPups-Regular.ttf-86877af61596c12f89bc74cc3dfb1a40.fontdata"]
 
 [params]
 

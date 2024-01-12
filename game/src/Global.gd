@@ -8,12 +8,6 @@ extends Node
 signal error_shown(message:String)
 signal error_freed(message:String)
 var error_blocking : bool = false
-
-## Launch parameter defaults
-const SKIP_SPLASH : bool = false
-const SKIP_NG_AUTH : bool = true
-const SKIP_MENU : bool = true
-const LOG_LEVEL : Log.LogLevel = Log.LogLevel.DEFAULT ## Global log visibility filter override. Default does nothing.
 	
 ## Scene instance references
 # Interface nodes

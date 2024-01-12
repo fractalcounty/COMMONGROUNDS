@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://80f5vdk0lhte"
-path="res://.godot/imported/MS Sans Serif.ttf-52d79eeecc26dbb27f4b4bb22d7f06d1.fontdata"
+path="res://godot/imported/MS Sans Serif.ttf-52d79eeecc26dbb27f4b4bb22d7f06d1.fontdata"
 
 [deps]
 
 source_file="res://resources/styles/windows_95_theme/MS Sans Serif.ttf"
-dest_files=["res://.godot/imported/MS Sans Serif.ttf-52d79eeecc26dbb27f4b4bb22d7f06d1.fontdata"]
+dest_files=["res://godot/imported/MS Sans Serif.ttf-52d79eeecc26dbb27f4b4bb22d7f06d1.fontdata"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh3bs3oabejnr"
-path="res://.godot/imported/half_shield.png-5fb0ed76b66807a99987dc35e2319bd8.ctex"
+path="res://godot/imported/half_shield.png-5fb0ed76b66807a99987dc35e2319bd8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/gui/half_shield.png"
-dest_files=["res://.godot/imported/half_shield.png-5fb0ed76b66807a99987dc35e2319bd8.ctex"]
+dest_files=["res://godot/imported/half_shield.png-5fb0ed76b66807a99987dc35e2319bd8.ctex"]
 
 [params]
 

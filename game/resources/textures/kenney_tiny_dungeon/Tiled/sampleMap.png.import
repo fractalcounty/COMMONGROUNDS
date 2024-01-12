@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvkcrmo1lawix"
-path="res://.godot/imported/sampleMap.png-d906919ccc2f8e075161291946a85537.ctex"
+path="res://godot/imported/sampleMap.png-d906919ccc2f8e075161291946a85537.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/kenney_tiny_dungeon/Tiled/sampleMap.png"
-dest_files=["res://.godot/imported/sampleMap.png-d906919ccc2f8e075161291946a85537.ctex"]
+dest_files=["res://godot/imported/sampleMap.png-d906919ccc2f8e075161291946a85537.ctex"]
 
 [params]
 

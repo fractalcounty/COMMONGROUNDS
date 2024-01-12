@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://calo4jv7nj2ir"
-path="res://.godot/imported/box.png-f6e93a4b6f20c64fc44a5599c4956dc2.ctex"
+path="res://godot/imported/box.png-f6e93a4b6f20c64fc44a5599c4956dc2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/gui/box.png"
-dest_files=["res://.godot/imported/box.png-f6e93a4b6f20c64fc44a5599c4956dc2.ctex"]
+dest_files=["res://godot/imported/box.png-f6e93a4b6f20c64fc44a5599c4956dc2.ctex"]
 
 [params]
 

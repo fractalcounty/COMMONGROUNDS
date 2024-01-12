@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2q3efkhih5tc"
-path="res://.godot/imported/baby.png-e312d65544e0dad49c2faca6f2aad6b2.ctex"
+path="res://godot/imported/baby.png-e312d65544e0dad49c2faca6f2aad6b2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/baby.png"
-dest_files=["res://.godot/imported/baby.png-e312d65544e0dad49c2faca6f2aad6b2.ctex"]
+dest_files=["res://godot/imported/baby.png-e312d65544e0dad49c2faca6f2aad6b2.ctex"]
 
 [params]
 

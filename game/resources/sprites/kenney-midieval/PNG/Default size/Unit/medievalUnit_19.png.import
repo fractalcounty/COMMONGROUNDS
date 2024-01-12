@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgj0h86fwdb6y"
-path="res://.godot/imported/medievalUnit_19.png-81ef8b98f1f60c730177aa0f704dcee7.ctex"
+path="res://godot/imported/medievalUnit_19.png-81ef8b98f1f60c730177aa0f704dcee7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/sprites/kenney-midieval/PNG/Default size/Unit/medievalUnit_19.png"
-dest_files=["res://.godot/imported/medievalUnit_19.png-81ef8b98f1f60c730177aa0f704dcee7.ctex"]
+dest_files=["res://godot/imported/medievalUnit_19.png-81ef8b98f1f60c730177aa0f704dcee7.ctex"]
 
 [params]
 

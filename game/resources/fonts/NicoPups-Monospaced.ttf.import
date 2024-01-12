@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cob6svl457iux"
-path="res://.godot/imported/NicoPups-Monospaced.ttf-3bf9dad493c93a820b8ab14104068923.fontdata"
+path="res://godot/imported/NicoPups-Monospaced.ttf-3bf9dad493c93a820b8ab14104068923.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/NicoPups-Monospaced.ttf"
-dest_files=["res://.godot/imported/NicoPups-Monospaced.ttf-3bf9dad493c93a820b8ab14104068923.fontdata"]
+dest_files=["res://godot/imported/NicoPups-Monospaced.ttf-3bf9dad493c93a820b8ab14104068923.fontdata"]
 
 [params]
 

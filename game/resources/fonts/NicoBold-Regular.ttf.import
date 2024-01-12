@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://ca64obgv8xmln"
-path="res://.godot/imported/NicoBold-Regular.ttf-0e3ee716a284ead3fe5403b9f0f63600.fontdata"
+path="res://godot/imported/NicoBold-Regular.ttf-0e3ee716a284ead3fe5403b9f0f63600.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/NicoBold-Regular.ttf"
-dest_files=["res://.godot/imported/NicoBold-Regular.ttf-0e3ee716a284ead3fe5403b9f0f63600.fontdata"]
+dest_files=["res://godot/imported/NicoBold-Regular.ttf-0e3ee716a284ead3fe5403b9f0f63600.fontdata"]
 
 [params]
 

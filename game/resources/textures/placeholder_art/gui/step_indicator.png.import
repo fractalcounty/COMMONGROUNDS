@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cln8y056v843u"
-path="res://.godot/imported/step_indicator.png-333a789037f076460b78670c73d10db4.ctex"
+path="res://godot/imported/step_indicator.png-333a789037f076460b78670c73d10db4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/gui/step_indicator.png"
-dest_files=["res://.godot/imported/step_indicator.png-333a789037f076460b78670c73d10db4.ctex"]
+dest_files=["res://godot/imported/step_indicator.png-333a789037f076460b78670c73d10db4.ctex"]
 
 [params]
 

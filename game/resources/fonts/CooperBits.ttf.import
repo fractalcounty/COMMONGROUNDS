@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://d062jumbgh276"
-path="res://.godot/imported/CooperBits.ttf-1508ecd190c6ca24e4213ec3c50fd16f.fontdata"
+path="res://godot/imported/CooperBits.ttf-1508ecd190c6ca24e4213ec3c50fd16f.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/CooperBits.ttf"
-dest_files=["res://.godot/imported/CooperBits.ttf-1508ecd190c6ca24e4213ec3c50fd16f.fontdata"]
+dest_files=["res://godot/imported/CooperBits.ttf-1508ecd190c6ca24e4213ec3c50fd16f.fontdata"]
 
 [params]
 

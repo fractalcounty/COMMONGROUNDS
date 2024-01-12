@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvq552sl2xipa"
-path="res://.godot/imported/up_door_closed.png-893ead9272ca91561eeb3b574b078fbd.ctex"
+path="res://godot/imported/up_door_closed.png-893ead9272ca91561eeb3b574b078fbd.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/doors/up_door_closed.png"
-dest_files=["res://.godot/imported/up_door_closed.png-893ead9272ca91561eeb3b574b078fbd.ctex"]
+dest_files=["res://godot/imported/up_door_closed.png-893ead9272ca91561eeb3b574b078fbd.ctex"]
 
 [params]
 

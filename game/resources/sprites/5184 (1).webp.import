@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7drcgb7wq7k"
-path="res://.godot/imported/5184 (1).webp-205207aed76d52d21cb964e8b3bef6bd.ctex"
+path="res://godot/imported/5184 (1).webp-205207aed76d52d21cb964e8b3bef6bd.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/sprites/5184 (1).webp"
-dest_files=["res://.godot/imported/5184 (1).webp-205207aed76d52d21cb964e8b3bef6bd.ctex"]
+dest_files=["res://godot/imported/5184 (1).webp-205207aed76d52d21cb964e8b3bef6bd.ctex"]
 
 [params]
 

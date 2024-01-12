@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dehbf40xwkfot"
-path="res://.godot/imported/rolus_sit_3.png-087afa12d988b758db7b0a277d09dd36.ctex"
+path="res://godot/imported/rolus_sit_3.png-087afa12d988b758db7b0a277d09dd36.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/sprites/rolus_sprites/rolus_sit_3.png"
-dest_files=["res://.godot/imported/rolus_sit_3.png-087afa12d988b758db7b0a277d09dd36.ctex"]
+dest_files=["res://godot/imported/rolus_sit_3.png-087afa12d988b758db7b0a277d09dd36.ctex"]
 
 [params]
 

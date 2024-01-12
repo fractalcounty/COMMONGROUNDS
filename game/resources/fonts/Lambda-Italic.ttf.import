@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bov6dnfpmlmer"
-path="res://.godot/imported/Lambda-Italic.ttf-dbe5e2e7e8af512627ad0dff556f94b0.fontdata"
+path="res://godot/imported/Lambda-Italic.ttf-dbe5e2e7e8af512627ad0dff556f94b0.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/Lambda-Italic.ttf"
-dest_files=["res://.godot/imported/Lambda-Italic.ttf-dbe5e2e7e8af512627ad0dff556f94b0.fontdata"]
+dest_files=["res://godot/imported/Lambda-Italic.ttf-dbe5e2e7e8af512627ad0dff556f94b0.fontdata"]
 
 [params]
 

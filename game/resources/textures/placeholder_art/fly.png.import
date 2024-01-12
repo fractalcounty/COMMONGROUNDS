@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cel6jcx5ndl3t"
-path="res://.godot/imported/fly.png-5f94478e07a8af495fd85b2f7a6619fc.ctex"
+path="res://godot/imported/fly.png-5f94478e07a8af495fd85b2f7a6619fc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/fly.png"
-dest_files=["res://.godot/imported/fly.png-5f94478e07a8af495fd85b2f7a6619fc.ctex"]
+dest_files=["res://godot/imported/fly.png-5f94478e07a8af495fd85b2f7a6619fc.ctex"]
 
 [params]
 

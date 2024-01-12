@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cilkpm33sxk4c"
-path="res://.godot/imported/switch15.wav-cc184a68c5abadb735c065ca3829a9b1.sample"
+path="res://godot/imported/switch15.wav-cc184a68c5abadb735c065ca3829a9b1.sample"
 
 [deps]
 
 source_file="res://resources/audio/interface/switch15.wav"
-dest_files=["res://.godot/imported/switch15.wav-cc184a68c5abadb735c065ca3829a9b1.sample"]
+dest_files=["res://godot/imported/switch15.wav-cc184a68c5abadb735c065ca3829a9b1.sample"]
 
 [params]
 

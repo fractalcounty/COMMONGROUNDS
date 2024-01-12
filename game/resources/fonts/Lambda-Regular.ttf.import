@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://blnm5d6v5m2jn"
-path="res://.godot/imported/Lambda-Regular.ttf-bd65ce893ee37d23a423e4e09eee84f7.fontdata"
+path="res://godot/imported/Lambda-Regular.ttf-bd65ce893ee37d23a423e4e09eee84f7.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/Lambda-Regular.ttf"
-dest_files=["res://.godot/imported/Lambda-Regular.ttf-bd65ce893ee37d23a423e4e09eee84f7.fontdata"]
+dest_files=["res://godot/imported/Lambda-Regular.ttf-bd65ce893ee37d23a423e4e09eee84f7.fontdata"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvnv20q3err60"
-path="res://.godot/imported/down_door.png-316ce2b2a934c493f63dd3e89bef7227.ctex"
+path="res://godot/imported/down_door.png-316ce2b2a934c493f63dd3e89bef7227.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/doors/down_door.png"
-dest_files=["res://.godot/imported/down_door.png-316ce2b2a934c493f63dd3e89bef7227.ctex"]
+dest_files=["res://godot/imported/down_door.png-316ce2b2a934c493f63dd3e89bef7227.ctex"]
 
 [params]
 

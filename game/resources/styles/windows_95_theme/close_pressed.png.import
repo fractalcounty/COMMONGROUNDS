@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3ltxplgcdrom"
-path="res://.godot/imported/close_pressed.png-b74c563f650da6de65a61d4f381e1b4b.ctex"
+path="res://godot/imported/close_pressed.png-b74c563f650da6de65a61d4f381e1b4b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/styles/windows_95_theme/close_pressed.png"
-dest_files=["res://.godot/imported/close_pressed.png-b74c563f650da6de65a61d4f381e1b4b.ctex"]
+dest_files=["res://godot/imported/close_pressed.png-b74c563f650da6de65a61d4f381e1b4b.ctex"]
 
 [params]
 

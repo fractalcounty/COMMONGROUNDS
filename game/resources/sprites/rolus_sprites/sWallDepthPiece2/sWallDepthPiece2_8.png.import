@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbh5i6u7rqlrp"
-path="res://.godot/imported/sWallDepthPiece2_8.png-ae27278eb6e744454197693b49aa8ebb.ctex"
+path="res://godot/imported/sWallDepthPiece2_8.png-ae27278eb6e744454197693b49aa8ebb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/sprites/rolus_sprites/sWallDepthPiece2/sWallDepthPiece2_8.png"
-dest_files=["res://.godot/imported/sWallDepthPiece2_8.png-ae27278eb6e744454197693b49aa8ebb.ctex"]
+dest_files=["res://godot/imported/sWallDepthPiece2_8.png-ae27278eb6e744454197693b49aa8ebb.ctex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://btueusvgf1nla"
-path="res://.godot/imported/switch3.wav-3bd79a857ad2eb81f661451bc26bd955.sample"
+path="res://godot/imported/switch3.wav-3bd79a857ad2eb81f661451bc26bd955.sample"
 
 [deps]
 
 source_file="res://resources/audio/interface/switch3.wav"
-dest_files=["res://.godot/imported/switch3.wav-3bd79a857ad2eb81f661451bc26bd955.sample"]
+dest_files=["res://godot/imported/switch3.wav-3bd79a857ad2eb81f661451bc26bd955.sample"]
 
 [params]
 

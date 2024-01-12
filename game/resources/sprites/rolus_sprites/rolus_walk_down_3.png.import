@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://40al4reghvrf"
-path="res://.godot/imported/rolus_walk_down_3.png-de157e9c4bfcf4064633c611f156daa3.ctex"
+path="res://godot/imported/rolus_walk_down_3.png-de157e9c4bfcf4064633c611f156daa3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/sprites/rolus_sprites/rolus_walk_down_3.png"
-dest_files=["res://.godot/imported/rolus_walk_down_3.png-de157e9c4bfcf4064633c611f156daa3.ctex"]
+dest_files=["res://godot/imported/rolus_walk_down_3.png-de157e9c4bfcf4064633c611f156daa3.ctex"]
 
 [params]
 

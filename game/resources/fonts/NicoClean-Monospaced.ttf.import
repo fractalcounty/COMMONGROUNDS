@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cil8vk6id70ur"
-path="res://.godot/imported/NicoClean-Monospaced.ttf-ac6b051e9b6e8f2b28437aa1236d2cdd.fontdata"
+path="res://godot/imported/NicoClean-Monospaced.ttf-ac6b051e9b6e8f2b28437aa1236d2cdd.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/NicoClean-Monospaced.ttf"
-dest_files=["res://.godot/imported/NicoClean-Monospaced.ttf-ac6b051e9b6e8f2b28437aa1236d2cdd.fontdata"]
+dest_files=["res://godot/imported/NicoClean-Monospaced.ttf-ac6b051e9b6e8f2b28437aa1236d2cdd.fontdata"]
 
 [params]
 

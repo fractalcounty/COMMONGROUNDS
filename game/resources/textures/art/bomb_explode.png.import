@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj4btkemlr3xd"
-path="res://.godot/imported/bomb_explode.png-4814eb395d78f79a0984924df467cc2b.ctex"
+path="res://godot/imported/bomb_explode.png-4814eb395d78f79a0984924df467cc2b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/art/bomb_explode.png"
-dest_files=["res://.godot/imported/bomb_explode.png-4814eb395d78f79a0984924df467cc2b.ctex"]
+dest_files=["res://godot/imported/bomb_explode.png-4814eb395d78f79a0984924df467cc2b.ctex"]
 
 [params]
 

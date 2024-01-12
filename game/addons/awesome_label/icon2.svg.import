@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxj0xjyinyyw5"
-path="res://.godot/imported/icon2.svg-b0ec4ec19f2c32d379b8fc9bbecb5e1d.ctex"
+path="res://godot/imported/icon2.svg-b0ec4ec19f2c32d379b8fc9bbecb5e1d.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://addons/awesome_label/icon2.svg"
-dest_files=["res://.godot/imported/icon2.svg-b0ec4ec19f2c32d379b8fc9bbecb5e1d.ctex"]
+dest_files=["res://godot/imported/icon2.svg-b0ec4ec19f2c32d379b8fc9bbecb5e1d.ctex"]
 
 [params]
 

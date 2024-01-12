@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal main_menu_enter
 
-@onready var game : Node
+@onready var client : Node
 @onready var anim : AnimationPlayer = $MarginContainer4/Control/Label/AnimationPlayer
 @onready var quit_confirmation_dialog = $QuitConfirmationDialog
 var popup_visible : bool = false

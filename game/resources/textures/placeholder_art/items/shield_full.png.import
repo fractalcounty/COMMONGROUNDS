@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cne2ikn6dljo0"
-path="res://.godot/imported/shield_full.png-563b90591717f732c5e6a3541ed0ff70.ctex"
+path="res://godot/imported/shield_full.png-563b90591717f732c5e6a3541ed0ff70.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/items/shield_full.png"
-dest_files=["res://.godot/imported/shield_full.png-563b90591717f732c5e6a3541ed0ff70.ctex"]
+dest_files=["res://godot/imported/shield_full.png-563b90591717f732c5e6a3541ed0ff70.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1qqy6mymuyqq"
-path="res://.godot/imported/computer_explorer-1.png-7a14d999b102c98af5d3e7fade79ab12.ctex"
+path="res://godot/imported/computer_explorer-1.png-7a14d999b102c98af5d3e7fade79ab12.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/styles/windows_95_theme/computer_explorer-1.png"
-dest_files=["res://.godot/imported/computer_explorer-1.png-7a14d999b102c98af5d3e7fade79ab12.ctex"]
+dest_files=["res://godot/imported/computer_explorer-1.png-7a14d999b102c98af5d3e7fade79ab12.ctex"]
 
 [params]
 

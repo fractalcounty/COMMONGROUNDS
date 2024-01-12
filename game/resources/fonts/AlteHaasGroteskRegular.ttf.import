@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://drtafj4t1rlcy"
-path="res://.godot/imported/AlteHaasGroteskRegular.ttf-6ba20c9ac68bb5db801b67ee72156a5a.fontdata"
+path="res://godot/imported/AlteHaasGroteskRegular.ttf-6ba20c9ac68bb5db801b67ee72156a5a.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/AlteHaasGroteskRegular.ttf"
-dest_files=["res://.godot/imported/AlteHaasGroteskRegular.ttf-6ba20c9ac68bb5db801b67ee72156a5a.fontdata"]
+dest_files=["res://godot/imported/AlteHaasGroteskRegular.ttf-6ba20c9ac68bb5db801b67ee72156a5a.fontdata"]
 
 [params]
 

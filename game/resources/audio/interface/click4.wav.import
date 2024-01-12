@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cdhayqpagyvvi"
-path="res://.godot/imported/click4.wav-8b0777a549420e9a3e95cc96d6a379ed.sample"
+path="res://godot/imported/click4.wav-8b0777a549420e9a3e95cc96d6a379ed.sample"
 
 [deps]
 
 source_file="res://resources/audio/interface/click4.wav"
-dest_files=["res://.godot/imported/click4.wav-8b0777a549420e9a3e95cc96d6a379ed.sample"]
+dest_files=["res://godot/imported/click4.wav-8b0777a549420e9a3e95cc96d6a379ed.sample"]
 
 [params]
 

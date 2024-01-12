@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bi8tdixrxktn"
-path="res://.godot/imported/plackett-Regular.otf-73e09978c3bb5f3e6541aab020d02e6f.fontdata"
+path="res://godot/imported/plackett-Regular.otf-73e09978c3bb5f3e6541aab020d02e6f.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/plackett-Regular.otf"
-dest_files=["res://.godot/imported/plackett-Regular.otf-73e09978c3bb5f3e6541aab020d02e6f.fontdata"]
+dest_files=["res://godot/imported/plackett-Regular.otf-73e09978c3bb5f3e6541aab020d02e6f.fontdata"]
 
 [params]
 

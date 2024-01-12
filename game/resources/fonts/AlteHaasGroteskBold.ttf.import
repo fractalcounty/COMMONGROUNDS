@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cqw63mte3fp2c"
-path="res://.godot/imported/AlteHaasGroteskBold.ttf-5055c39a7a27b219c833910ff37592b7.fontdata"
+path="res://godot/imported/AlteHaasGroteskBold.ttf-5055c39a7a27b219c833910ff37592b7.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/AlteHaasGroteskBold.ttf"
-dest_files=["res://.godot/imported/AlteHaasGroteskBold.ttf-5055c39a7a27b219c833910ff37592b7.fontdata"]
+dest_files=["res://godot/imported/AlteHaasGroteskBold.ttf-5055c39a7a27b219c833910ff37592b7.fontdata"]
 
 [params]
 

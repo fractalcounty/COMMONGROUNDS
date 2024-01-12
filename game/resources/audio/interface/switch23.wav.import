@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://djki02grombvw"
-path="res://.godot/imported/switch23.wav-3736b914a6f22e5291c8e0d139535a2c.sample"
+path="res://godot/imported/switch23.wav-3736b914a6f22e5291c8e0d139535a2c.sample"
 
 [deps]
 
 source_file="res://resources/audio/interface/switch23.wav"
-dest_files=["res://.godot/imported/switch23.wav-3736b914a6f22e5291c8e0d139535a2c.sample"]
+dest_files=["res://godot/imported/switch23.wav-3736b914a6f22e5291c8e0d139535a2c.sample"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8ks2hdvoeg53"
-path="res://.godot/imported/cirle_particle.png-ada70253192397a14801c63e1cea9b09.ctex"
+path="res://godot/imported/cirle_particle.png-ada70253192397a14801c63e1cea9b09.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/cirle_particle.png"
-dest_files=["res://.godot/imported/cirle_particle.png-ada70253192397a14801c63e1cea9b09.ctex"]
+dest_files=["res://godot/imported/cirle_particle.png-ada70253192397a14801c63e1cea9b09.ctex"]
 
 [params]
 

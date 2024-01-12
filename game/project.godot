@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="COMMONGROUNDS"
-config/version="infdev1.0"
-run/main_scene="res://scenes/Game.tscn"
+config/version="0.2"
+run/main_scene="res://Client.tscn"
+config/use_hidden_project_data_directory=false
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -25,7 +27,7 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 TextTransitionSettings="*res://addons/awesome_label/text_transition_settings.gd"
 MouseManager="*res://src/MouseManager.tscn"
 Chat="*res://src/Chat.tscn"
-Newgrounds="*res://src/Newgrounds.gd"
+Newgrounds="*res://src/newgrounds/Newgrounds.gd"
 Log="*res://addons/logger/log.gd"
 Global="*res://src/Global.gd"
 
@@ -47,7 +49,7 @@ movie_writer/fps=120
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/awesome_label/plugin.cfg", "res://addons/camera_2d_plus/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/smoothing/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/camera_2d_plus/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/logger/plugin.cfg")
 
 [file_customization]
 
@@ -402,10 +404,3 @@ environment/defaults/default_clear_color=Color(0.262745, 0.262745, 0.262745, 1)
 anti_aliasing/quality/msaa_2d=1
 viewport/hdr_2d=true
 anti_aliasing/quality/use_debanding=true
-
-[shader_globals]
-
-ocean_pos={
-"type": "vec3",
-"value": Vector3(1, 1, 1)
-}

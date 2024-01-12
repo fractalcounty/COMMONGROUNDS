@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c3ad5r5nu2unx"
-path="res://.godot/imported/rollover6.wav-3462fc8e41048680c9f334426fae4077.sample"
+path="res://godot/imported/rollover6.wav-3462fc8e41048680c9f334426fae4077.sample"
 
 [deps]
 
 source_file="res://resources/audio/interface/rollover6.wav"
-dest_files=["res://.godot/imported/rollover6.wav-3462fc8e41048680c9f334426fae4077.sample"]
+dest_files=["res://godot/imported/rollover6.wav-3462fc8e41048680c9f334426fae4077.sample"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6t2g3b31ott0"
-path="res://.godot/imported/room_light.png-35f2502ecbf032b681799d8d4f497862.ctex"
+path="res://godot/imported/room_light.png-35f2502ecbf032b681799d8d4f497862.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/textures/placeholder_art/gui/room_light.png"
-dest_files=["res://.godot/imported/room_light.png-35f2502ecbf032b681799d8d4f497862.ctex"]
+dest_files=["res://godot/imported/room_light.png-35f2502ecbf032b681799d8d4f497862.ctex"]
 
 [params]
 

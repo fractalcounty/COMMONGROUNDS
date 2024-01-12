@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xeuh2k457n21"
-path="res://.godot/imported/radio_checked.png-dd7b5b5ff847eeefbe54b941541c65ec.ctex"
+path="res://godot/imported/radio_checked.png-dd7b5b5ff847eeefbe54b941541c65ec.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/styles/windows_95_theme/radio_checked.png"
-dest_files=["res://.godot/imported/radio_checked.png-dd7b5b5ff847eeefbe54b941541c65ec.ctex"]
+dest_files=["res://godot/imported/radio_checked.png-dd7b5b5ff847eeefbe54b941541c65ec.ctex"]
 
 [params]
 

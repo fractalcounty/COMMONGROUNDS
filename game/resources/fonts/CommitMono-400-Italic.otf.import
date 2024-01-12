@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://10qvvolyh8nx"
-path="res://.godot/imported/CommitMono-400-Italic.otf-bea6130cd0762c84d378687788f516e8.fontdata"
+path="res://godot/imported/CommitMono-400-Italic.otf-bea6130cd0762c84d378687788f516e8.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/CommitMono-400-Italic.otf"
-dest_files=["res://.godot/imported/CommitMono-400-Italic.otf-bea6130cd0762c84d378687788f516e8.fontdata"]
+dest_files=["res://godot/imported/CommitMono-400-Italic.otf-bea6130cd0762c84d378687788f516e8.fontdata"]
 
 [params]
 

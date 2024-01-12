@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://4vtydvqw0lh5"
-path="res://.godot/imported/Laughing Baby Bubbling Remix.wav-dd149b388a39effe3d18cd412ace7623.sample"
+path="res://godot/imported/Laughing Baby Bubbling Remix.wav-dd149b388a39effe3d18cd412ace7623.sample"
 
 [deps]
 
 source_file="res://resources/audio/Laughing Baby Bubbling Remix.wav"
-dest_files=["res://.godot/imported/Laughing Baby Bubbling Remix.wav-dd149b388a39effe3d18cd412ace7623.sample"]
+dest_files=["res://godot/imported/Laughing Baby Bubbling Remix.wav-dd149b388a39effe3d18cd412ace7623.sample"]
 
 [params]
 

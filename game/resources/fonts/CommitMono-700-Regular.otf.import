@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cr64yhe2gf0np"
-path="res://.godot/imported/CommitMono-700-Regular.otf-0fac2bc7ef5cb281458d6fdc4b7c71c4.fontdata"
+path="res://godot/imported/CommitMono-700-Regular.otf-0fac2bc7ef5cb281458d6fdc4b7c71c4.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/CommitMono-700-Regular.otf"
-dest_files=["res://.godot/imported/CommitMono-700-Regular.otf-0fac2bc7ef5cb281458d6fdc4b7c71c4.fontdata"]
+dest_files=["res://godot/imported/CommitMono-700-Regular.otf-0fac2bc7ef5cb281458d6fdc4b7c71c4.fontdata"]
 
 [params]
 

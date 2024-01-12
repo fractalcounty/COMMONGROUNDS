@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://f25tislcse3m"
-path="res://.godot/imported/Windows_95_panel10.png-4ab256286dc42f4639d7ae8b241a28c8.ctex"
+path="res://godot/imported/Windows_95_panel10.png-4ab256286dc42f4639d7ae8b241a28c8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/styles/windows_95_theme/Windows_95_panel10.png"
-dest_files=["res://.godot/imported/Windows_95_panel10.png-4ab256286dc42f4639d7ae8b241a28c8.ctex"]
+dest_files=["res://godot/imported/Windows_95_panel10.png-4ab256286dc42f4639d7ae8b241a28c8.ctex"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://tkbtd6amhry5"
-path="res://.godot/imported/Jokerman.ttf-3a6399c3b2366907087ffcc78cc21ba9.fontdata"
+path="res://godot/imported/Jokerman.ttf-3a6399c3b2366907087ffcc78cc21ba9.fontdata"
 
 [deps]
 
 source_file="res://resources/fonts/Jokerman.ttf"
-dest_files=["res://.godot/imported/Jokerman.ttf-3a6399c3b2366907087ffcc78cc21ba9.fontdata"]
+dest_files=["res://godot/imported/Jokerman.ttf-3a6399c3b2366907087ffcc78cc21ba9.fontdata"]
 
 [params]
 

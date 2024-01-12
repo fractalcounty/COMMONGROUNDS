@@ -231,3 +231,4 @@ func _get_external_log_level()->LogLevel:
 	else:
 		warn("The variable log-level is set to an illegal type, defaulting to info")
 		return LogLevel.INFO
+
