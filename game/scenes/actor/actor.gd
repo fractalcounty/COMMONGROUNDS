@@ -3,15 +3,20 @@ class_name Actor
 
 @export var speed : float = 100
 @export var acceleration : float = 10
-@export var username : String = 'cheeseburger69'
 @onready var collision : CollisionShape2D = $CollisionShape2D
 
 @onready var visual : ActorVisualComponent = $VisualComponent
+@onready var username : String = "username"
 
 func _ready() -> void:
+	Global.username_avaliable.connect(_username_avaliable)
 	Global.player = self
-	Chat.username = username
 	Chat.actor = self
+
+func _username_avaliable(_username: String) -> void:
+	Chat.username = _username
+	username = _username
+	visual.set_name_tag_text(username)
 
 func _input(event: InputEvent) -> void:
 	if not Chat.focused:

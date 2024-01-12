@@ -221,7 +221,7 @@ func flash(color: Color = Color.WHITE, duration: float = 0.5, hold: float = 0.0)
 	if (not ENABLE_CAMERA_FLASHING): # Checking if the camera flashes are disabled.
 		return # Stopping the function here if so.
 		
-	## Updating the FlashRect settings.
+	## Updating the FlashRect config.
 	flash_rect.color = color # Updating the FlashRect color.
 	
 	## Waiting before tweening the FlashRect back to transparent.

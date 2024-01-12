@@ -2,7 +2,7 @@
 
 shader_type canvas_item;
 
-// User settings
+// User config
 #define ANTIALIAS 0
 #define ANIMATE_CAM 1
 #define DISTORT_WATER 1

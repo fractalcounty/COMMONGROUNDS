@@ -5,11 +5,16 @@ extends Node
 ## objects and instances, debugging options, and 
 ## global variables that need to be accessible 
 
+signal client_config_file_ready(config_file: ConfigFile)
 signal error_shown(message:String)
 signal error_freed(message:String)
+signal username_avaliable(username:String)
 var error_blocking : bool = false
-	
+
 ## Scene instance references
+@onready var client : Node = null
+@onready var config : Node = null
+
 # Interface nodes
 @onready var splash : Node = null
 @onready var ng_auth : Node = null

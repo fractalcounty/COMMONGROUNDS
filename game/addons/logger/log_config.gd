@@ -1,6 +1,6 @@
 extends Node
 
-class_name Config
+class_name LogConfig
 
 static func get_arguments() -> Dictionary:
 	var arguments = {}

@@ -1,132 +1,134 @@
-extends Object
+@icon("res://resources/textures/icons/Config.svg")
+extends Node
 class_name ClientConfig
-## An all-purpose settings script that handles the
-## loading, unloading, and saving of a settings.cfg.
+## An all-purpose config script that handles the
+## loading, unloading, and saving of a config.cfg.
 ##
-## If a settings.cfg file does not exist, this script
-## creates one using default project settings.
-## Use _default_settings() to define new defaults.
+## If a config.cfg file does not exist, this script
+## creates one using default project config below.
 
-static var config : ConfigFile = ConfigFile.new()
-static var settings_path : String = "user://settings.cfg"
-static var data_persistence_error_message : String = "User file system is not persistent. Data will not be saved correctly."
+var config_file : ConfigFile
+var config_path : String = "user://config.cfg"
+var data_persistence_error : String = "User file system is not persistent. Data will not be saved or loaded correctly."
 
-## Dictionary of default settings using lambdas.
-## Each setting is represented by a key-value pair, where the
-## key is the setting path and the value is a lambda function that returns the default value
-static var _default_settings : Dictionary = {
-	"Video/resolution_w": func() -> int: return ProjectSettings.get_setting("display/window/size/viewport_width"),
-	"Video/resolution_h": func() -> int: return ProjectSettings.get_setting("display/window/size/viewport_height"),
-	"Video/vsync": func() -> int: return ProjectSettings.get_setting("display/window/vsync/vsync_mode"),
-	"Video/window_mode": func() -> int: return ProjectSettings.get_setting("display/window/size/mode"),
-	"Video/max_fps": func() -> int: return ProjectSettings.get_setting("application/run/max_fps"),
-	"Audio/master_volume": func() -> float: return AudioServer.get_bus_volume_db(0),
-	"Audio/sfx_volume": func() -> float: return AudioServer.get_bus_volume_db(1),
-	"Audio/music_volume": func() -> float: return AudioServer.get_bus_volume_db(2),
-	"Application/skip_splash_screen": func() -> bool: return ProjectSettings.get_setting("application/run/skip_splash_screen"),
-	"Application/debug_mode": func() -> bool: return ProjectSettings.get_setting("application/run/debug_mode")
+var default_config : Dictionary = {
+	"Application": {
+		"debug_mode": false,
+		"skip_splash_screen": false
+	},
+	"Video": {
+		"max_fps": 0,
+		"resolution": Vector2i(1920, 1080),
+		"vsync_mode": 1,
+		"window_mode": 0
+	},
+	"Audio": {
+		"master_volume": 1.0,
+		"music_volume": 1.0,
+		"sfx_volume": 1.0
+	}
 }
 
-func _init() -> void:
-	load_settings()
 
-static func to_dict() -> Dictionary:
-		var dict = {}
-		for section in config.get_sections():
+func _init() -> void:
+	config_file = ConfigFile.new()
+	_load()
+
+func _ready() -> void:
+	Global.config = self
+	
+## Saves the current config to the configuration file.
+## Saves any changes to the current ConfigFile onto the disk.
+## Returns an Error indicating the success or failure of the operation.
+func save() -> Error:
+	Log.err_cond_false(OS.is_userfs_persistent(), data_persistence_error)
+	var err : Error = config_file.save(config_path)
+	Log.err_cond_not_ok(err, "Error saving config to: " + config_path + ".")
+	return err
+
+## Updates a specific entry in the configuration file in memory.
+## Run save() after making changes to actually save it to disk.
+## Returns an Error indicating the success or failure of the operation.
+func set_value(section: String, key: String, value: Variant) -> Error:
+	Log.err_cond_false(OS.is_userfs_persistent(), data_persistence_error)
+	config_file.set_value(section, key, value)
+	var err : Error = save()
+	Log.err_cond_not_ok(err, "Error updating config to: " + config_path + ".")
+	return err
+
+## Resets a specific setting to its default value in memory.
+## Run save() after making changes to actually save it to disk.
+## Returns an Error indicating the success or failure of the operation.
+func reset(section: String, key: String) -> Error:
+	var err : Error = ERR_DOES_NOT_EXIST
+	var default_value : Variant = _get_default_value(section, key)
+	if default_value != null:
+		config_file.set_value(section, key, default_value)
+		err = save()
+	Log.err_cond_not_ok(err, "Error resetting setting to default: " + key + " in  section " + section)
+	return err
+
+func is_debug_mode() -> bool:
+	# Check if the section and key exist in the config file
+	if config_file.has_section("Application") and config_file.has_section_key("Application", "debug_mode"):
+		# Retrieve and return the value of debug_mode
+		return config_file.get_value("Application", "debug_mode", false)
+	else:
+		# If the section/key does not exist, log an error and return a default value (false)
+		Log.warn("Debug mode setting not found in config. Returning default value: false.")
+		return false
+
+## Returns the entire current config .cfg file as a dictionary
+func to_dict() -> Dictionary:
+		var dict : Dictionary = {}
+		for section in config_file.get_sections():
 			dict[section] = {}
-			for key in config.get_section_keys(section):
-				dict[section][key] = config.get_value(section, key)
+			for key in config_file.get_section_keys(section):
+				dict[section][key] = config_file.get_value(section, key)
 		return dict
 
-static func to_text() -> String:
-	var encoded_settings : String = config.encode_to_text()
-	if encoded_settings.is_empty():
-		Log.err("Error on ConfigFile.to_text(): Encoded settings are empty.")
+## Returns the entire current config .cfg file as a text string
+func to_text() -> String:
+	var encoded_config : String = config_file.encode_to_text()
+	if encoded_config.is_empty():
+		Log.err("Error on ConfigFile.to_text(): Encoded config are empty.")
 		return ""
-	return encoded_settings
+	return encoded_config
 
-## Loads the client settings from the configuration file.
-## If the file fails to load, default values are used.
-## Returns an Error indicating the success or failure of the operation.
-static func load_settings() -> Error:
-	Log.err_cond_false(OS.is_userfs_persistent(), data_persistence_error_message)
-	_add_custom_project_setting("application/run/skip_splash_screen", false, TYPE_BOOL)
-	_add_custom_project_setting("application/run/debug_mode", false, TYPE_BOOL)
-	var err : Error = config.load(settings_path)
+func _get_default_value(section: String, key: String) -> Variant:
+	## Returns the default value for a given setting.
+	return null
+
+func _load() -> Error:
+	Log.err_cond_false(OS.is_userfs_persistent(), data_persistence_error)
+	
+	# Attempt to load the config file
+	var err : Error = config_file.load(config_path)
+	
+	#  Check if loading was successful
 	if err != OK:
-		Log.warn("Could not load settings from path: " + str(settings_path) + ". Reverting to default values.")
-		_create_settings_file_using_defaults()
+		Log.warn("ERR_FILE_CANT_OPEN: " + "Could not load config file from path: " + str(config_path) + ". Creating config.cfg with default values.")
+		call_deferred("_create_config_file_using_defaults")
 	else:
-		Log.info("Successfully loaded client settings from: " + settings_path)
-	return err
-
-## Saves the current settings to the configuration file.
-## Returns an Error indicating the success or failure of the operation.
-static func save_settings() -> Error:
-	Log.err_cond_false(OS.is_userfs_persistent(), data_persistence_error_message)
-	var err : Error = config.save(settings_path)
-	Log.err_cond_not_ok(err, "Error saving settings to: " + settings_path + ".")
-	return err
-
-## Updates a specific setting in the configuration file.
-## Returns an Error indicating the success or failure of the operation.
-static func update_setting(section: String, key: String, value: Variant) -> Error:
-	Log.err_cond_false(OS.is_userfs_persistent(), data_persistence_error_message)
-	config.set_value(section, key, value)
-	var err : Error = save_settings()
-	Log.err_cond_not_ok(err, "Error updating settings to: " + settings_path + ".")
-	return err
-
-## Resets all settings to their default values.
-## Returns an Error indicating the success or failure of the operation.
-static func reset_to_defaults() -> Error:
-	var err : Error = FAILED
-	for setting_path : String in _default_settings.keys():
-		var section_key : Array = setting_path.split("/")
-		err = reset_setting_to_default(section_key[0], section_key[1])
-		Log.err_cond_not_ok(err, "Error resetting setting '" + setting_path + " to default value.")
-		return err
-	Log.err_cond_not_ok(err, "Error resetting settings to default values at " + str(settings_path))
+		Log.info("Successfully loaded client config from: " + config_path)
+		Global.client_config_file_ready.emit(config_file)
 	return err
 
 
-## Resets a specific setting to its default value.
-## Returns an Error indicating the success or failure of the operation.
-static func reset_setting_to_default(section: String, key: String) -> Error:
-	var err : Error = ERR_DOES_NOT_EXIST
-	var setting_path : String = section + "/" + key
-	if setting_path in _default_settings:
-		config.set_value(section, key, _default_settings[setting_path].call())
-		err = save_settings()
-		Log.err_cond_not_ok(err, "Error resetting setting to default: " + key + " in  section " + section)
-		return err
+func _create_config_file_using_defaults() -> void:
+	## Iterate through each section in the default config dictionary
+	for section in default_config.keys():
+		var default_config: Dictionary = default_config[section]
+		## Iterate through each key-value pair in the section
+		for key in default_config.keys():
+			var value: Variant = default_config[key]
+			## Set the value in the ConfigFile
+			config_file.set_value(section, key, value)
+
+	## Save the ConfigFile to the specified path
+	var error: Error = config_file.save(config_path)
+	if error != OK:
+		Log.err("Failed to save config file: " + str(error))
 	else:
-		Log.err_cond_not_ok(err, "Error resetting setting to default: " + key + " in  section " + section)
-		return err
+		Log.info("Config file created with default values.")
 
-## Creates the settings file using default values for each setting.
-## This function is called when the settings file fails to load.
-static func _create_settings_file_using_defaults() -> void:
-	for setting in _default_settings.keys():
-		var section_key = setting.split("/")
-		config.set_value(section_key[0], section_key[1], _default_settings[setting].call())
-	save_settings()
-
-## Adds a custom project setting to the ProjectSettings.
-## If the setting already exists, it is not added.
-static func _add_custom_project_setting(name: String, default_value: Variant, type: int, hint: int = PROPERTY_HINT_NONE, hint_string: String = "") -> void:
-	if ProjectSettings.has_setting(name):
-		Log.debug("Project setting already exists: " + name)
-		return
-
-	var setting_info: Dictionary = {
-		"name": name,
-		"type": type,
-		"hint": hint,
-		"hint_string": hint_string
-	}
-
-	ProjectSettings.set_setting(name, default_value)
-	ProjectSettings.add_property_info(setting_info)
-	ProjectSettings.set_initial_value(name, default_value)
-	Log.info("Adding project setting: " + name + " with value: " + str(default_value))

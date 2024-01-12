@@ -5,7 +5,7 @@ extends Node
 
 class_name LogStream
 
-#Settings
+#config
 
 ##Controls how the message should be formatted, follows String.format(), valid keys are: "level", "time", "log_name", "message"
 const LOG_MESSAGE_FORMAT = "[lb]{log_name}[rb] {level}: {message}"
@@ -28,10 +28,10 @@ static var DEFAULT_CRASH_BEHAVIOR := func():
 	#Choose crash mechanism. Difference is that get_tree().quit() quits at the end of the frame, 
 	#enabling multiple fatal errors to be cast, printing multiple stack traces etc. 
 	#Warning regarding the use of OS.crash() in the docs can safely be regarded in this case.
-	OS.crash("Crash since falal error ocurred")
+	OS.crash("Crash since fatal ass error ocurred")
 	#get_tree().quit(-1)
 
-#end of settings
+#end of config
 
 enum LogLevel {
 	DEFAULT,
@@ -225,7 +225,7 @@ func _set_level(level:LogLevel):
 
 ##Internal method.
 func _get_external_log_level()->LogLevel:
-	var key = Config.get_var("log-level","info").to_upper()
+	var key = LogConfig.get_var("log-level","info").to_upper()
 	if LogLevel.keys().has(key):
 		return LogLevel[key]
 	else:

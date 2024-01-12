@@ -17,7 +17,6 @@ var last_horiz_direction: float = 0  # New variable to track the last horizontal
 
 func _ready():
 	debug_container.hide()
-	set_name_tag_text()
 	anim.play("idle_down")
 
 func _physics_process(delta: float) -> void:
@@ -28,8 +27,8 @@ func _physics_process(delta: float) -> void:
 	update_name_tag_position()
 	update_debug_tag_position()
 
-func set_name_tag_text():
-	name_tag.text = "[jump][center]%s[/center][/jump]" % get_parent().username
+func set_name_tag_text(username: String):
+	name_tag.text = "[jump][center]%s[/center][/jump]" % username
 
 func update_debug_tag_position():
 	debug_container.position = (sprite.position + debug_container_offset) - (debug_container.size / 2)

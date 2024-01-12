@@ -26,11 +26,11 @@ func get_rand_time(char_fx, time_scale: float = 1.0) -> float:
 
 func get_tween_data(char_fx):
 	var id = char_fx.env.get("id", "main")
-	if not id in TextTransitionSettings.transitions:
+	if not id in TextTransitionconfig.transitions:
 		print("No RichTextTransition with id", id, "is registered.")
 		return null
 	else:
-		return TextTransitionSettings.transitions[id]
+		return TextTransitionconfig.transitions[id]
 
 func get_t(char_fx) -> float:
 	var tween_data = get_tween_data(char_fx)

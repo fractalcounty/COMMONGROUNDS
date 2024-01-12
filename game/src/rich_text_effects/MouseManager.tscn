@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://tenri4hkqvs"]
-
-[ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="1_x2bq2"]
-
-[node name="MouseManager" type="CanvasLayer"]
-
-[node name="Smoothing2D" type="Node2D" parent="."]
-script = ExtResource("1_x2bq2")

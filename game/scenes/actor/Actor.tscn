@@ -407,7 +407,6 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 
 [node name="DebugTag2" type="RichTextLabel" parent="VisualComponent/DebugContainer"]
-visible = false
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 6

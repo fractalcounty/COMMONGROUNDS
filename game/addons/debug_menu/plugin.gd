@@ -5,11 +5,11 @@ func _enter_tree() -> void:
 	add_autoload_singleton("DebugMenu", "res://addons/debug_menu/debug_menu.tscn")
 
 	# FIXME: This appears to do nothing.
-#	if not ProjectSettings.has_setting("application/config/version"):
-#		ProjectSettings.set_setting("application/config/version", "1.0.0")
+#	if not Projectconfig.has_setting("application/config/version"):
+#		Projectconfig.set_setting("application/config/version", "1.0.0")
 #
-#	ProjectSettings.set_initial_value("application/config/version", "1.0.0")
-#	ProjectSettings.add_property_info({
+#	Projectconfig.set_initial_value("application/config/version", "1.0.0")
+#	Projectconfig.add_property_info({
 #		name = "application/config/version",
 #		type = TYPE_STRING,
 #	})
@@ -20,7 +20,7 @@ func _enter_tree() -> void:
 #		event.keycode = KEY_F3
 #		InputMap.action_add_event("cycle_debug_menu", event)
 #
-#	ProjectSettings.save()
+#	Projectconfig.save()
 
 
 func _exit_tree() -> void:

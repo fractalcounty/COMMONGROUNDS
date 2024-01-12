@@ -1,5 +1,6 @@
 extends Node
-## Newgrounds.io API autoload for Godot 4.x
+class_name NewgroundsSession
+## Newgrounds.io API script for Godot 4.x
 ##
 ## Provides various methods to call the Newgrounds.io
 ## API from your scripts with detailed logging
@@ -7,65 +8,113 @@ extends Node
 ## @tutorial(Components):	http://www.newgrounds.io/help/components/
 ## @tutorial(Objects):		https://www.newgrounds.io/help/objects/
 
-signal logging_in
+signal connecting
+signal authorizing
+signal newgrounds_login_url_generated(url: String)
+signal healthy
+signal session_killed
 
 const APP_ID : String = "57486:i7TJksdI" ## Game app ID
 const AES_KEY : String = "4tWX2jGEhqoohsboJ5e04Q==" ## AES Base-64 Encryption key
 const GATEWAY_URI: String = "https://newgrounds.io/gateway_v3.php" ## URI to Newgrounds API gateway
 const MAX_RETRIES : int = 5
 const TIMEOUT : float = 5.0
-const KEEPALIVE : float = 5.0
 
-enum State {
-	SESSION_STARTING,
-	SESSION_UPDATING,
-	SESSION_AUTHENTICATING,
-	
-}
-
+var keepalive_delay : float = 5.0
 var api_request: HTTPRequest
-var continue_session_check: bool = true
 var retry_count : int = 0
-var keepalive_timer : Timer
+var current_session_id : String = ""
+var current_user : Dictionary = {}
+var confirm : bool = true
 
-var user : Dictionary
+@onready var log : LogStream = LogStream.new("Newgrounds", Log.LogLevel.INFO)
 
-var latest_result : Dictionary = {}  # Global variable to store the latest result
-var last_id : String = ""
-@onready var log : LogStream = LogStream.new("Newgrounds", Log.current_log_level)
+enum State {CONNECTING, AUTHORIZING, OK}
+var current_state: State = State.CONNECTING
+
+func change_state(new_state: State) -> void:
+	current_state = new_state
+	match current_state:
+		State.CONNECTING:
+			keepalive_delay = 5.0
+			connecting.emit()
+		State.AUTHORIZING:
+			keepalive_delay = 3.0
+			authorizing.emit()
+		State.OK:
+			healthy.emit()
+			Global.username_avaliable.emit(str(current_user["name"]))
+			keepalive_delay = 15.0
 
 func _ready() -> void:
-	keepalive_timer = Timer.new()
-	keepalive_timer.wait_time = KEEPALIVE
-	keepalive_timer.autostart = true
-	keepalive_timer.timeout.connect(_keepalive)
-	add_child(keepalive_timer)
-	keepalive_timer.start()
-	Newgrounds.request("App.checkSession", {}, Callable(self, "_on_session_checked"))
+	change_state(State.CONNECTING)
+	request("App.checkSession", {}, Callable(self, "_on_session_checked"))
+	_keepalive()
 
 func _keepalive() -> void:
-	if latest_result.has("session") and latest_result["session"].has("id"):
-		log.debug("Keeping session alive at ID: " + str(latest_result["session"]["id"]))
-		Newgrounds.request("App.checkSession", {}, Callable(self, "_on_session_checked"))
-	else:
-		pass
+	_on_keepalive()
 
-func _on_session_started(result: Dictionary) -> void:
-	# Check if the 'data' key exists and if 'success' is false
-	pass
+func _on_keepalive() -> void:
+	await get_tree().create_timer(keepalive_delay).timeout
+	request("App.checkSession", {}, Callable(self, "_on_session_checked"))
+	_keepalive()
+
+func _on_session_started(response_data: Dictionary) -> void:
+	if response_data.has("session") and response_data["session"].has("id"):
+		current_session_id = response_data["session"]["id"]
+		log.info("Started session: " + str(response_data["session"]["id"]))
+		change_state(State.AUTHORIZING)
+		if response_data["session"].has("user"):
+			if response_data["session"]["user"]:
+				current_user = response_data["user"]
+				change_state(State.OK)
+				log.info("User logged in: " + str(response_data["session"]["user"]))
+			elif response_data["session"].has("passport_url"):
+				current_user = {}
+				#var uri : String = str(response_data["session"]["passport_url"].uri_encode()) #WARNING: Check if needs encoding on web
+				var url: String = str(response_data["session"]["passport_url"])
+				newgrounds_login_url_generated.emit(url)
+				log.info("Redirecting user to login at: " + str(response_data["session"]["passport_url"]))
 		
-func _on_session_checked(result: Dictionary) -> void:
-	if result.has("data") and not result["data"]["success"]:
-		var data = result["data"]
-		if data.has("error"):
-			var error_data = data["error"]
-			log.error("Error checking session: " + str(error_data))
-			if error_data.has("message") and error_data.has("code"):
-				if error_data["message"] == "Missing valid session_id." and error_data["code"] == 102:
-					Newgrounds.request("App.startSession", {"force": true}, Callable(self, "_on_session_started"))
+func _on_session_checked(response_data: Dictionary) -> void:
+	if response_data.has("session") and response_data["session"].has("id"):
+		current_session_id = response_data["session"]["id"]
+		
+		log.debug("Checked session and it exists at: " + str(response_data["session"]["id"]))
+		if response_data["session"].has("user") and response_data["session"]["user"]:
+			current_user = response_data["session"]["user"]
+			change_state(State.OK)
+			if confirm:
+				log.info("User logged in: " + str(response_data["session"]["user"]["name"]))
+				confirm = false
+			retry_count = 0
+		else:
+			current_user = {}
+			change_state(State.AUTHORIZING)
+			log.debug("User not logged in yet")
+	else:
+		change_state(State.CONNECTING)
+		current_session_id = ""
+		if response_data.has("error"):
+			var error : Dictionary = response_data["error"]
+			if error.has("message"):
+				var error_code : String = error["message"]
+				var error_msg : float = error["code"]
+				if retry_count < MAX_RETRIES:
+					await _attempt_start_session(error_code)
+				else:
+					log.error("Maximum retry attempts reached. Unable to start session. Killing self.")
+					session_killed.emit()
+
+func _attempt_start_session(error_code: String) -> void:
+	if current_state == State.CONNECTING:
+		retry_count += 1
+		log.info("Error checking session: " + error_code + ". Retrying... Attempt #" + str(retry_count))
+		await get_tree().create_timer(1.0).timeout
+		request("App.startSession", {"force": true}, Callable(self, "_on_session_started"))
 
 func request(component: String, parameters: Dictionary, callable: Callable = Callable(), on_load_function: Variant = null) -> void:
-	log.info("Requesting component: " + str(component) + " with parameters: " + str(parameters))
+	log.debug("Requesting component: " + str(component) + " with parameters: " + str(parameters))
 	
 	## Initialize HTTP request
 	var http_request : HTTPRequest = HTTPRequest.new()
@@ -84,18 +133,16 @@ func request(component: String, parameters: Dictionary, callable: Callable = Cal
 	var request_data: String = "input=" + JSON.stringify(input_parameters).uri_encode()
 
 	## Send HTTP request
-	log.debug("Sending request to component: " + component)
+	log.debug("REQUEST: " + component)
 	var error: Error = http_request.request(GATEWAY_URI, ["Content-Type: application/x-www-form-urlencoded"], HTTPClient.METHOD_POST, request_data)
 	if error != OK:
-		log.error("HTTPRequest setup failed with error: {error}".format({"error": str(error)}))
+		log.error("REQUEST SETUP FAILED: HTTPRequest setup failed with error: {error}".format({"error": str(error)}))
 		http_request.queue_free()
 		return
 
 func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, callable: Callable, on_load_function: Variant = null) -> void:
-	log.debug("Request completed. Result: {result}, code: {response_code}".format({"result": str(result), "response_code": str(response_code)}))
-	
 	if response_code != 200:
-		log.error("HTTP Request failed with code: {response_code}".format({"response_code": str(response_code)}))
+		log.error("REQUEST FAILED: {response_code}".format({"response_code": str(response_code)}))
 		return
 
 	var json = JSON.new()
@@ -103,31 +150,12 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 	log.err_cond_not_ok(error, "Error on request completed")
 	if error == OK:
 		var response : Dictionary = json.data
-		log.debug("Response parsed: " + "data: {\n\t" + str(response).replace(", \"", ",\n\t\"") + "\n}")
+		log.debug("RESPONSE PARSED: " + "data: {\n\t" + str(response).replace(", \"", ",\n\t\"") + "\n}")
 		
-		if response.has("result"):
-			latest_result = response["result"]
-			if response["result"].has("data"):
-				latest_result = response["result"]["data"]
-		
-				if latest_result.has("session") and latest_result["session"].has("id"):
-					last_id = latest_result["session"].get("id")
-					var session = latest_result["session"]
-					log.debug("Session updated: " + str(session))
-		
-					if session.has("user"):
-						if session["user"] != null:
-							if session["user"].has("name"):
-								user = session["user"]
-								log.debug("User updated: " + str(user["name"]))
-						else:
-							log.info("Redirecting user to passport URL at: " + str(session["passport_url"]))
-							OS.shell_open(session["passport_url"])
-		
-		if on_load_function:
-			callable.call(JSON.parse_string(body.get_string_from_ascii()), on_load_function)
-		else:
-			callable.call(JSON.parse_string(body.get_string_from_ascii()))
+		if response.has("result") and response["result"].has("data"):
+			var response_result : Dictionary = response["result"]
+			var response_data : Dictionary = response["result"]["data"]
+			callable.call(response_data)
 
 func _prepare_input_parameters(encrypted_parameters: String) -> Dictionary:
 	## Includes the session ID from the session_data resource if it's available
@@ -139,12 +167,10 @@ func _prepare_input_parameters(encrypted_parameters: String) -> Dictionary:
 	}
 	if is_session_in_url():
 		#input_params["session_id"] = get_session_id_from_url()
-		log.warn("found session ID from url")
-	elif not last_id.is_empty():
-		log.warn("found session ID from api: " + str(last_id))
-		input_params["session_id"] = last_id
-	else:
-		log.warn("couldnt find  gosh dang session id anywhere in input parameters")
+		log.debug("Retrieved session ID from URL.")
+	elif not current_session_id.is_empty():
+		log.debug("Retrieved session ID from API response.")
+		input_params["session_id"] = current_session_id
 	return input_params
 
 func is_session_in_url() -> bool:

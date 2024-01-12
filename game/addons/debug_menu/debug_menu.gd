@@ -111,7 +111,7 @@ func _ready() -> void:
 	frame_time_gradient.add_point(0.3333, Color8(250, 204, 21))  # yellow-400
 	frame_time_gradient.add_point(0.6667, Color8(128, 226, 95))  # 50-50 mix of lime-400 and green-400
 
-	get_viewport().size_changed.connect(update_settings_label)
+	get_viewport().size_changed.connect(update_config_label)
 
 	# Display loading text while information is being queried,
 	# in case the user toggles the full debug menu just after starting the project.
@@ -131,7 +131,7 @@ func _ready() -> void:
 			# These lines are time-consuming operations, so run them in a separate thread.
 			RenderingServer.viewport_set_measure_render_time(get_viewport().get_viewport_rid(), true)
 			update_information_label()
-			update_settings_label()
+			update_config_label()
 	)
 
 
@@ -144,13 +144,13 @@ func _exit_tree() -> void:
 	thread.wait_to_finish()
 
 func _on_device_changed(device: String, device_index: int) -> void:
-	update_settings_label()
+	update_config_label()
 	
 ## Update hardware information label (this can change at runtime based on window
-## size and graphics settings). This is only called when the window is resized.
-## To update when graphics settings are changed, the function must be called manually
-## using `DebugMenu.update_settings_label()`.
-func update_settings_label() -> void:
+## size and graphics config). This is only called when the window is resized.
+## To update when graphics config are changed, the function must be called manually
+## using `DebugMenu.update_config_label()`.
+func update_config_label() -> void:
 	settings.text = ""
 	if ProjectSettings.has_setting("application/config/version"):
 		settings.text += "Project Version: %s\n" % ProjectSettings.get_setting("application/config/version")
@@ -179,7 +179,7 @@ func update_settings_label() -> void:
 		viewport_render_size = viewport.size
 		settings.text += "Viewport: %d×%d\n" % [viewport.size.x, viewport.size.y]
 
-	# Display 3D settings only if relevant.
+	# Display 3D config only if relevant.
 	if viewport.get_camera_3d():
 		var scaling_3d_mode_string := "(unknown)"
 		match viewport.scaling_3d_mode:

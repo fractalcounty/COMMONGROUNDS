@@ -9,17 +9,17 @@ extends RichTextLabel
 @export_range(0.1, 2.0) var animation_time: float = 1.0
 
 func _enter_tree():
-	TextTransitionSettings.register(self)
+	TextTransitionconfig.register(self)
 	$AnimationPlayer.connect("animation_finished", Callable(self, "on_animation_finish"))
 
 func _exit_tree():
-	TextTransitionSettings.unregister(self)
+	TextTransitionconfig.unregister(self)
 	$AnimationPlayer.disconnect("animation_finished", Callable(self, "on_animation_finish"))
 
 # Mostly needed for editor testing.
 func _process(delta: float) -> void:
-	if not id in TextTransitionSettings.transitions:
-		TextTransitionSettings.register(self)
+	if not id in TextTransitionconfig.transitions:
+		TextTransitionconfig.register(self)
 
 func fade_in() -> void:
 	$AnimationPlayer.play("fade_in", -1, animation_time)

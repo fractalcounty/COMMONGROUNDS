@@ -3,7 +3,7 @@ shader_type canvas_item;
 // Bounding Battle Backgound shader by Youkuri, this shader is under the Creative Commons license so feel free to use it to your heart contents! No need of crediting or anything.
 // NOTE: Filter *does* matter when it comes to palette cycling, Filtered sprites makes it look smoother and Unfiltered makes them change in an instant
 
-group_uniforms Settings;
+group_uniforms config;
 uniform bool snes_transparency = false;
 uniform bool gba_transparency = false;
 uniform bool horizontal_scan_line = false;

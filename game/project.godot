@@ -23,13 +23,12 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 TextTransitionSettings="*res://addons/awesome_label/text_transition_settings.gd"
 MouseManager="*res://src/MouseManager.tscn"
 Chat="*res://src/Chat.tscn"
-Newgrounds="*res://src/newgrounds/Newgrounds.gd"
 Log="*res://addons/logger/log.gd"
 Global="*res://src/Global.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 
 [debug]
 
@@ -49,19 +48,20 @@ movie_writer/fps=120
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/camera_2d_plus/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/logger/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/camera_2d_plus/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/editor_icon_previewer/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/smoothing/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
+"res://addons/": "red",
 "res://resources/": "orange",
 "res://scenes/": "teal",
-"res://src/": "blue"
+"res://src/": "blue",
+"res://userdata/": "gray"
 }
 
 [gui]
 
-theme/custom_font="res://resources/fonts/AlteHaasGroteskBold.ttf"
 theme/default_font_multichannel_signed_distance_field=true
 
 [input]
@@ -401,6 +401,5 @@ global_illumination/sdfgi/probe_ray_count=0
 global_illumination/sdfgi/frames_to_update_lights=4
 environment/volumetric_fog/use_filter=0
 environment/defaults/default_clear_color=Color(0.262745, 0.262745, 0.262745, 1)
-anti_aliasing/quality/msaa_2d=1
 viewport/hdr_2d=true
 anti_aliasing/quality/use_debanding=true
