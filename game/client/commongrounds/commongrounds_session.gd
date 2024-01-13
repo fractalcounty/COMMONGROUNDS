@@ -4,7 +4,7 @@ class_name CommongroundsSession
 signal authorizing
 signal healthy
 
-const host = "commongrounds-57371-default-rtdb.firebaseio.com/"
+const host = "commongrounds-57371-default-rtdb.firebaseio.com"
 const base_url = "https://%s" % host
 
 @export var commongrounds : Commongrounds
@@ -83,7 +83,6 @@ func start_player_stream():
 	
 	while true:
 		stream.poll()
-		await get_tree().create_timer(1.0).timeout
 		var status = stream.get_status()
 		_log.info("stream status: ", status)
 		if status == StreamPeerTLS.STATUS_CONNECTED:
