@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dq3mik88j00ts"]
 
-[ext_resource type="Script" path="res://world/player/speech/speech_container.gd" id="1_8yamm"]
+[ext_resource type="Script" path="res://client/commongrounds/user/player/speech/speech_container.gd" id="1_8yamm"]
 [ext_resource type="FontFile" uid="uid://cqw63mte3fp2c" path="res://resources/fonts/AlteHaasGroteskBold.ttf" id="2_waa3m"]
 [ext_resource type="Script" path="res://addons/awesome_label/transitions/bounce.gd" id="3_v2a8p"]
 [ext_resource type="Script" path="res://addons/awesome_label/awesome_label.gd" id="4_x2la6"]

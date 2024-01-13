@@ -17,9 +17,9 @@ script = ExtResource("2_qqyn6")
 
 [node name="Chat" parent="ClientInterface" instance=ExtResource("3_lcdgs")]
 
-[node name="SplashScreen" parent="ClientInterface" instance=ExtResource("3_38cj4")]
-
 [node name="LoadingScene" parent="ClientInterface" instance=ExtResource("2_kdx80")]
+
+[node name="SplashScreen" parent="ClientInterface" instance=ExtResource("3_38cj4")]
 
 [node name="PostProcessing" parent="ClientInterface" instance=ExtResource("2_ypvet")]
 anchors_preset = 15

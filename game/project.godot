@@ -29,6 +29,7 @@ MouseManager="*res://client/interface/mouse/MouseManager.tscn"
 Log="*res://addons/logger/log.gd"
 Global="*res://src/Global.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 [debug]
 
@@ -48,7 +49,7 @@ movie_writer/fps=120
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/camera_2d_plus/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/editor_icon_previewer/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/smoothing/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/camera_2d_plus/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/editor_icon_previewer/plugin.cfg", "res://addons/godot-firebase/plugin.cfg", "res://addons/http-sse-client/plugin.cfg", "res://addons/logger/plugin.cfg", "res://addons/smoothing/plugin.cfg")
 
 [file_customization]
 
@@ -57,8 +58,7 @@ folder_colors={
 "res://client/": "blue",
 "res://resources/": "green",
 "res://src/": "red",
-"res://userdata/": "gray",
-"res://world/": "yellow"
+"res://userdata/": "gray"
 }
 
 [gui]

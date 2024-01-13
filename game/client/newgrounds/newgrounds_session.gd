@@ -34,6 +34,7 @@ enum State {CONNECTING, AUTHORIZING, OK}
 var current_state: State = State.CONNECTING
 
 func change_state(new_state: State) -> void:
+	Global.local_player_id = local_user_name
 	current_state = new_state
 	match current_state:
 		State.CONNECTING:
@@ -56,6 +57,7 @@ func _keepalive() -> void:
 	_on_keepalive()
 
 func _on_keepalive() -> void:
+	print(Global.local_player_id)
 	await get_tree().create_timer(keepalive_delay).timeout
 	request("App.checkSession", {}, Callable(self, "_on_session_checked"))
 	_keepalive()
@@ -69,6 +71,7 @@ func _on_session_started(response_data: Dictionary) -> void:
 			if response_data["session"]["user"]:
 				current_user = response_data["user"]
 				local_user_name = response_data["session"]["user"]["name"]
+				Global.local_player_id = local_user_name
 				change_state(State.OK)
 				log.info("User logged in: " + str(response_data["session"]["user"]))
 			elif response_data["session"].has("passport_url"):
@@ -86,6 +89,7 @@ func _on_session_checked(response_data: Dictionary) -> void:
 		if response_data["session"] and response_data["session"]["user"] and response_data["session"]["user"]["name"]:
 			current_user = response_data["session"]["user"]
 			local_user_name = response_data["session"]["user"]["name"]
+			Global.local_player_id = local_user_name
 			change_state(State.OK)
 			if confirm:
 				log.info("User logged in: " + str(response_data["session"]["user"]["name"]))
@@ -93,12 +97,14 @@ func _on_session_checked(response_data: Dictionary) -> void:
 			retry_count = 0
 		else:
 			local_user_name = ""
+			Global.local_player_id = ""
 			current_user = {}
 			change_state(State.AUTHORIZING)
 			log.debug("User not logged in yet")
 	else:
 		change_state(State.CONNECTING)
 		local_user_name = ""
+		Global.local_player_id = ""
 		local_session_id = ""
 		if response_data.has("error"):
 			var error : Dictionary = response_data["error"]

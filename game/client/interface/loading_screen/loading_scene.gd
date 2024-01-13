@@ -3,6 +3,7 @@ extends Control
 signal fade_in_finished
 signal fade_out_finished
 signal ng_connection_timed_out
+signal cg_loaded(loaded_scene:Node)
 
 signal screen_covered
 signal screen_visible
@@ -12,7 +13,7 @@ var progress : Array[float] = [0.0]
 var is_loading : bool = false
 var load_start_time : int
 var is_loading_async: bool = false
-var _path : String = "res://world/World.tscn"
+var _path : String = "res://client/commongrounds/Commongrounds.tscn"
 var _msg : String = ""
 
 @onready var anim : AnimationPlayer = $AnimationPlayer
@@ -34,9 +35,6 @@ func goto(msg: String, path: String, summon: bool = false) -> void:
 	else:
 		is_loading_async = true
 
-func _on_async_load() -> void:
-	banish()
-
 func _process(_delta: float) -> void:
 	_async_load(_delta)
 
@@ -57,7 +55,7 @@ func _async_load(_delta: float) -> void:
 				_log.info("Successfully loaded " + _path + " asynchronously in " + str(load_time_in_seconds) + " sec.")
 				var loaded_scene : Node = ResourceLoader.load_threaded_get(_path).instantiate()
 				get_parent().get_parent().add_child(loaded_scene)
-				_on_async_load()
+				cg_loaded.emit(loaded_scene)
 				_path = ""
 				is_loading_async = false
 			ResourceLoader.ThreadLoadStatus.THREAD_LOAD_FAILED:

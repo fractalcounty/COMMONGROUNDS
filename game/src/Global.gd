@@ -9,5 +9,9 @@ signal client_config_file_ready(config_file: ConfigFile)
 signal error_shown(message:String)
 signal error_freed(message:String)
 signal username_avaliable(username:String)
+signal go_ahead
 var error_blocking : bool = false
 var camera_position : Vector2 = Vector2(0, 0)
+
+var local_player_id : String = ""
+var local_session_id : String = ""

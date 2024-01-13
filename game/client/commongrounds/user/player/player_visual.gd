@@ -1,15 +1,15 @@
 extends Node2D
-class_name ActorVisualComponent
+class_name PlayerVisualComponent
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var sprite: AnimatedSprite2D = $Body
-@onready var name_tag: RichTextLabel = $NameTag
 @export var tag_offset: Vector2 = Vector2(0, -170)
-@onready var debug_container : VBoxContainer = $DebugContainer
-@onready var debug_label_1 : RichTextLabel = $DebugContainer/DebugTag1
-@onready var debug_label_2 : RichTextLabel = $DebugContainer/DebugTag2
-@onready var debug_container_offset : Vector2 = Vector2(0, 50)
-@onready var speech : VBoxContainer = $Speech
+#@onready var debug_container : VBoxContainer = $DebugContainer
+#@onready var debug_label_1 : RichTextLabel = $DebugContainer/DebugTag1
+#@onready var debug_label_2 : RichTextLabel = $DebugContainer/DebugTag2
+#@onready var debug_container_offset : Vector2 = Vector2(0, 50)
+#@onready var speech : VBoxContainer = $Speech
+@onready var name_tag: RichTextLabel = $NameTag
 
 var player_position_uv : Vector2
 var direction : Vector2
@@ -22,16 +22,16 @@ var was_moving_horiz: bool = false
 var last_horiz_direction: float = 0  # New variable to track the last horizontal direction
 
 func _ready():
-	debug_container.hide()
+	#debug_container.hide()
 	anim.play("idle_down")
 
 func _physics_process(delta: float) -> void:
-	if debug_container.visible:
-		var world_pos : Vector2 = Vector2(get_parent().position)
-		debug_label_1.text = "world: " + str(world_pos)
+	#if debug_container.visible:
+		#var world_pos : Vector2 = Vector2(get_parent().position)
+		#debug_label_1.text = "world: " + str(world_pos)
 		
 	update_name_tag_position()
-	update_debug_tag_position()
+	#update_debug_tag_position()
 
 
 func _process(delta: float) -> void:
@@ -45,8 +45,8 @@ func _process(delta: float) -> void:
 func set_name_tag_text(username: String):
 	name_tag.text = "[jump][center]%s[/center][/jump]" % username
 
-func update_debug_tag_position():
-	debug_container.position = (sprite.position + debug_container_offset) - (debug_container.size / 2)
+#func update_debug_tag_position():
+	#debug_container.position = (sprite.position + debug_container_offset) - (debug_container.size / 2)
 
 func update_name_tag_position():
 	name_tag.position = (sprite.position + tag_offset) - (name_tag.size / 2)

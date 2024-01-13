@@ -12,9 +12,9 @@ func _ready() -> void:
 
 func _on_video_stream_player_finished():
 	await get_tree().create_timer(delay_after_splash).timeout
-	finished.emit()
 	anim.play("fade_out")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_out":
+		finished.emit()
 		queue_free()

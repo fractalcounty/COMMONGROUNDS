@@ -1,41 +1,40 @@
-[gd_scene load_steps=37 format=3 uid="uid://botvvtx74i08m"]
+[gd_scene load_steps=36 format=3 uid="uid://dgcgkjq6bk7kr"]
 
-[ext_resource type="Script" path="res://world/player/player.gd" id="1_dx4em"]
-[ext_resource type="Texture2D" uid="uid://dwgodpyatbd3a" path="res://resources/textures/placeholder_art/shadow.png" id="2_ue53t"]
-[ext_resource type="Texture2D" uid="uid://bsltx0a3vxp5i" path="res://resources/sprites/rolus_sprites/rolus_still_down.png" id="3_1j7gc"]
-[ext_resource type="Texture2D" uid="uid://0yj4gvr1fs8" path="res://resources/sprites/rolus_sprites/rolus_still_side.png" id="4_3gv8l"]
-[ext_resource type="FontFile" uid="uid://cnseiewfryake" path="res://resources/fonts/CommitMono-400-Regular.otf" id="4_6n0ou"]
-[ext_resource type="Script" path="res://world/player/player_visual.gd" id="4_rbomj"]
-[ext_resource type="Texture2D" uid="uid://xlfh2wh620xl" path="res://resources/sprites/rolus_sprites/rolus_sit_1.png" id="5_6xofs"]
-[ext_resource type="Texture2D" uid="uid://cetl5d4uy2vml" path="res://resources/sprites/rolus_sprites/rolus_sit_2.png" id="6_07i31"]
-[ext_resource type="Texture2D" uid="uid://dehbf40xwkfot" path="res://resources/sprites/rolus_sprites/rolus_sit_3.png" id="7_slctj"]
-[ext_resource type="Texture2D" uid="uid://cap7gkhuyisat" path="res://resources/sprites/rolus_sprites/rolus_still_up.png" id="8_uoau7"]
-[ext_resource type="Texture2D" uid="uid://c347rq8nbdopx" path="res://resources/sprites/rolus_sprites/rolus_walk_down_1.png" id="9_q7tux"]
-[ext_resource type="Texture2D" uid="uid://5i3rw8cangos" path="res://resources/sprites/rolus_sprites/rolus_walk_down_2.png" id="10_ge2ja"]
-[ext_resource type="Texture2D" uid="uid://40al4reghvrf" path="res://resources/sprites/rolus_sprites/rolus_walk_down_3.png" id="11_dyrvr"]
-[ext_resource type="Texture2D" uid="uid://c4fpyuhtfu63c" path="res://resources/sprites/rolus_sprites/rolus_walk_down_4.png" id="12_sic1m"]
-[ext_resource type="Texture2D" uid="uid://n4geonapeuk" path="res://resources/sprites/rolus_sprites/rolus_walk_side_1.png" id="13_ro0yj"]
-[ext_resource type="Texture2D" uid="uid://b7u7v6w73wsyt" path="res://resources/sprites/rolus_sprites/rolus_walk_side_2.png" id="14_gw3d5"]
-[ext_resource type="Texture2D" uid="uid://cbgfecudvslq4" path="res://resources/sprites/rolus_sprites/rolus_walk_side_3.png" id="15_oi7vw"]
-[ext_resource type="Texture2D" uid="uid://bwjj1j4by2wal" path="res://resources/sprites/rolus_sprites/rolus_walk_side_4.png" id="16_ecdfe"]
-[ext_resource type="Texture2D" uid="uid://b7nlraa5yfvrr" path="res://resources/sprites/rolus_sprites/rolus_walk_up_1.png" id="17_1c8b4"]
-[ext_resource type="Texture2D" uid="uid://dgo17wnb43p3v" path="res://resources/sprites/rolus_sprites/rolus_walk_up_2.png" id="18_yce8s"]
-[ext_resource type="Texture2D" uid="uid://baca4dhmyusgb" path="res://resources/sprites/rolus_sprites/rolus_walk_up_3.png" id="19_neywq"]
-[ext_resource type="Texture2D" uid="uid://d1na64qpvsed7" path="res://resources/sprites/rolus_sprites/rolus_walk_up_4.png" id="20_r6fv4"]
-[ext_resource type="Script" path="res://addons/rich_text_effects/Jump.gd" id="24_1agfe"]
+[ext_resource type="Script" path="res://client/commongrounds/user/user.gd" id="1_bipms"]
+[ext_resource type="Script" path="res://client/commongrounds/user/user_visual.gd" id="2_ykgg1"]
+[ext_resource type="Script" path="res://addons/rich_text_effects/Jump.gd" id="3_t81ro"]
+[ext_resource type="Texture2D" uid="uid://dwgodpyatbd3a" path="res://resources/textures/placeholder_art/shadow.png" id="4_hta5b"]
+[ext_resource type="Texture2D" uid="uid://bsltx0a3vxp5i" path="res://resources/sprites/rolus_sprites/rolus_still_down.png" id="5_jmjgi"]
+[ext_resource type="Texture2D" uid="uid://0yj4gvr1fs8" path="res://resources/sprites/rolus_sprites/rolus_still_side.png" id="6_6cvus"]
+[ext_resource type="Texture2D" uid="uid://xlfh2wh620xl" path="res://resources/sprites/rolus_sprites/rolus_sit_1.png" id="7_k7cut"]
+[ext_resource type="Texture2D" uid="uid://cetl5d4uy2vml" path="res://resources/sprites/rolus_sprites/rolus_sit_2.png" id="8_xycta"]
+[ext_resource type="Texture2D" uid="uid://dehbf40xwkfot" path="res://resources/sprites/rolus_sprites/rolus_sit_3.png" id="9_yvn1o"]
+[ext_resource type="Texture2D" uid="uid://cap7gkhuyisat" path="res://resources/sprites/rolus_sprites/rolus_still_up.png" id="10_35csm"]
+[ext_resource type="Texture2D" uid="uid://c347rq8nbdopx" path="res://resources/sprites/rolus_sprites/rolus_walk_down_1.png" id="11_31epn"]
+[ext_resource type="Texture2D" uid="uid://5i3rw8cangos" path="res://resources/sprites/rolus_sprites/rolus_walk_down_2.png" id="12_ccyp0"]
+[ext_resource type="Texture2D" uid="uid://40al4reghvrf" path="res://resources/sprites/rolus_sprites/rolus_walk_down_3.png" id="13_a5yqy"]
+[ext_resource type="Texture2D" uid="uid://c4fpyuhtfu63c" path="res://resources/sprites/rolus_sprites/rolus_walk_down_4.png" id="14_rjq4p"]
+[ext_resource type="Texture2D" uid="uid://n4geonapeuk" path="res://resources/sprites/rolus_sprites/rolus_walk_side_1.png" id="15_gpdib"]
+[ext_resource type="Texture2D" uid="uid://b7u7v6w73wsyt" path="res://resources/sprites/rolus_sprites/rolus_walk_side_2.png" id="16_yhiu3"]
+[ext_resource type="Texture2D" uid="uid://cbgfecudvslq4" path="res://resources/sprites/rolus_sprites/rolus_walk_side_3.png" id="17_va3vp"]
+[ext_resource type="Texture2D" uid="uid://bwjj1j4by2wal" path="res://resources/sprites/rolus_sprites/rolus_walk_side_4.png" id="18_ns2fv"]
+[ext_resource type="Texture2D" uid="uid://b7nlraa5yfvrr" path="res://resources/sprites/rolus_sprites/rolus_walk_up_1.png" id="19_w1p2m"]
+[ext_resource type="Texture2D" uid="uid://dgo17wnb43p3v" path="res://resources/sprites/rolus_sprites/rolus_walk_up_2.png" id="20_w11dt"]
+[ext_resource type="Texture2D" uid="uid://baca4dhmyusgb" path="res://resources/sprites/rolus_sprites/rolus_walk_up_3.png" id="21_u4g1f"]
+[ext_resource type="Texture2D" uid="uid://d1na64qpvsed7" path="res://resources/sprites/rolus_sprites/rolus_walk_up_4.png" id="22_tacsm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmsj5"]
 radius = 18.0
 height = 72.0
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_mhs8u"]
-script = ExtResource("24_1agfe")
+script = ExtResource("3_t81ro")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x1yqk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_1j7gc")
+"texture": ExtResource("5_jmjgi")
 }],
 "loop": true,
 "name": &"idle_down",
@@ -43,7 +42,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_3gv8l")
+"texture": ExtResource("6_6cvus")
 }],
 "loop": true,
 "name": &"idle_side",
@@ -51,13 +50,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 32.0,
-"texture": ExtResource("5_6xofs")
+"texture": ExtResource("7_k7cut")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_07i31")
+"texture": ExtResource("8_xycta")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_slctj")
+"texture": ExtResource("9_yvn1o")
 }],
 "loop": true,
 "name": &"idle_sit",
@@ -65,7 +64,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_uoau7")
+"texture": ExtResource("10_35csm")
 }],
 "loop": true,
 "name": &"idle_up",
@@ -73,16 +72,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_q7tux")
+"texture": ExtResource("11_31epn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_ge2ja")
+"texture": ExtResource("12_ccyp0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_dyrvr")
+"texture": ExtResource("13_a5yqy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_sic1m")
+"texture": ExtResource("14_rjq4p")
 }],
 "loop": true,
 "name": &"move_down",
@@ -90,16 +89,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_ro0yj")
+"texture": ExtResource("15_gpdib")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_gw3d5")
+"texture": ExtResource("16_yhiu3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_oi7vw")
+"texture": ExtResource("17_va3vp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_ecdfe")
+"texture": ExtResource("18_ns2fv")
 }],
 "loop": true,
 "name": &"move_side",
@@ -107,16 +106,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("17_1c8b4")
+"texture": ExtResource("19_w1p2m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_yce8s")
+"texture": ExtResource("20_w11dt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_neywq")
+"texture": ExtResource("21_u4g1f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_r6fv4")
+"texture": ExtResource("22_tacsm")
 }],
 "loop": true,
 "name": &"move_up",
@@ -348,9 +347,9 @@ _data = {
 "move_up": SubResource("Animation_om6qx")
 }
 
-[node name="Actor" type="CharacterBody2D"]
+[node name="User" type="CharacterBody2D"]
 y_sort_enabled = true
-script = ExtResource("1_dx4em")
+script = ExtResource("1_bipms")
 speed = 600.0
 acceleration = 100.0
 
@@ -358,55 +357,10 @@ acceleration = 100.0
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gmsj5")
 
-[node name="VisualComponent" type="Node2D" parent="."]
-script = ExtResource("4_rbomj")
+[node name="UserVisualComponent" type="Node2D" parent="."]
+script = ExtResource("2_ykgg1")
 
-[node name="DebugContainer" type="VBoxContainer" parent="VisualComponent"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -97.5
-offset_right = 97.5
-offset_bottom = 40.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 5
-
-[node name="DebugTag1" type="RichTextLabel" parent="VisualComponent/DebugContainer"]
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-size_flags_stretch_ratio = 9.59
-theme_override_fonts/normal_font = ExtResource("4_6n0ou")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "[center]player_stats.username[/center]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_mhs8u")]
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-
-[node name="DebugTag2" type="RichTextLabel" parent="VisualComponent/DebugContainer"]
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-size_flags_stretch_ratio = 9.59
-theme_override_fonts/normal_font = ExtResource("4_6n0ou")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "[center]player_stats.username[/center]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_mhs8u")]
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-
-[node name="NameTag" type="RichTextLabel" parent="VisualComponent"]
+[node name="NameTag" type="RichTextLabel" parent="UserVisualComponent"]
 clip_contents = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -432,19 +386,19 @@ custom_effects = [SubResource("RichTextEffect_mhs8u")]
 deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="Shadow" type="Sprite2D" parent="VisualComponent"]
+[node name="Shadow" type="Sprite2D" parent="UserVisualComponent"]
 modulate = Color(1, 1, 1, 0.603922)
 scale = Vector2(1.11729, 1.11729)
-texture = ExtResource("2_ue53t")
+texture = ExtResource("4_hta5b")
 offset = Vector2(-0.155, 5.155)
 
-[node name="Body" type="AnimatedSprite2D" parent="VisualComponent"]
+[node name="Body" type="AnimatedSprite2D" parent="UserVisualComponent"]
 sprite_frames = SubResource("SpriteFrames_x1yqk")
 animation = &"idle_down"
 autoplay = "idle_down"
 offset = Vector2(1.585, -64.205)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="VisualComponent"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UserVisualComponent"]
 libraries = {
 "": SubResource("AnimationLibrary_bgqlg")
 }

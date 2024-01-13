@@ -7,15 +7,15 @@ class_name Client
 ##
 ## @tutorial: https://github.com/fractalcounty/ChasersWorld/blob/main/docs/structure.png
 
-const WORLD_PATH : String = "res://world/World.tscn"
+const WORLD_PATH : String = "res://client/commongrounds/Commongrounds.tscn"
 
 enum State {
 	NG_CONNECTING,
 	NG_AUTHORIZING,
+	CG_LOADING,
 	CG_CONNECTING,
 	CG_AUTHORIZING,
-	CG_LOADING,
-	CG_CONNECTED
+	CG_OK
 	}
 
 var current_state : State = State.NG_CONNECTING
@@ -32,6 +32,8 @@ var success_flag : bool = false
 @onready var splash : Control = $ClientInterface/SplashScreen
 @onready var post_processing : Control = $ClientInterface/PostProcessing
 @onready var loading_scene : Control = $ClientInterface/LoadingScene
+@onready var commongrounds : Commongrounds = null
+@onready var commongrounds_session : CommongroundsSession = null
 
 @onready var _log : LogStream = LogStream.new("Client", Log.current_log_level)
 @onready var data : ClientData = ClientData.new() ## Contents should be printed in logs
@@ -40,9 +42,14 @@ var success_flag : bool = false
 
 func _ready() -> void:
 	newgrounds_session.newgrounds_login_url_generated.connect(_on_newgrounds_login_url_generated)
+	loading_scene.cg_loaded.connect(_on_cg_loaded)
 	_do_startup_logs()
 	loading_scene.summon("LOADING...")
 	change_state(State.NG_CONNECTING)
+
+func _on_cg_loaded(loaded_scene:Node) -> void:
+	commongrounds = loaded_scene
+	commongrounds_session = commongrounds.commongrounds_session
 
 func change_state(new_state: State) -> void:
 	current_state = new_state
@@ -54,16 +61,23 @@ func change_state(new_state: State) -> void:
 			change_state(State.NG_AUTHORIZING)
 		State.NG_AUTHORIZING:
 			loading_scene.update("LOGGING IN WITH NEWGROUNDS...")
-		State.CG_CONNECTING:
-			loading_scene.update("CREATING COMMONGROUNDS SESSION...")
-		State.CG_AUTHORIZING:
-			loading_scene.update("JOINING THE COMMONGROUNDS...")
 		State.CG_LOADING:
 			loading_scene.goto("LOADING THE COMMONGROUNDS...", WORLD_PATH, false)
-		State.CG_CONNECTED:
+			await loading_scene.cg_loaded
+			change_state(State.CG_CONNECTING)
+		State.CG_CONNECTING:
+			loading_scene.update("CONNECTING TO COMMONGROUNDS...")
+			Global.go_ahead.emit()
+			await commongrounds_session.healthy
+			change_state(State.CG_OK)
+		State.CG_AUTHORIZING:
+			loading_scene.update("JOINING THE COMMONGROUNDS...")
+		State.CG_OK:
+			loading_scene.banish()
 			_log.info("Connected to COMMONGROUNDS.")
 
 func _on_newgrounds_login_url_generated(url: String) -> void:
+	await splash.finished
 	OS.shell_open(url)
 	await newgrounds_session.healthy
 	change_state(State.CG_LOADING)
