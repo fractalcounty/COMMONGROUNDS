@@ -1,0 +1,156 @@
+[gd_scene load_steps=11 format=3 uid="uid://bk4haijpdjdtp"]
+
+[ext_resource type="Shader" path="res://resources/shaders/squish.gdshader" id="1_k8a42"]
+[ext_resource type="Texture2D" uid="uid://2q3efkhih5tc" path="res://resources/textures/baby.png" id="2_0ukgm"]
+[ext_resource type="Script" path="res://world/actor/chasing_baby.gd" id="3_n83sy"]
+[ext_resource type="AudioStream" uid="uid://4vtydvqw0lh5" path="res://resources/audio/Laughing Baby Bubbling Remix.wav" id="4_v7r2c"]
+[ext_resource type="AudioStream" uid="uid://dd0wg78d0ao2n" path="res://resources/audio/bounce.wav" id="5_j5mqf"]
+[ext_resource type="AudioStream" uid="uid://4m4ng8pti3bt" path="res://resources/audio/bounce_out.wav" id="6_jki0h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glhrp"]
+shader = ExtResource("1_k8a42")
+shader_parameter/uv_mode = false
+shader_parameter/x_factor = 1.715
+shader_parameter/bulge = 0.0
+
+[sub_resource type="Animation" id="Animation_qiscn"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/bulge")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_5k06q"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/bulge")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.3, -0.460891, 0, -0.447168, 0.607986, 0.124779, 0.0914615),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.5, -0.373618, 0.000701904, 0.304272, -0.244326, 0.5, -0.6, 0.349827, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.204272, -0.324939, 0.5, -0.677784, 0.546883, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"do_shake"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("bounce_in:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wret"]
+_data = {
+"RESET": SubResource("Animation_qiscn"),
+"default": SubResource("Animation_5k06q")
+}
+
+[node name="ChasingBaby" type="Sprite2D"]
+process_mode = 3
+z_index = 1
+material = SubResource("ShaderMaterial_glhrp")
+position = Vector2(-582, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_0ukgm")
+script = ExtResource("3_n83sy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_v7r2c")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2wret")
+}
+autoplay = "default"
+
+[node name="bounce_in" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_j5mqf")
+
+[node name="bounce_out" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jki0h")

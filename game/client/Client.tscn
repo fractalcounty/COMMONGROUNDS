@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://cryoc1mw1tyjj"]
+
+[ext_resource type="Script" path="res://client/client.gd" id="1_rasbb"]
+[ext_resource type="PackedScene" uid="uid://b7x8j0revg2us" path="res://client/interface/loading_screen/LoadingScene.tscn" id="2_kdx80"]
+[ext_resource type="Script" path="res://client/client_config.gd" id="2_qqyn6"]
+[ext_resource type="PackedScene" uid="uid://o5uggbs47tvv" path="res://client/interface/post_processing/PostProcessing.tscn" id="2_ypvet"]
+[ext_resource type="PackedScene" uid="uid://ck3rmhhxmmt8q" path="res://client/interface/splash/Splash.tscn" id="3_38cj4"]
+[ext_resource type="PackedScene" uid="uid://cwjsqi311654f" path="res://client/interface/chat/Chat.tscn" id="3_lcdgs"]
+
+[node name="Client" type="Node"]
+script = ExtResource("1_rasbb")
+
+[node name="ClientConfig" type="Node" parent="."]
+script = ExtResource("2_qqyn6")
+
+[node name="ClientInterface" type="CanvasLayer" parent="."]
+
+[node name="Chat" parent="ClientInterface" instance=ExtResource("3_lcdgs")]
+
+[node name="SplashScreen" parent="ClientInterface" instance=ExtResource("3_38cj4")]
+
+[node name="LoadingScene" parent="ClientInterface" instance=ExtResource("2_kdx80")]
+
+[node name="PostProcessing" parent="ClientInterface" instance=ExtResource("2_ypvet")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

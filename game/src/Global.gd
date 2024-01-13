@@ -10,18 +10,4 @@ signal error_shown(message:String)
 signal error_freed(message:String)
 signal username_avaliable(username:String)
 var error_blocking : bool = false
-
-## Scene instance references
-@onready var client : Node = null
-@onready var config : Node = null
-
-# Interface nodes
-@onready var splash : Node = null
-@onready var ng_auth : Node = null
-@onready var main_menu : Node = null
-@onready var post_processing : Node = null
-@onready var loading_screen : Node = null
-# Overworld nodes
-@onready var overworld : Node2D = null 
-@onready var player : Actor = null
-@onready var camera : Camera2DPlus = null
+var camera_position : Vector2 = Vector2(0, 0)

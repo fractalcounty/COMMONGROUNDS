@@ -2,7 +2,6 @@ extends CanvasLayer
 
 @export var fps: Label
 @export var frame_time: Label
-@export var frame_number: Label
 @export var frame_history_total_avg: Label
 @export var frame_history_total_min: Label
 @export var frame_history_total_max: Label
@@ -21,6 +20,9 @@ extends CanvasLayer
 @export var gpu_graph: Panel
 @export var information: Label
 @export var settings: Label
+@export var network : VBoxContainer
+@export var version : Label
+
 
 ## The number of frames to keep in history for graph drawing and best/worst calculations.
 ## Currently, this also affects how FPS is measured.
@@ -49,14 +51,15 @@ var style := Style.HIDDEN:
 				visible = false
 			Style.VISIBLE_COMPACT, Style.VISIBLE_DETAILED:
 				visible = true
-				frame_number.visible = style == Style.VISIBLE_DETAILED
-				$DebugMenu/VBoxContainer/FrameTimeHistory.visible = style == Style.VISIBLE_DETAILED
-				$DebugMenu/VBoxContainer/FPSGraph.visible = style == Style.VISIBLE_DETAILED
-				$DebugMenu/VBoxContainer/TotalGraph.visible = style == Style.VISIBLE_DETAILED
-				$DebugMenu/VBoxContainer/CPUGraph.visible = style == Style.VISIBLE_DETAILED
-				$DebugMenu/VBoxContainer/GPUGraph.visible = style == Style.VISIBLE_DETAILED
+				$MarginContainer/DebugMenu/VBoxContainer/FrameTimeHistory.visible = style == Style.VISIBLE_DETAILED
+				$MarginContainer/DebugMenu/VBoxContainer/GridContainer/FPSGraph.visible = style == Style.VISIBLE_DETAILED
+				$MarginContainer/DebugMenu/VBoxContainer/GridContainer/TotalGraph.visible = style == Style.VISIBLE_DETAILED
+				$MarginContainer/DebugMenu/VBoxContainer/GridContainer/CPUGraph.visible = style == Style.VISIBLE_DETAILED
+				$MarginContainer/DebugMenu/VBoxContainer/GridContainer/GPUGraph.visible = style == Style.VISIBLE_DETAILED
 				information.visible = style == Style.VISIBLE_DETAILED
+				version.visible = style == Style.VISIBLE_DETAILED
 				settings.visible = style == Style.VISIBLE_DETAILED
+				network.visible = style == Style.VISIBLE_DETAILED
 
 # Value of `Time.get_ticks_usec()` on the previous frame.
 var last_tick := 0
@@ -152,19 +155,9 @@ func _on_device_changed(device: String, device_index: int) -> void:
 ## using `DebugMenu.update_config_label()`.
 func update_config_label() -> void:
 	settings.text = ""
+	version.text = ""
 	if ProjectSettings.has_setting("application/config/version"):
-		settings.text += "Project Version: %s\n" % ProjectSettings.get_setting("application/config/version")
-
-	var rendering_method := str(ProjectSettings.get_setting_with_override("rendering/renderer/rendering_method"))
-	var rendering_method_string := rendering_method
-	match rendering_method:
-		"forward_plus":
-			rendering_method_string = "Forward+"
-		"mobile":
-			rendering_method_string = "Forward Mobile"
-		"gl_compatibility":
-			rendering_method_string = "Compatibility"
-	settings.text += "Rendering Method: %s\n" % rendering_method_string
+		version.text += "COMMONGROUNDS client version: %s\n" % ProjectSettings.get_setting("application/config/version")
 
 	var viewport := get_viewport()
 
@@ -178,64 +171,6 @@ func update_config_label() -> void:
 		# Window size matches viewport size.
 		viewport_render_size = viewport.size
 		settings.text += "Viewport: %d×%d\n" % [viewport.size.x, viewport.size.y]
-
-	# Display 3D config only if relevant.
-	if viewport.get_camera_3d():
-		var scaling_3d_mode_string := "(unknown)"
-		match viewport.scaling_3d_mode:
-			Viewport.SCALING_3D_MODE_BILINEAR:
-				scaling_3d_mode_string = "Bilinear"
-			Viewport.SCALING_3D_MODE_FSR:
-				scaling_3d_mode_string = "FSR 1.0"
-			Viewport.SCALING_3D_MODE_FSR2:
-				scaling_3d_mode_string = "FSR 2.2"
-
-		var antialiasing_3d_string := ""
-		if viewport.scaling_3d_mode == Viewport.SCALING_3D_MODE_FSR2:
-			# The FSR2 scaling mode includes its own temporal antialiasing implementation.
-			antialiasing_3d_string += (" + " if not antialiasing_3d_string.is_empty() else "") + "FSR 2.2"
-		if viewport.scaling_3d_mode != Viewport.SCALING_3D_MODE_FSR2 and viewport.use_taa:
-			# Godot's own TAA is ignored when using FSR2 scaling mode, as FSR2 provides its own TAA implementation.
-			antialiasing_3d_string += (" + " if not antialiasing_3d_string.is_empty() else "") + "TAA"
-		if viewport.msaa_3d >= Viewport.MSAA_2X:
-			antialiasing_3d_string += (" + " if not antialiasing_3d_string.is_empty() else "") + "%d× MSAA" % pow(2, viewport.msaa_3d)
-		if viewport.screen_space_aa == Viewport.SCREEN_SPACE_AA_FXAA:
-			antialiasing_3d_string += (" + " if not antialiasing_3d_string.is_empty() else "") + "FXAA"
-
-		settings.text += "3D scale (%s): %d%% = %d×%d" % [
-				scaling_3d_mode_string,
-				viewport.scaling_3d_scale * 100,
-				viewport_render_size.x * viewport.scaling_3d_scale,
-				viewport_render_size.y * viewport.scaling_3d_scale,
-		]
-
-		if not antialiasing_3d_string.is_empty():
-			settings.text += "\n3D Antialiasing: %s" % antialiasing_3d_string
-
-		var environment := viewport.get_camera_3d().get_world_3d().environment
-		if environment:
-			if environment.ssr_enabled:
-				settings.text += "\nSSR: %d Steps" % environment.ssr_max_steps
-
-			if environment.ssao_enabled:
-				settings.text += "\nSSAO: On"
-			if environment.ssil_enabled:
-				settings.text += "\nSSIL: On"
-
-			if environment.sdfgi_enabled:
-				settings.text += "\nSDFGI: %d Cascades" % environment.sdfgi_cascades
-
-			if environment.glow_enabled:
-				settings.text += "\nGlow: On"
-
-			if environment.volumetric_fog_enabled:
-				settings.text += "\nVolumetric Fog: On"
-	var antialiasing_2d_string := ""
-	if viewport.msaa_2d >= Viewport.MSAA_2X:
-		antialiasing_2d_string = "%d× MSAA" % pow(2, viewport.msaa_2d)
-
-	if not antialiasing_2d_string.is_empty():
-		settings.text += "\n2D Antialiasing: %s" % antialiasing_2d_string
 
 
 ## Update hardware/software information label (this never changes at runtime).
@@ -459,8 +394,6 @@ func _process(_delta: float) -> void:
 		else:
 			if not vsync_string.is_empty():
 				frame_time.text += " (" + vsync_string + ")"
-
-		frame_number.text = "Frame: " + str(Engine.get_frames_drawn())
 
 	last_tick = Time.get_ticks_usec()
 

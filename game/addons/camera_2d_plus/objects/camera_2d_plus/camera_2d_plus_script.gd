@@ -124,7 +124,6 @@ func _update_zoom_level(new_zoom_level: float) -> void:
 	_zoom_level = new_zoom_level
 
 func _ready() -> void:
-	Global.camera = self
 	zoom = Vector2(_zoom_level, _zoom_level)
 	set_process_input(true)
 	zoom_reset_timer.timeout.connect(_on_zoom_reset_timer_timeout)
@@ -192,6 +191,8 @@ func _process(delta: float) -> void:
 	## Resetting the camera tilt.
 	position_tilt = lerp(position_tilt, Vector2.ZERO, TILT_POSITION_DECAY) # Resetting the position tilt.
 	angle_tilt = lerpf(angle_tilt, 0.0, TILT_ANGLE_DECAY) # Resetting the angle tilt.
+	
+	Global.camera_position = global_position
 
 
 ## This function instantly moves the camera, and slowly moves it back.

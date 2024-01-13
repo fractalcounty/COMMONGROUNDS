@@ -12,10 +12,11 @@ config_version=5
 
 config/name="COMMONGROUNDS"
 config/version="0.2"
-run/main_scene="res://Client.tscn"
+run/main_scene="res://client/Client.tscn"
 config/use_hidden_project_data_directory=false
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3")
+run/max_fps=120
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/use_filter=false
@@ -24,8 +25,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TextTransitionSettings="*res://addons/awesome_label/text_transition_settings.gd"
-MouseManager="*res://src/MouseManager.tscn"
-Chat="*res://src/Chat.tscn"
+MouseManager="*res://client/interface/mouse/MouseManager.tscn"
 Log="*res://addons/logger/log.gd"
 Global="*res://src/Global.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
@@ -53,11 +53,12 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/camera_2
 [file_customization]
 
 folder_colors={
-"res://addons/": "red",
-"res://resources/": "orange",
-"res://scenes/": "teal",
-"res://src/": "blue",
-"res://userdata/": "gray"
+"res://addons/": "purple",
+"res://client/": "blue",
+"res://resources/": "green",
+"res://src/": "red",
+"res://userdata/": "gray",
+"res://world/": "yellow"
 }
 
 [gui]
@@ -403,3 +404,10 @@ environment/volumetric_fog/use_filter=0
 environment/defaults/default_clear_color=Color(0.262745, 0.262745, 0.262745, 1)
 viewport/hdr_2d=true
 anti_aliasing/quality/use_debanding=true
+
+[shader_globals]
+
+player_position={
+"type": "vec2",
+"value": Vector2(0, 0)
+}
