@@ -6,12 +6,10 @@ extends Node
 ## global variables that need to be accessible 
 
 signal client_config_file_ready(config_file: ConfigFile)
-signal error_shown(message:String)
-signal error_freed(message:String)
-signal username_avaliable(username:String)
-signal go_ahead
-var error_blocking : bool = false
-var camera_position : Vector2 = Vector2(0, 0)
+signal ready_to_crash
 
-var local_player_id : String = ""
-var local_session_id : String = ""
+@onready var client_log_level: LogStream.LogLevel = LogStream.LogLevel.INFO
+@onready var newgrounds_log_level: LogStream.LogLevel = LogStream.LogLevel.INFO
+@onready var config_log_level: LogStream.LogLevel = LogStream.LogLevel.DEBUG
+@onready var camera_log_level: LogStream.LogLevel = LogStream.LogLevel.INFO
+@onready var input_manager_log_level: LogStream.LogLevel = LogStream.LogLevel.DEBUG

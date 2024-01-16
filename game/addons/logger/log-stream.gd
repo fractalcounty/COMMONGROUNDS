@@ -22,13 +22,12 @@ const BREAK_ON_ERROR = true
 static var DEFAULT_CRASH_BEHAVIOR := func():
 	#Restart the process to the main scene. (Uncomment if wanted), 
 	#note that we don't want to restart if we crash on init, then we get stuck in an infinite crash-loop, which isn't fun for anyone. 
-	#if get_tree().get_frame()>0:
-	#	var _ret = OS.create_process(OS.get_executable_path(), OS.get_cmdline_args())
+	pass
 	
 	#Choose crash mechanism. Difference is that get_tree().quit() quits at the end of the frame, 
 	#enabling multiple fatal errors to be cast, printing multiple stack traces etc. 
 	#Warning regarding the use of OS.crash() in the docs can safely be regarded in this case.
-	OS.crash("Crash since fatal ass error ocurred")
+	#OS.crash("Crash since fatal ass error ocurred")
 	#get_tree().quit(-1)
 
 #end of config
@@ -73,23 +72,13 @@ func warn(message:String,values={}):
 ##Prints a message to the log at the error level.
 func error(message:String,values={}):
 	call_thread_safe("_internal_log", message, values, LogLevel.ERROR)
-
-##Displays a persistant error to the user on a visual level via loading screen
-func show_error(message:String,values={}):
-	call_thread_safe("_internal_log", message, values, LogLevel.ERROR)
-	Global.error_blocking = true
-	Global.error_shown.emit(message)
-
-##Displays a persistant error to the user on a visual level
-func free_error(message:String,values={}):
-	call_thread_safe("_internal_log", message, values, LogLevel.INFO)
-	Global.error_blocking = false
-	Global.error_freed.emit(message)
+	Global.error_thrown.emit(message, false)
 
 ##Prints a message to the log at the fatal level, exits the application 
 ##since there has been a fatal error.
 func fatal(message:String,values={}):
 	call_thread_safe("_internal_log", message, values, LogLevel.FATAL)
+	Global.error_thrown.emit(message, false)
 
 ##Shorthand for debug
 func dbg(message:String,values={}):
@@ -98,27 +87,44 @@ func dbg(message:String,values={}):
 ##Shorthand for error
 func err(message:String,values={}):
 	call_thread_safe("_internal_log", message, values, LogLevel.ERROR)
+	Global.error_thrown.emit(message, false)
 
 ##Throws an error if err_code is not of value "OK" and appends the error code string.
 func err_cond_not_ok(err_code:Error, message:String, fatal:=true, other_values_to_be_printed={}):
 	if err_code != OK:
 		call_thread_safe("_internal_log", message + "" if message.ends_with(".") else "." + " Error string: " + error_string(err_code), other_values_to_be_printed, LogLevel.FATAL if fatal else LogLevel.ERROR)
+		if not fatal:
+			Global.error_thrown.emit(message, false)
+		else:
+			Global.error_thrown.emit(message, true)
 
 ##Throws an error if the "statement" passed is false. Handy for making code "free" from if statements.
 func err_cond_false(statement:bool, message:String, fatal:=true, other_values_to_be_printed={}):
 	if !statement:
 		call_thread_safe("_internal_log", message, other_values_to_be_printed, LogLevel.FATAL if fatal else LogLevel.ERROR)
+		if not fatal:
+			Global.error_thrown.emit(message, false)
+		else:
+			Global.error_thrown.emit(message, true)
 
 ##Throws an error if argument == null
 func err_cond_null(arg, message:String, fatal:=true, other_values_to_be_printed={}):
 	if arg == null:
 		call_thread_safe("_internal_log", message, other_values_to_be_printed, LogLevel.FATAL if fatal else LogLevel.ERROR)
+		if not fatal:
+			Global.error_thrown.emit(message, false)
+		else:
+			Global.error_thrown.emit(message, true)
 
 ##Throws an error if the arg1 isn't equal to arg2. Handy for making code "free" from if statements.
 func err_cond_not_equal(arg1, arg2, message:String, fatal:=true, other_values_to_be_printed={}):
 	#the type Color is weird in godot, so therefore this edgecase...
 	if (arg1 is Color && arg2 is Color && !arg1.is_equal_approx(arg2)) || arg1 != arg2:
 		call_thread_safe("_internal_log", str(arg1) + " != " + str(arg2) + ", not allowed. " + message, other_values_to_be_printed, LogLevel.FATAL if fatal else LogLevel.ERROR)
+		if not fatal:
+			Global.error_thrown.emit(message, false)
+		else:
+			Global.error_thrown.emit(message, true)
 
 ##Main internal logging method, please use the logger() instead since this is not thread safe.
 func _internal_log(message:String, values, log_level := LogLevel.INFO):

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cryoc1mw1tyjj"]
+
+[ext_resource type="Script" path="res://scenes/client.gd" id="1_rasbb"]
+[ext_resource type="Material" uid="uid://dypsoec1nh11b" path="res://resources/shaders/InterfaceStatic.tres" id="5_3r3um"]
+
+[node name="Client" type="Node"]
+script = ExtResource("1_rasbb")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WorldLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="PostProcessing" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Grain" type="ColorRect" parent="PostProcessing"]
+material = ExtResource("5_3r3um")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

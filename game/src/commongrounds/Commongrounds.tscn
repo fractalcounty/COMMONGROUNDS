@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://374fdjac8xmg"]
+
+[ext_resource type="Script" path="res://src/commongrounds/Commongrounds.gd" id="1_nhlbr"]
+
+[node name="Commongrounds" type="Node"]
+script = ExtResource("1_nhlbr")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

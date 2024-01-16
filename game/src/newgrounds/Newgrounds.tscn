@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c48amwhuettm5"]
+
+[ext_resource type="Script" path="res://src/newgrounds/newgrounds.gd" id="1_q5nfm"]
+[ext_resource type="Script" path="res://scenes/newgrounds_keepalive_timer.gd" id="2_h3gq8"]
+
+[node name="Newgrounds" type="Node"]
+script = ExtResource("1_q5nfm")
+
+[node name="KeepaliveTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+script = ExtResource("2_h3gq8")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="timeout" from="KeepaliveTimer" to="." method="_on_keepalive_timer_timeout"]
+[connection signal="timeout" from="KeepaliveTimer" to="KeepaliveTimer" method="_on_timeout"]

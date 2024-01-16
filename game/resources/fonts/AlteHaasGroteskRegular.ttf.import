@@ -14,7 +14,7 @@ dest_files=["res://godot/imported/AlteHaasGroteskRegular.ttf-6ba20c9ac68bb5db801
 
 Rendering=null
 antialiasing=1
-generate_mipmaps=false
+generate_mipmaps=true
 multichannel_signed_distance_field=true
 msdf_pixel_range=8
 msdf_size=48

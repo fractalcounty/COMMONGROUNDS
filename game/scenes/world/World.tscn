@@ -1,0 +1,293 @@
+[gd_scene load_steps=36 format=3 uid="uid://dv0koyqtswelw"]
+
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_qdagq"]
+[ext_resource type="Texture2D" uid="uid://dvels5ipnpo6k" path="res://resources/textures/tiles/prototype/dark.png" id="2_wdigo"]
+[ext_resource type="Texture2D" uid="uid://wuumt5266yim" path="res://resources/textures/tiles/prototype/dark_large.png" id="3_4515v"]
+[ext_resource type="Texture2D" uid="uid://dm625vm3n0o5d" path="res://resources/textures/tiles/prototype/ng_sunbeam.png" id="4_ya1vj"]
+[ext_resource type="Shader" path="res://resources/shaders/PlayerVignette.gdshader" id="5_7r6q1"]
+[ext_resource type="Texture2D" uid="uid://c6q5rsrvtmgcg" path="res://resources/textures/tiles/prototype/ng_sunbeam_large.png" id="5_vh5ry"]
+[ext_resource type="Shader" path="res://resources/shaders/rain.gdshader" id="6_ms466"]
+[ext_resource type="Script" path="res://scenes/commongrounds/user/player/player.gd" id="6_rqbn1"]
+[ext_resource type="FontFile" uid="uid://cqw63mte3fp2c" path="res://resources/fonts/AlteHaasGroteskBold.ttf" id="7_4ei3u"]
+[ext_resource type="Script" path="res://addons/rich_text_effects/Jump.gd" id="8_53cbf"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_ich08"]
+[ext_resource type="Texture2D" uid="uid://daniui84bkmab" path="res://resources/player/base/shadow.png" id="9_u1082"]
+[ext_resource type="Texture2D" uid="uid://ol80fkj3qvf7" path="res://resources/player/base/leg_right.png" id="10_0xfwb"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="10_jg002"]
+[ext_resource type="Texture2D" uid="uid://cled7ddg66yxe" path="res://resources/player/base/arm_right.png" id="11_a4824"]
+[ext_resource type="Texture2D" uid="uid://b1t8s3j5bvu7l" path="res://resources/player/base/torso.png" id="12_0vmkm"]
+[ext_resource type="Texture2D" uid="uid://mbt5jqkgnj2y" path="res://resources/player/base/head.png" id="13_o0ql6"]
+[ext_resource type="Texture2D" uid="uid://cfsw4frpcshfe" path="res://resources/player/base/mouth.png" id="14_8kuun"]
+[ext_resource type="Texture2D" uid="uid://cmywo6e1ek2ne" path="res://resources/player/base/eyes.png" id="15_bqfk5"]
+[ext_resource type="Texture2D" uid="uid://b716d8jf55p0y" path="res://resources/player/base/eyes_blink.png" id="16_0ojwa"]
+[ext_resource type="Texture2D" uid="uid://d1kj451mor3fd" path="res://resources/player/base/eyebrows.png" id="17_g4ow2"]
+[ext_resource type="Texture2D" uid="uid://b4ltxa23l0f6v" path="res://resources/player/base/leg_left.png" id="18_3k8b7"]
+[ext_resource type="Texture2D" uid="uid://bl4xbgjv5lc2d" path="res://resources/player/base/arm_left.png" id="19_dqmar"]
+[ext_resource type="Script" path="res://scenes/world/camera.gd" id="22_d7y7i"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="24_p6dgb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsmwq"]
+texture = ExtResource("2_wdigo")
+texture_region_size = Vector2i(1024, 1024)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fg420"]
+texture = ExtResource("3_4515v")
+texture_region_size = Vector2i(1024, 1024)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rdo80"]
+texture = ExtResource("4_ya1vj")
+texture_region_size = Vector2i(1024, 1024)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hwpe"]
+texture = ExtResource("5_vh5ry")
+texture_region_size = Vector2i(1024, 1024)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hxhe3"]
+tile_size = Vector2i(1024, 1024)
+sources/0 = SubResource("TileSetAtlasSource_nsmwq")
+sources/1 = SubResource("TileSetAtlasSource_fg420")
+sources/2 = SubResource("TileSetAtlasSource_rdo80")
+sources/3 = SubResource("TileSetAtlasSource_6hwpe")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_gs335"]
+script = ExtResource("8_53cbf")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_llrrh"]
+animations = [{
+"frames": [{
+"duration": 24.0,
+"texture": ExtResource("15_bqfk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0ojwa")
+}, {
+"duration": 32.0,
+"texture": ExtResource("15_bqfk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0ojwa")
+}, {
+"duration": 2.0,
+"texture": ExtResource("15_bqfk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0ojwa")
+}, {
+"duration": 32.0,
+"texture": ExtResource("15_bqfk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0ojwa")
+}, {
+"duration": 42.0,
+"texture": ExtResource("15_bqfk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0ojwa")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 12.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qxnya"]
+shader = ExtResource("5_7r6q1")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/MULTIPLIER = 0.56
+shader_parameter/SCALE = 1.525
+shader_parameter/SOFTNESS = 0.745
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pcpn5"]
+shader = ExtResource("6_ms466")
+shader_parameter/count = 60
+shader_parameter/slant = -0.045
+shader_parameter/speed = 50.0
+shader_parameter/blur = 0.0045
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
+
+[sub_resource type="Resource" id="Resource_bkmw2"]
+script = ExtResource("24_p6dgb")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_qdagq")
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(0.5, 0.5)
+tile_set = SubResource("TileSet_hxhe3")
+format = 2
+layer_0/tile_data = PackedInt32Array(-262149, 0, 0, -196613, 0, 0, -131077, 0, 0, -65541, 0, 0, -5, 0, 0, 65531, 0, 0, 131067, 0, 0, 196603, 0, 0, 262139, 0, 0, -262148, 0, 0, -196612, 0, 0, -131076, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 131068, 0, 0, 196604, 0, 0, 262140, 0, 0, -262147, 0, 0, -196611, 0, 0, -131075, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 131069, 0, 0, 196605, 0, 0, 262141, 0, 0, -262146, 0, 0, -196610, 0, 0, -131074, 0, 0, -65538, 0, 0, -2, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 262142, 0, 0, -262145, 0, 0, -196609, 0, 0, -131073, 0, 0, -65537, 0, 0, -1, 0, 0, 65535, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, -327680, 0, 0, -262144, 0, 0, -196608, 0, 0, -131072, 0, 0, -65536, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, -327679, 0, 0, -262143, 0, 0, -196607, 0, 0, -131071, 0, 0, -65535, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, -327678, 0, 0, -262142, 0, 0, -196606, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, -327677, 0, 0, -262141, 0, 0, -196605, 0, 0, -131069, 0, 0, -65533, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0, -327676, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -65532, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, -327675, 0, 0, -262139, 0, 0, -196603, 0, 0, -131067, 0, 0, -65531, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, -327689, 0, 0, -262153, 0, 0, -196617, 0, 0, -131081, 0, 0, -65545, 0, 0, -9, 0, 0, 65527, 0, 0, 131063, 0, 0, 196599, 0, 0, 262135, 0, 0, 327671, 0, 0, -327688, 0, 0, -262152, 0, 0, -196616, 0, 0, -131080, 0, 0, -65544, 0, 0, -8, 0, 0, 65528, 0, 0, 131064, 0, 0, 196600, 0, 0, 262136, 0, 0, 327672, 0, 0, -327687, 0, 0, -262151, 0, 0, -196615, 0, 0, -131079, 0, 0, -65543, 0, 0, -7, 0, 0, 65529, 0, 0, 131065, 0, 0, 196601, 0, 0, 262137, 0, 0, 327673, 0, 0, -327686, 0, 0, -262150, 0, 0, -196614, 0, 0, -131078, 0, 0, -65542, 0, 0, -6, 0, 0, 65530, 0, 0, 131066, 0, 0, 196602, 0, 0, 262138, 0, 0, 327674, 0, 0, -327685, 0, 0, 327675, 0, 0, -327684, 0, 0, 327676, 0, 0, -327683, 0, 0, 327677, 0, 0, -327682, 0, 0, 327678, 0, 0, -327681, 0, 0, 327679, 0, 0, -393216, 0, 0, 262144, 0, 0, -393215, 0, 0, 262145, 0, 0, -393214, 0, 0, 262146, 0, 0, -393213, 0, 0, 262147, 0, 0, -393212, 0, 0, 262148, 0, 0, -393211, 0, 0, 262149, 0, 0, -393210, 0, 0, -327674, 0, 0, -262138, 0, 0, -196602, 0, 0, -131066, 0, 0, -65530, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, -393209, 0, 0, -327673, 0, 0, -262137, 0, 0, -196601, 0, 0, -131065, 0, 0, -65529, 0, 0, 7, 0, 0, 65543, 0, 0, 131079, 0, 0, 196615, 0, 0, 262151, 0, 0, -393208, 0, 0, -327672, 0, 0, -262136, 0, 0, -196600, 0, 0, -131064, 0, 0, -65528, 0, 0, 8, 0, 0, 65544, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, -393207, 0, 0, -327671, 0, 0, -262135, 0, 0, -196599, 0, 0, -131063, 0, 0, -65527, 0, 0, 9, 0, 0, 65545, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0, -393206, 0, 0, -327670, 0, 0, -262134, 0, 0, -196598, 0, 0, -131062, 0, 0, -65526, 0, 0, 10, 0, 0, 65546, 0, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0)
+
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("pcam")]
+y_sort_enabled = true
+script = ExtResource("6_rqbn1")
+speed = 500.0
+acceleration = 50.0
+nametag_offset = Vector2(-35, -140)
+head_rotation_duration = 0.1
+head_rotation_trans = 1
+pcam = NodePath("../PhantomCamera2D")
+zoom_step = 0.3
+
+[node name="NameTag" type="RichTextLabel" parent="Player"]
+clip_contents = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -133.5
+offset_top = -114.0
+offset_right = 129.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 9.59
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.154)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("7_4ei3u")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][jump]username[/jump][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+custom_effects = [SubResource("RichTextEffect_gs335")]
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="VisualComponent" type="Node2D" parent="Player"]
+texture_filter = 4
+scale = Vector2(0.25, 0.25)
+
+[node name="Shadow" type="Sprite2D" parent="Player/VisualComponent"]
+modulate = Color(1, 1, 1, 0.254)
+texture_filter = 4
+position = Vector2(8, 620)
+texture = ExtResource("9_u1082")
+
+[node name="LegRight" type="Sprite2D" parent="Player/VisualComponent"]
+texture_filter = 4
+position = Vector2(110, 543)
+texture = ExtResource("10_0xfwb")
+
+[node name="ArmRight" type="Sprite2D" parent="Player/VisualComponent"]
+texture_filter = 4
+position = Vector2(133, 332)
+texture = ExtResource("11_a4824")
+
+[node name="Torso" type="Sprite2D" parent="Player/VisualComponent"]
+texture_filter = 4
+position = Vector2(5, 310)
+texture = ExtResource("12_0vmkm")
+
+[node name="HeadSprites" type="Node2D" parent="Player/VisualComponent"]
+position = Vector2(-48, 148)
+
+[node name="Head" type="Sprite2D" parent="Player/VisualComponent/HeadSprites"]
+texture_filter = 4
+position = Vector2(33.5, 13.5)
+texture = ExtResource("13_o0ql6")
+offset = Vector2(-9, -208)
+
+[node name="Mouth" type="Sprite2D" parent="Player/VisualComponent/HeadSprites"]
+texture_filter = 4
+position = Vector2(135.5, 4.5)
+texture = ExtResource("14_8kuun")
+
+[node name="Eyes" type="AnimatedSprite2D" parent="Player/VisualComponent/HeadSprites"]
+texture_filter = 4
+position = Vector2(127.5, -104.5)
+sprite_frames = SubResource("SpriteFrames_llrrh")
+animation = &"blink"
+autoplay = "blink"
+frame_progress = 0.549525
+
+[node name="Eyebrows" type="Sprite2D" parent="Player/VisualComponent/HeadSprites"]
+texture_filter = 4
+position = Vector2(114.5, -162.5)
+texture = ExtResource("17_g4ow2")
+
+[node name="LegLeft" type="Sprite2D" parent="Player/VisualComponent"]
+texture_filter = 4
+position = Vector2(-76, 540)
+texture = ExtResource("18_3k8b7")
+
+[node name="ArmLeft" type="Sprite2D" parent="Player/VisualComponent"]
+texture_filter = 4
+position = Vector2(-133, 330)
+texture = ExtResource("19_dqmar")
+
+[node name="Node2D" type="Node2D" parent="Player/VisualComponent"]
+
+[node name="WorldPostProcessing" type="CanvasLayer" parent="."]
+layer = 128
+visible = false
+
+[node name="PlayerVignette" type="ColorRect" parent="WorldPostProcessing"]
+visible = false
+material = SubResource("ShaderMaterial_qxnya")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Rain" type="ColorRect" parent="WorldPostProcessing"]
+material = SubResource("ShaderMaterial_pcpn5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("pcam")]
+script = ExtResource("22_d7y7i")
+pcam = NodePath("../PhantomCamera2D")
+pan_speed = 30.0
+pan_acceleration = 50.0
+pan_reset_threshold = 1.0
+pan_reset_speed = 15.0
+pan_reset_ease = 3
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("9_ich08")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+script = ExtResource("10_jg002")
+priority_override = false
+priority = 0
+zoom = Vector2(1, 1)
+follow_mode = 2
+follow_target = NodePath("../Player/VisualComponent")
+follow_parameters/target_offset = Vector2(0, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 15.0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_bkmw2")
+tween_on_load = true
+inactive_update_mode = 0

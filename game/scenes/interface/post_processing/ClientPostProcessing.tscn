@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://o5uggbs47tvv"]
+
+[ext_resource type="Script" path="res://scenes/interface/post_processing/client_post_processing.gd" id="1_vuxc7"]
+[ext_resource type="Material" uid="uid://dypsoec1nh11b" path="res://resources/shaders/InterfaceStatic.tres" id="3_albtf"]
+[ext_resource type="Material" uid="uid://db6xa2hghdb18" path="res://resources/shaders/glass_blur.tres" id="3_k4aov"]
+
+[node name="PostProcessing" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vuxc7")
+blur_in_color = Color(0.286275, 0.501961, 1, 0.0117647)
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("3_k4aov")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Grain" type="ColorRect" parent="."]
+material = ExtResource("3_albtf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

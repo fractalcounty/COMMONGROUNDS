@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4br2hs7ngrj1"]
+
+[ext_resource type="Texture2D" uid="uid://drdbjrtewn7sj" path="res://resources/textures/cursors/8_17.png" id="1_kd5hi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_smkiw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kd5hi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Mouse" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_smkiw")
+autoplay = "default"
