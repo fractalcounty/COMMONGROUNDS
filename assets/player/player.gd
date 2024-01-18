@@ -150,10 +150,10 @@ func _flip_direction_based_on_mouse() -> void:
 	input_direction_changed = false
 
 func _handle_zoom_input() -> void:
-	if Input.is_action_just_pressed("action_zoom_in"):
+	if Input.is_action_just_pressed("action_zoom_out"):
 		_zoom_in()
 		zoom_timer.start(zoom_timer_delay)
-	elif Input.is_action_just_pressed("action_zoom_out"):
+	elif Input.is_action_just_pressed("action_zoom_in"):
 		_zoom_out()
 		zoom_timer.start(zoom_timer_delay)
 
