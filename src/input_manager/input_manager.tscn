@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://ds6x4bykhkd3r"]
+
+[ext_resource type="Script" path="res://src/input_manager/input_manager.gd" id="1_2xwhu"]
+[ext_resource type="Script" path="res://src/input_manager/mouse/mouse.gd" id="2_nyu2o"]
+[ext_resource type="Texture2D" uid="uid://83lvriyl41pg" path="res://src/input_manager/mouse/cursor_move.png" id="3_jqbxd"]
+[ext_resource type="Texture2D" uid="uid://cpcl7sm0snxtj" path="res://src/input_manager/mouse/cursor_arrow.png" id="4_7sl73"]
+[ext_resource type="Texture2D" uid="uid://duc6lgwf242mv" path="res://src/input_manager/mouse/cursor_pointing_hand.png" id="4_f1s2s"]
+[ext_resource type="Texture2D" uid="uid://xd7x7gt0w185" path="res://src/input_manager/mouse/cursor_zoom.png" id="5_w8m7l"]
+[ext_resource type="FontFile" uid="uid://drtafj4t1rlcy" path="res://assets/fonts/alte_haas_grotesk/alte_haas_grotesk_regular.ttf" id="7_ydv05"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_0o0nd"]
+frames = 4
+pause = true
+frame_0/texture = ExtResource("4_7sl73")
+frame_1/texture = ExtResource("4_f1s2s")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_jqbxd")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_w8m7l")
+frame_3/duration = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_httlu"]
+font = ExtResource("7_ydv05")
+outline_size = 2
+outline_color = Color(0.2, 0.2, 0.2, 1)
+shadow_size = 2
+shadow_color = Color(0.2, 0.2, 0.2, 1)
+shadow_offset = Vector2(0.225, 0.53)
+
+[node name="InputManager" type="CanvasLayer"]
+script = ExtResource("1_2xwhu")
+
+[node name="Mouse" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_nyu2o")
+cursor_show_tween_amount = 0.3
+cursor_show_tween_duration = 0.05
+cursor_hide_tween_duration = 0.09
+cursor_hide_tween_trans_type = 7
+cursor_bounce_tween_amount = 0.1
+cursor_bounce_tween_duration = 0.02
+
+[node name="Cursor" type="TextureRect" parent="Mouse"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1856.0
+offset_bottom = -1016.0
+pivot_offset = Vector2(32, 32)
+mouse_filter = 2
+texture = SubResource("AnimatedTexture_0o0nd")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="CursorDebugContainer" type="VBoxContainer" parent="Mouse/Cursor"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 42.0
+offset_top = 42.0
+offset_right = 219.0
+offset_bottom = 82.0
+theme_override_constants/separation = -2
+alignment = 1
+
+[node name="CursorDebugLabel1" type="Label" parent="Mouse/Cursor/CursorDebugContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "debug value placeholder"
+label_settings = SubResource("LabelSettings_httlu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CursorDebugLabel2" type="Label" parent="Mouse/Cursor/CursorDebugContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "debug value placeholder"
+label_settings = SubResource("LabelSettings_httlu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActivityTimer" type="Timer" parent="Mouse"]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true

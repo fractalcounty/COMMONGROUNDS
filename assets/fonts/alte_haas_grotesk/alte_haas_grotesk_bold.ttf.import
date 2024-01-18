@@ -1,0 +1,39 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://cqw63mte3fp2c"
+path="res://.godot/imported/alte_haas_grotesk_bold.ttf-968334f5f1c1dbcec9be15e717e0e693.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/alte_haas_grotesk/alte_haas_grotesk_bold.ttf"
+dest_files=["res://.godot/imported/alte_haas_grotesk_bold.ttf-968334f5f1c1dbcec9be15e717e0e693.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=true
+multichannel_signed_distance_field=true
+msdf_pixel_range=8
+msdf_size=72
+allow_system_fallback=false
+force_autohinter=true
+hinting=2
+subpixel_positioning=0
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0),
+"variation_embolden": 0.0
+}]
+language_support={}
+script_support={}
+opentype_features={}

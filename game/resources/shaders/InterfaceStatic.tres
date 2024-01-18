@@ -1,9 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dypsoec1nh11b"]
-
-[ext_resource type="Shader" path="res://resources/shaders/grain.gdshader" id="1_ys2cn"]
-
-[resource]
-shader = ExtResource("1_ys2cn")
-shader_parameter/INTENSITY = 0.033
-shader_parameter/MEAN = -0.591
-shader_parameter/VARIANCE = 0.34

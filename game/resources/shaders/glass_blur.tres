@@ -1,9 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://db6xa2hghdb18"]
-
-[ext_resource type="Shader" path="res://resources/shaders/frosted_glass_ui.gdshader" id="1_ytcjc"]
-
-[resource]
-shader = ExtResource("1_ytcjc")
-shader_parameter/blur_amount = 3.923
-shader_parameter/mix_amount = 0.202
-shader_parameter/color_over = null

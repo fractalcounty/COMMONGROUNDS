@@ -1,9 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://by17o30ybvak4"]
-
-[ext_resource type="Shader" path="res://resources/shaders/pallete_swap.gdshader" id="1_6apj2"]
-
-[resource]
-shader = ExtResource("1_6apj2")
-shader_parameter/_min = 0.805
-shader_parameter/_max = 1.17
-shader_parameter/color = Color(0.914974, 0.449939, 0, 1)

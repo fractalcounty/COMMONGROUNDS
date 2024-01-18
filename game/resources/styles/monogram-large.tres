@@ -1,6 +1,0 @@
-[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://1b1vkrc3c2yy"]
-
-[ext_resource type="FontFile" uid="uid://d3yqdwpfs12r3" path="res://resources/fonts/monogram-extended.ttf" id="1_ybcnv"]
-
-[resource]
-base_font = ExtResource("1_ybcnv")

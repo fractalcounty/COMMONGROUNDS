@@ -1,16 +1,17 @@
-#  Godot-specific ignores
-game/godot/
-game/exports/
-game/export.cfg
-game/export_presets.cfg
-*.translation
-*.tmp
-
-# System tool-specific ignores
-.code-workspace
+#  Directory ignores
+.godot/
+/godot/
 .vscode/
-.directory
-.DS_Store
-*~
+userdata/
+
+# Extension ignores
+*.code-workspace
+*.vs
+*.tmp
+*.translation
+*.DS_Store
 *.blend1
-game/userdata/
+
+# File ignores
+export.cfg
+export_presets.cfg

@@ -1,0 +1,162 @@
+[gd_scene load_steps=17 format=3 uid="uid://botvvtx74i08m"]
+
+[ext_resource type="Script" path="res://assets/player/player.gd" id="1_dx4em"]
+[ext_resource type="FontFile" uid="uid://cqw63mte3fp2c" path="res://assets/fonts/alte_haas_grotesk/alte_haas_grotesk_bold.ttf" id="2_ln4oc"]
+[ext_resource type="Texture2D" uid="uid://daniui84bkmab" path="res://assets/player/base/base_shadow.png" id="4_c5hni"]
+[ext_resource type="Texture2D" uid="uid://ol80fkj3qvf7" path="res://assets/player/base/base_leg_right.png" id="5_fhcku"]
+[ext_resource type="Texture2D" uid="uid://cled7ddg66yxe" path="res://assets/player/base/base_arm_right.png" id="6_k0dgt"]
+[ext_resource type="Texture2D" uid="uid://b1t8s3j5bvu7l" path="res://assets/player/base/base_torso.png" id="7_hylnq"]
+[ext_resource type="Texture2D" uid="uid://mbt5jqkgnj2y" path="res://assets/player/base/base_head.png" id="8_ndglv"]
+[ext_resource type="Texture2D" uid="uid://cfsw4frpcshfe" path="res://assets/player/base/base_mouth.png" id="9_1qd27"]
+[ext_resource type="Texture2D" uid="uid://cmywo6e1ek2ne" path="res://assets/player/base/base_eyes.png" id="10_tt7bq"]
+[ext_resource type="Texture2D" uid="uid://b716d8jf55p0y" path="res://assets/player/base/base_eyes_blink.png" id="11_8e3r0"]
+[ext_resource type="Texture2D" uid="uid://d1kj451mor3fd" path="res://assets/player/base/base_eyebrows.png" id="12_nbi5b"]
+[ext_resource type="Texture2D" uid="uid://b4ltxa23l0f6v" path="res://assets/player/base/base_leg_left.png" id="13_3khbl"]
+[ext_resource type="Texture2D" uid="uid://bl4xbgjv5lc2d" path="res://assets/player/base/base_arm_left.png" id="14_5gtcb"]
+[ext_resource type="Script" path="res://src/helpers/rich_text_effects/Jump.gd" id="24_1agfe"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_gs335"]
+script = ExtResource("24_1agfe")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_llrrh"]
+animations = [{
+"frames": [{
+"duration": 24.0,
+"texture": ExtResource("10_tt7bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8e3r0")
+}, {
+"duration": 32.0,
+"texture": ExtResource("10_tt7bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8e3r0")
+}, {
+"duration": 2.0,
+"texture": ExtResource("10_tt7bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8e3r0")
+}, {
+"duration": 32.0,
+"texture": ExtResource("10_tt7bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8e3r0")
+}, {
+"duration": 42.0,
+"texture": ExtResource("10_tt7bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8e3r0")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 12.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("zoom_timer")]
+y_sort_enabled = true
+script = ExtResource("1_dx4em")
+speed = 500.0
+acceleration = 50.0
+nametag_offset = Vector2(7, -75)
+head_rotation_duration = 1.0
+zoom_timer = NodePath("ZoomTimer")
+
+[node name="NameTag" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -133.5
+offset_top = -114.0
+offset_right = 129.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 9.59
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.154)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("2_ln4oc")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][jump]username[/jump][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+custom_effects = [SubResource("RichTextEffect_gs335")]
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="VisualComponent" type="Node2D" parent="."]
+texture_filter = 4
+scale = Vector2(0.25, 0.25)
+
+[node name="Shadow" type="Sprite2D" parent="VisualComponent"]
+modulate = Color(1, 1, 1, 0.254)
+texture_filter = 4
+position = Vector2(8, 620)
+texture = ExtResource("4_c5hni")
+
+[node name="LegRight" type="Sprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(110, 543)
+texture = ExtResource("5_fhcku")
+
+[node name="ArmRight" type="Sprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(133, 332)
+texture = ExtResource("6_k0dgt")
+
+[node name="Torso" type="Sprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(5, 310)
+texture = ExtResource("7_hylnq")
+
+[node name="Head" type="Sprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(-13, -44)
+texture = ExtResource("8_ndglv")
+
+[node name="Mouth" type="Sprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(98, 155)
+texture = ExtResource("9_1qd27")
+
+[node name="Eyes" type="AnimatedSprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(90, 46)
+sprite_frames = SubResource("SpriteFrames_llrrh")
+animation = &"blink"
+frame_progress = 0.897694
+
+[node name="Eyebrows" type="Sprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(77, -12)
+texture = ExtResource("12_nbi5b")
+
+[node name="LegLeft" type="Sprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(-76, 540)
+texture = ExtResource("13_3khbl")
+
+[node name="ArmLeft" type="Sprite2D" parent="VisualComponent"]
+texture_filter = 4
+position = Vector2(-133, 330)
+texture = ExtResource("14_5gtcb")
+
+[node name="ZoomTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.25
+one_shot = true
